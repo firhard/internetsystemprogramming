@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +26,24 @@ public class Registration extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String fuserName = Utility.filter(request.getParameter("userName"));
+		String fpassWord[] = (request.getParameterValues("passWord"));
+		PrintWriter out = response.getWriter();
+
+		if (Utility.is_blank(fuserName) || Utility.is_blank(fpassWord[0]) || Utility.is_blank(fpassWord[1])){
+			out.println("You didn't specify the username and/or password");
+		} else if(!fpassWord[0].equals(fpassWord[1])){
+			out.println("\nPassword fields are different");
+			out.println("\nFirst password: " + fpassWord[0]);
+			out.println("\nSecond password: " + fpassWord[1]);
+		} else if(Users.usernameTaken(fuserName)){
+			out.println("\nThis username is already taken");
+		} else{
+			new Users(fuserName, fpassWord[0]);
+			
+			response.sendRedirect("Login.jsp");
+		}
 	}
 
 	/**

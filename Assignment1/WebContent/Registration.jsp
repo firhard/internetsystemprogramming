@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Registration</title>
 </head>
 <body>
+
+<form action=Registration method=get>
+
+	Username:
+	 <input type=text name=userName value= > <br>
+	 
+	Password:
+	<input type=text name=passWord value= > <br>
+	
+	Re-Type Password:
+	<input type=text name=passWord value= > <br>
+	
+	<input type=submit value=Registration>
+</form>
+
 
 </body>
 </html>
