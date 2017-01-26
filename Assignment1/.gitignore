@@ -18,9 +18,6 @@
 *.rar
 *.tar
 *.zip
-*~
-*.swp
-*.swo
 # Logs and databases #
 ######################
 *.log
@@ -34,4 +31,13 @@
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
+Thumbs.
+
+# Our ignored filee #
+*~
+*.swp
+*.swo
+*.metadata
+*.settings
+*.classpath
+*.project
