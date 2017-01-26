@@ -4,9 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Search</title>
 </head>
 <body>
+Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'"> <br>
+
+<table style="width:100%">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Category</th> 
+    <th>Seller Name</th>
+    <th>Price</th>
+    <th>Thumbnail</th>
+  </tr>
+  <tr>
+    <td>Adidas</td>
+    <td>Sports</td> 
+    <td>Firhard</td>
+    <td>$99</td>
+    <td><input type="button" value="Adidas" class="ProductDetails" name=" ProductDetails" onclick="document.location.href='ViewProductDetails.jsp'"></td>
+  </tr>
+  <tr>
+    <td>Nike</td>
+    <td>Sports</td> 
+    <td>Jon</td>
+    <td>$99</td>
+    <td><input type="button" value="Nike" class="ProductDetails" name=" ProductDetails" onclick="document.location.href='ViewProductDetails.jsp'"></td>
+  </tr>
+</table>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'">
 
 </body>
 </html>

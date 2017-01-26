@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Back: <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> <br> 
+Add to Cart: <input type="button" value="Add to Cart" class="Add to Cart" name="Add to Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 </body>
 </html>
