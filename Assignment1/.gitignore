@@ -41,3 +41,4 @@ Thumbs.
 *.settings
 *.classpath
 *.project
+/bin/
