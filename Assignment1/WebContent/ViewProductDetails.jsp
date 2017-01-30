@@ -9,21 +9,17 @@
 <style>
 
 th {
-
 	text-align: left;
 }
 
 td {
 	text-align: center;
+	padding: 5px;
 }
 
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-   
-.Photo-Container  {
-	float: right;	
-}
 
 }
 
