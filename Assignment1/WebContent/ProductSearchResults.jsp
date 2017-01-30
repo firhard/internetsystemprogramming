@@ -9,7 +9,7 @@
 <body>
 Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'"> <br>
 
-<table style="width:100%">
+<table style="width:50%">
   <tr>
     <th>Product Name</th>
     <th>Product Category</th> 
