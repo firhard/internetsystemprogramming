@@ -30,7 +30,7 @@ table {
 }
 
 
-div {
+.Products {
 	display:flex;
 	margin: 5px;
 }
@@ -39,21 +39,31 @@ div form {
 	margin: 10px;
 }
 
+.Total p {
+	padding: 0px;
+	margin: 0px;
+}
+
+
+.Sub_Total p{
+	padding: 0px 0px 0px 20px;
+}
+
 
 </style>
 <body>
-<div>
+<div class="Products">
 	<a class="thumbnail" href="img/Adidas3.jpg">
 		<img src="img/Adidas3.jpg" alt="Adidas image">
 	</a>
 	<table>
 		  <tr>
 		    <th colspan="3">Product Name:</th>
-		    <td>Adidas</td>
+		    <td>Adidas Hot Fire Jacket</td>
 		  </tr>
 		  <tr>
 		  	<th colspan="3">Product Details:</th>
-		  	<td>Raincoat Jacket</td>
+		  	<td>Adidas Raincoat Jacket</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Price:</th>
@@ -77,18 +87,18 @@ div form {
 	</form>
 </div>
 
-<div>
+<div class="Products">
 	<a href="img/Nike1.jpg">
 		<img src="img/Nike1.jpg" alt="Nike image">
 	</a>
 	<table>
 		  <tr>
 		    <th colspan="3">Product Name:</th>
-		    <td>Nike</td>
+		    <td>Nike Extreme Weather Jacket</td>
 		  </tr>
 		  <tr>
 		  	<th colspan="3">Product Details:</th>
-		  	<td>Nike Jacket</td>
+		  	<td>Nike Raincoat Jacket</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Price:</th>
@@ -111,7 +121,17 @@ div form {
 		<input type=submit value="Remove From Cart"> <br> 
 	</form>
 </div>
-
+<div class="Total">
+	<br>
+	<h3>Total Cost:	</h3>
+	<div class="Sub_Total">
+		<p><b>Adidas Hot Fire Jacket: $55.00</b></p>
+		<p><b>Nike Extreme Weather Jacket: $60.00</b></p>
+	</div>
+	<p><b>+____________________________________</b>
+	<div class="Sub_Total"><p><b>$115.00</b></p></div>
+</div>
+<br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 </body>
