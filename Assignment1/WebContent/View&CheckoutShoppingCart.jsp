@@ -132,6 +132,7 @@ div form {
 	<div class="Sub_Total"><p><b>$115.00</b></p></div>
 </div>
 <br>
+Checkout <input type="button" value="Checkout" class="Checkout" onclick="document.location.href='CustomerTransaction.jsp'"><br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 </body>
