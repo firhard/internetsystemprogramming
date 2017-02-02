@@ -4,24 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="passWordInputValidation.js"></script>
 <title>Registration</title>
 </head>
 <body>
 
-<form action=Registration method=get>
+<form name="myform" action=Registration method=get>
 
 	Username:
 	 <input type=text name=userName value= > <br>
 	 
 	Password:
-	<input type=text name=passWord value= > <br>
+	<input type=text id="pass1" name=passWord value= > <br>
 	
 	Re-Type Password:
-	<input type=text name=passWord value= > <br>
+	<input type=text id="pass2" name=passWord value= > <br>
 	
-	<input type=submit value=Registration>
+	<input id="submit" type=submit value=Register>
 </form>
-
 
 </body>
 </html>

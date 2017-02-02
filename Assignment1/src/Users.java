@@ -1,53 +1,98 @@
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+
 
 public class Users {
-
-	private static AtomicInteger nextId = new AtomicInteger();
-	private int id;
-	private String username;
-	private String password;
-	private static ArrayList<Users> list = new ArrayList<Users>();
 	
-	Users(String username, String password) {
-		this.id = nextId.incrementAndGet();
-		this.username = username;
-		this.password = password;
-		list.add(this);
+	private String userName;
+	private String password;
+	
+	public String getUserName() {
+		return userName;
 	}
-
-	String getUsername() {
-		return username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-
-	void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public static boolean userExist(String username, String password){
-		for(Users user: list){
-			if (user.getUsername().equals(username) && user.getPassword().equals(password)){
-				return true;
-			}
-		}
-		return false;
+	public Users(String userName, String password) {
+		super();
+		this.userName = userName;
+		this.password = password;
 	}
 	
-	public static boolean usernameTaken(String username){
-		for(Users user: list){
-			if(user.getUsername().equals(username)){
-				return true;
+	public void registerUser(Users aUser, String propFilePath) {
+		
+		Properties p = new Properties();
+		FileInputStream fis = null;
+		
+		try {
+			fis = new FileInputStream(propFilePath);
+			p.load(fis);
+			p.setProperty(aUser.getUserName(), aUser.getPassword());
+			p.store(new FileOutputStream(propFilePath), null);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
+	}
+	
+	public static boolean validateUser(String username, String propFilePath){
+		
+		Properties p = new Properties();
+		FileInputStream fis = null;
+		
+		try {
+			fis = new FileInputStream(propFilePath);
+			p.load(fis);
+			if (p.containsKey(username))
+				return true;
+			else
+				return false;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(fis!=null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		
 		return false;
 	}
+	// removeUser
+	
 	
 }

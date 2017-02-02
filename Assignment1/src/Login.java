@@ -1,14 +1,16 @@
 
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  * Servlet implementation class Login
  */
@@ -28,25 +30,54 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		String fuserName = Utility.filter(request.getParameter("userName"));
 		String fpassWord = Utility.filter(request.getParameter("passWord"));
 		PrintWriter out = response.getWriter();
 		
-		if (Utility.is_blank(fuserName)) {
-			out.println("You didn't specify a username");
-		} else if (Utility.is_blank(fpassWord)) {
-			out.println("You didn't specify a password");
-		} else {
-			if (Users.userExist(fuserName, fpassWord)) {		
+		
+		ServletContext sc = this.getServletContext();
+		String propFilePath = sc.getRealPath("/WEB-INF/users.properties");
+		
+		Properties p = new Properties();
+		
+		FileInputStream fis = null;
+		
+		try {
+			fis = new FileInputStream(propFilePath);
 			
-				response.sendRedirect("CustomerHomePage.jsp");
+			p.load(fis);
+			
+			if (Utility.is_blank(fuserName)) {
+				out.println("You didn't specify a username");
+			} else if (Utility.is_blank(fpassWord)) {
+				out.println("You didn't specify a password");
+			} else {
+				// Check whether the username exists or not
+				if (!Users.validateUser(fuserName, propFilePath)) {			
+					// Link-redirection
+					response.sendRedirect("Registration.jsp");
+				} else { // Check whether the password matches or not
+					String pword = p.getProperty(fuserName);  
+					if(!pword.equals(fpassWord)) {
+						response.sendRedirect("Registration.jsp"); // Link-redirection
+					} else {
+						response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
+					}
+				}
 			}
-			else{
-				response.sendRedirect("Registration.jsp");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(fis != null) {
+				fis.close();
 			}
 		}
-
+		
 	}
+		
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
