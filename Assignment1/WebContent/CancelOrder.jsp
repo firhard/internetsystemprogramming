@@ -4,9 +4,78 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Cancel Order</title>
 </head>
+<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+		}
+	th {
+		text-align: left;
+	}
+	
+	td {
+		text-align: center;
+		padding: 5px;
+	}
+	
+	table, th, td {
+	    border: 1px solid black;
+	    border-collapse: collapse;
+	}
+	
+	table {
+		margin: 5px;
+	}
+	
+	
+	.Products {
+		display:flex;
+		margin: 5px;
+	}
+	
+	div form {
+		margin: 10px;
+	}
+	
+	.Total p {
+		padding: 0px;
+		margin: 0px;
+	}
+	
+	
+	.Sub_Total p{
+		padding: 0px 0px 0px 20px;
+	}
+</style>
 <body>
+
+<div class="Products">
+	<table>
+		  <tr>
+		    <th colspan="3">Product Name:</th>
+		    <td>Adidas Hot Fire Jacket</td>
+		  </tr>
+		  <tr>
+		  	<th colspan="3">Product Quantity:</th>
+		  	<td>1</td>
+		  </tr>
+		  <tr>
+		    <th colspan="3">Total Price:</th>
+		    <td>$55</td>
+		  </tr>
+		  <tr>
+		    <th colspan="3">Seller Name:</th>
+		    <td>Firhard</td>
+		  </tr>
+	</table>
+</div>
+
+
+Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation" onclick="document.location.href='CancellationConfiramtion.jsp'"> <br>
+Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 
 </body>
 </html>
