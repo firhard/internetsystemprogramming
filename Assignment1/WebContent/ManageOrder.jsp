@@ -56,7 +56,7 @@
 				<th>
 					Order Number:
 				</th>
-				<td>2</td>
+				<td colspan="2">2</td>
 			</tr>
 			<tr>
 				<th>Product name</th>
@@ -95,19 +95,19 @@
 			</tr>		
 			<tr>
 				<th>Order Total:</th>
-				<td>$155</td>
+				<td colspan="2">$155</td>
 			</tr>
 			<tr>
 				<th>
 					Order Date:
 				</th>
-				<td>
+				<td colspan="2">
 					January 19, 2017
 				</td>
 			</tr>		
 			<tr>
 				<th>Shipping Address:</th>
-				<td>White House</td>
+				<td colspan="2">White House</td>
 			</tr>
 		</table>
 	</div>

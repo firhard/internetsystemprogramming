@@ -153,7 +153,7 @@ div form {
 	</table>
 </div>
 
-Confirm Payment: <input type="button" value="Confirm Payment" class="Confirm Payment" name="ConfirmPayment" onclick="document.location.href='CustomerTransactionConfirmationPage.jsp'"> <br>
+Confirm Payment: <input type="button" value="Confirm Payment" class="Confirm Payment" name="ConfirmPayment" onclick="document.location.href='CustomerTransactionConfirmation.jsp'"> <br>
 Cancel Payment: <input type="button" value="Cancel Payment" class="Cancel Payment" name="CancelPayment" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 
