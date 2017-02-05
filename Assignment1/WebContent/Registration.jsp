@@ -15,13 +15,15 @@
 	 <input type=text name=userName value= > <br>
 	 
 	Password:
-	<input type=text id="pass1" name=passWord value= > <br>
+	<input type=password id="pass1" name=passWord value= > <br>
 	
 	Re-Type Password:
-	<input type=text id="pass2" name=passWord value= > <br>
+	<input type=password id="pass2" name=passWord value= > <br>
 	
 	<input id="submit" type=submit value=Register>
 </form>
+
+<input type="button" value="Back to Login" onclick="document.location.href='Login.jsp'"></td>
 
 </body>
 </html>

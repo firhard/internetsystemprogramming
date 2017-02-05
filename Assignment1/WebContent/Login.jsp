@@ -14,7 +14,7 @@
 	 <input type=text name=userName value= > <br>
 	 
 	Password:
-	<input type=text name=passWord value= > <br>
+	<input type=password name=passWord value= > <br>
 	 
 	<input type=submit value=Submit> <br>
 </form>
