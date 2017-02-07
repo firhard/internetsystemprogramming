@@ -74,8 +74,8 @@
 Order Cancelled!<br>
 Refundable Amount: $55 (no damage)<br>
 
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 
 
 </body>

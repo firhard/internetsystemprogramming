@@ -75,8 +75,8 @@ table, th, td {
 	<p>This question has not been answered yet<p>
 </div>
 <div>
-	<h2>Customer Reviews</h2>
-	<p><b>Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
+	<h2>Customer Reviews (4.0 / 5.0 rating):</h2>
+	<p><b>&nbsp; &nbsp;4 stars &nbsp; - &nbsp; &nbsp; June 25, 2015 &nbsp; - &nbsp; &nbsp; Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
 </div>
 <br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>

@@ -18,14 +18,14 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
     <th>Thumbnail</th>
   </tr>
   <tr>
-    <td>Adidas</td>
+    <td>Adidas Jacket</td>
     <td>Sports</td> 
     <td>Firhard</td>
     <td>$99</td>
     <td><input type="button" value="Adidas" class="ProductDetails" name=" ProductDetails" onclick="document.location.href='ViewProductDetails.jsp'"></td>
   </tr>
   <tr>
-    <td>Nike</td>
+    <td>Nike Jacket</td>
     <td>Sports</td> 
     <td>Jon</td>
     <td>$99</td>

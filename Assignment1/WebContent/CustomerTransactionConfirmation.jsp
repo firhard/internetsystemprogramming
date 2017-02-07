@@ -52,7 +52,6 @@ div form {
 
 </style>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
 Your order has been placed!
 
@@ -115,5 +114,8 @@ Your order has been placed!
 		</tr>
 	</table>
 </div>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br><br>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
+
 </body>
 </html>

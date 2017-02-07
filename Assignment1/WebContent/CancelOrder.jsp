@@ -50,6 +50,7 @@
 	}
 </style>
 <body>
+<a href="ViewOrders.jsp">View Orders</a><br>
 
 <div class="Products">
 	<table>
@@ -73,7 +74,7 @@
 </div>
 
 
-Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation" onclick="document.location.href='CancellationConfiramtion.jsp'"> <br>
+Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation" onclick="document.location.href='CancellationConfirmation.jsp'"> <br>
 Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 

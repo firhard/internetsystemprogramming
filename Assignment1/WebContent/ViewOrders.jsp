@@ -80,8 +80,8 @@
 		</table>
 	</div>
 <button type="button" onclick="location = 'ManageOrder.jsp'">Manage Order</button><br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
 
 </body>
 </html>
