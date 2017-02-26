@@ -52,7 +52,9 @@ div form {
 
 </style>
 <body>
-
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
+Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
 
 <div class="Products">
@@ -155,7 +157,6 @@ div form {
 
 Confirm Payment: <input type="button" value="Confirm Payment" class="Confirm Payment" name="ConfirmPayment" onclick="document.location.href='CustomerTransactionConfirmation.jsp'"> <br>
 Cancel Payment: <input type="button" value="Cancel Payment" class="Cancel Payment" name="CancelPayment" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
-
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

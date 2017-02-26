@@ -52,6 +52,8 @@ div form {
 
 </style>
 <body>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 <div class="Products">
 	<a class="thumbnail" href="img/Adidas3.jpg">
 		<img src="img/Adidas3.jpg" alt="Adidas image">
@@ -134,6 +136,6 @@ div form {
 <br>
 Checkout <input type="button" value="Checkout" class="Checkout" onclick="document.location.href='CustomerTransaction.jsp'"><br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

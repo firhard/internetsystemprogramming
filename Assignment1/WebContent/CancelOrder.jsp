@@ -50,6 +50,9 @@
 	}
 </style>
 <body>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
+Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
 
 <div class="Products">
@@ -76,7 +79,6 @@
 
 Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation" onclick="document.location.href='CancellationConfirmation.jsp'"> <br>
 Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
-
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

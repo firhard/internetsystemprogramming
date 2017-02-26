@@ -50,6 +50,8 @@
 	}
 </style>
 <body>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 	<div class="Products">
 		<table>
 			<tr>
@@ -81,7 +83,7 @@
 	</div>
 <button type="button" onclick="location = 'ManageOrder.jsp'">Manage Order</button><br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 
 </body>
 </html>

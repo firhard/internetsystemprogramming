@@ -26,6 +26,9 @@ table, th, td {
 
 </style>
 <body>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
+Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <table>
 	  <tr>
 	    <th colspan="3">Product Name:</th>
@@ -79,9 +82,8 @@ table, th, td {
 	<p><b>&nbsp; &nbsp;4 stars &nbsp; - &nbsp; &nbsp; June 25, 2015 &nbsp; - &nbsp; &nbsp; Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
 </div>
 <br>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Back: <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> <br> 
 Add to Cart: <input type="button" value="Add to Cart" class="Add to Cart" name="Add to Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'"> <br>
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

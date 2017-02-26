@@ -7,6 +7,9 @@
 <title>Search</title>
 </head>
 <body>
+Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
+Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'"> <br>
 
 <table style="width:50%">
@@ -32,7 +35,6 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
     <td><input type="button" value="Nike" class="ProductDetails" name=" ProductDetails" onclick="document.location.href='ViewProductDetails.jsp'"></td>
   </tr>
 </table>
-Logout: <input type="button" value="Logout" class="Logout" name="Logout" onclick="document.location.href='Login.jsp'">
-
+Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>
