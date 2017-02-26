@@ -29,4 +29,14 @@
     <servlet-name>Registration</servlet-name>
     <url-pattern>/Registration</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductSearchQuery</display-name>
+    <servlet-name>ProductSearchQuery</servlet-name>
+    <servlet-class>controllers.ProductSearchQuery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductSearchQuery</servlet-name>
+    <url-pattern>/ProductSearchQuery</url-pattern>
+  </servlet-mapping>
 </web-app>
