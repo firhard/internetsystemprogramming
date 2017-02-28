@@ -1,10 +1,16 @@
 package controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import models.ProductsBean;
+
 
 /**
  * Servlet implementation class ProductSearchResultsServlet
@@ -26,7 +32,22 @@ public class ProductSearchResultsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String productID = request.getParameter("ID");
+		int productID = Integer.parseInt(request.getParameter("insert"));
+		
+		
+	    HttpSession session = request.getSession();
+		 
+	    ProductsBean prodBean =
+	      (ProductsBean)session.getAttribute("prodBean");
+	    
+	    if (prodBean == null) {		    
+			prodBean = ProductsBean.findProductbyId(productID);
+			session.setAttribute("prodBean", prodBean);
+	    }
+
+		String address = "ViewProductDetails.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 
 	}
 

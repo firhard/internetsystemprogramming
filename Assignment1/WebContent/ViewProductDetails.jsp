@@ -30,38 +30,45 @@ Home: <input type="button" value="Home" class="Home" name="Home" onclick="docume
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <table>
+	private int Id;
+	private String ProductName;
+	private int ProductCategoryIndex;
+	private Blob ProductDescription;
+	private int Price;
+	private int AvailableQuantity;
+	private int EstimatedDeliveryDays;
+	private int SellerId;
+	private Blob ProductPhotosLinks;
+	private Blob ProductVideosLinks;
+	private Blob ProductThumbnail;
 	  <tr>
 	    <th colspan="3">Product Name:</th>
-	    <td>Adidas</td>
-	  </tr>
-	  <tr>
-	  	<th colspan="3">Product Details:</th>
-	  	<td>Raincoat Jacket</td>
+	    <td>${prodBean.productName}</td>
 	  </tr>
 	  <tr>
 	    <th colspan="3">Price:</th>
-	    <td>$55</td>
+	    <td>${prodBean.Price}</td>
 	  </tr>
 	  <tr>
 	    <th colspan="3">Seller Name:</th>
-	    <td>Firhard</td>
+	    <td>TODO: Insert Find User/Seller by Product</td>
 	  </tr>
 	  <tr>
 	    <th colspan="3">Available Quantity:</th>
-	    <td>10</td>
+	    <td>${prodBean.AvailableQuantity}</td>
 	  </tr>
 	  <tr>
 	    <th colspan="3">Estimated Delivery Date:</th>
-	    <td>July 25th, 2017</td>
+	    <td>TODO: Add estimated delivery days in product table to current datetime</td>
 	  </tr>
 </table>
 <div>
 	<h2>Description</h2>
-	<p>This is a really nice Jacket, it's really good.</p>
+	<p>${prodBean.productDescription}</p>
 </div>
 <div>
 	<h2>Product Photos</h2>
-	<a href="img/Adidas1.jpg">
+	<a href="img/${prodBean.productName }.jpg">
 		<img src="img/Adidas1.jpg" alt="Adidas image">
 	</a>
 	<a href="img/Adidas2.jpg">

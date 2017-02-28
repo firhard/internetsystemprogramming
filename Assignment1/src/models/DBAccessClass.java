@@ -86,6 +86,36 @@ public class DBAccessClass {
 		
 	}
 	
+	public ProductsBean DBgetProductbyId(int id){
+		
+		ProductsBean dbBean = new ProductsBean();
+		String sql = "SELECT * FROM Products where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setProductName(rs.getString("ProductName"));
+				dbBean.setProductCategoryIndex(rs.getInt("ProductCategoryIndex"));
+				dbBean.setProductDescription(rs.getBlob("ProductDescription"));
+				dbBean.setPrice(rs.getInt("Price"));
+				dbBean.setAvailableQuantity(rs.getInt("AvailableQuantity"));
+				dbBean.setSellerId(rs.getInt("SellerId"));
+				dbBean.setProductPhotosLinks(rs.getBlob("ProductPhotosLinks"));
+				dbBean.setProductVideosLinks(rs.getBlob("ProductVideosLinks"));
+				dbBean.setProductThumbnail(rs.getString("ProductThumbnail"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
+	
 	
 	//Example Methods below (not used), these methods figuratively get called by bean methods
 //	public String getSalary(String lastName) {

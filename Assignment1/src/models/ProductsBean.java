@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Blob;
 
+
 public class ProductsBean {
 	
 	
@@ -15,7 +16,7 @@ public class ProductsBean {
 	private int SellerId;
 	private Blob ProductPhotosLinks;
 	private Blob ProductVideosLinks;
-	private Blob ProductThumbnail;
+	private String ProductThumbnail;
 
 	public ProductsBean() {
 		super();
@@ -101,13 +102,22 @@ public class ProductsBean {
 		ProductVideosLinks = productVideosLinks;
 	}
 
-	public Blob getProductThumbnail() {
+	public String getProductThumbnail() {
 		return ProductThumbnail;
 	}
 
-	public void setProductThumbnail(Blob productThumbnail) {
+	public void setProductThumbnail(String productThumbnail) {
 		ProductThumbnail = productThumbnail;
 	}
+	
+    public static ProductsBean findProductbyId(int input_id) {
+   	    DBAccessClass db = new DBAccessClass();
+   	    db.connectMeIn();
+   	    ProductsBean return_id = db.DBgetProductbyId(input_id);
+   	    db.closeConnection();
+   	
+   	    return return_id;
+    }
 
 	
 	
