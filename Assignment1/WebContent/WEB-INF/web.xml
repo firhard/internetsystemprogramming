@@ -39,4 +39,24 @@
     <servlet-name>ProductSearchQuery</servlet-name>
     <url-pattern>/ProductSearchQuery</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductSearchQueryServlet</display-name>
+    <servlet-name>ProductSearchQueryServlet</servlet-name>
+    <servlet-class>controllers.ProductSearchQueryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductSearchQueryServlet</servlet-name>
+    <url-pattern>/ProductSearchQueryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductSearchResultsServlet</display-name>
+    <servlet-name>ProductSearchResultsServlet</servlet-name>
+    <servlet-class>controllers.ProductSearchResultsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductSearchResultsServlet</servlet-name>
+    <url-pattern>/ProductSearchResultsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
