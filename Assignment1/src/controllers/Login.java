@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Users;
 import models.Utility;
@@ -66,6 +67,8 @@ public class Login extends HttpServlet {
 					if(!pword.equals(fpassWord)) {
 						response.sendRedirect("Registration.jsp"); // Link-redirection
 					} else {
+					    HttpSession session=request.getSession();  
+					    session.setAttribute("fuserName", fuserName); 
 						response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
 					}
 				}

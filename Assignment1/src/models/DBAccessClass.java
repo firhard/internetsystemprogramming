@@ -43,7 +43,6 @@ public class DBAccessClass {
 			e.printStackTrace();
 		}
 	}
-	
 	public void insertProducts() {
 		  
 		  try {
@@ -115,7 +114,7 @@ public class DBAccessClass {
 		return dbBean;
 		
 	}
-	
+
 	
 	//Example Methods below (not used), these methods figuratively get called by bean methods
 //	public String getSalary(String lastName) {

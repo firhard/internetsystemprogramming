@@ -21,7 +21,13 @@ public class ProductsBean {
 	public ProductsBean() {
 		super();
 	}
-
+	
+	public ProductsBean(int Id, String ProductName, int ProductCategoryIndex, 
+			Blob ProductDescription, int Price, int AvailableQuantity, 
+			int EstimatedDeliveryDays, int SellerId, Blob ProductPhotosLinks,  
+			Blob ProductVideosLinks, Blob ProductThumbnail){
+		
+	}
 	public int getId() {
 		return Id;
 	}
@@ -31,11 +37,11 @@ public class ProductsBean {
 	}
 
 	public String getProductName() {
-		return ProductName;
+		return(ProductName);
 	}
 
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.ProductName = productName;
 	}
 
 	public int getProductCategoryIndex() {
@@ -119,6 +125,12 @@ public class ProductsBean {
    	    return return_id;
     }
 
-	
+    public String search(String ProductName) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	String product = db.productName(ProductName);
+	   	db.closeConnection();
+	   	return product;
+    }
 	
 }
