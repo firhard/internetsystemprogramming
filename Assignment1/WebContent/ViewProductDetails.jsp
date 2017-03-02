@@ -30,17 +30,6 @@ Home: <input type="button" value="Home" class="Home" name="Home" onclick="docume
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <table>
-	private int Id;
-	private String ProductName;
-	private int ProductCategoryIndex;
-	private Blob ProductDescription;
-	private int Price;
-	private int AvailableQuantity;
-	private int EstimatedDeliveryDays;
-	private int SellerId;
-	private Blob ProductPhotosLinks;
-	private Blob ProductVideosLinks;
-	private Blob ProductThumbnail;
 	  <tr>
 	    <th colspan="3">Product Name:</th>
 	    <td>${prodBean.productName}</td>

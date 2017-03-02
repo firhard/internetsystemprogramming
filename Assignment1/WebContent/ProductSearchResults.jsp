@@ -25,6 +25,7 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 	  <tr>
 	  	<td>${product.getProductName()}</td>
 	  	<td>${product.getProductCategoryIndex()}</td>
+	  	<td>Place holder for seller name</td>
 	  	<td>${product.getPrice()}</td>
 	  	<td>${product.getProductThumbnail()}</td>
 	  	<td>

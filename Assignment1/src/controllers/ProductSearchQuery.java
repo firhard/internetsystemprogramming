@@ -36,7 +36,6 @@ public class ProductSearchQuery extends HttpServlet {
 		db.insertProducts();
 		HttpSession session = request.getSession();
 		
-		ProductsBean productsBean = (ProductsBean)session.getAttribute("productsBean");
 		String search = request.getParameter("Search");
 		
 		boolean emptyFields = true;
@@ -44,15 +43,16 @@ public class ProductSearchQuery extends HttpServlet {
 		if((search!=null) && (!search.trim().equals(""))) {
 			emptyFields = false;
 	    } 
-
 		
+		@SuppressWarnings("unchecked")
 		ArrayList<ProductsBean> ListName = (ArrayList<ProductsBean>)session.getAttribute("ListName");
-		if (ListName == null){
+		
+		if (ListName == null || ListName.isEmpty()){
 			ListName = new ArrayList<ProductsBean>();
 			session.setAttribute("ListName", ListName);
 		}
 		
-		ListName = ProductsBean.search(search);
+		ListName.addAll(ProductsBean.search(search));
 		String address = "ProductSearchResults.jsp";
 		if(emptyFields == true){
 		 address = "CustomerHomePage.jsp";
