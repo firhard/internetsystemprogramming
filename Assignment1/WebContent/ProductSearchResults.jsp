@@ -21,16 +21,15 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
     <th>Price</th>
     <th>Thumbnail</th>
   </tr>
-  <c:forEach var="product" items="productList">
+  <c:forEach var="product" items="${ListName}" >
 	  <tr>
-	  	<td>${product.ProductName}</td>
-	  	<td>${product.ProductCategory}</td>
-	  	<td>${product.SellerName}</td>
-	  	<td>${product.Price}</td>
-	  	<td>${product.Thumbnail}</td>
+	  	<td>${product.getProductName()}</td>
+	  	<td>${product.getProductCategoryIndex()}</td>
+	  	<td>${product.getPrice()}</td>
+	  	<td>${product.getProductThumbnail()}</td>
 	  	<td>
 		  	<form name="myProduct1" action=ProductSearchResultsServlet method=post>
-		  		<input type="hidden" name="insert" value="${product.Id}">
+		  		<input type="hidden" name="insert" value="${product.getId()}">
 		  		<input type=submit value="View Product" >
 		  	</form>
 	  	</td>

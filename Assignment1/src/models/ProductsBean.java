@@ -1,7 +1,6 @@
 package models;
 
-import java.sql.Blob;
-
+import java.util.ArrayList;
 
 public class ProductsBean {
 	
@@ -9,13 +8,13 @@ public class ProductsBean {
 	private int Id;
 	private String ProductName;
 	private int ProductCategoryIndex;
-	private Blob ProductDescription;
+	private String ProductDescription;
 	private int Price;
 	private int AvailableQuantity;
 	private int EstimatedDeliveryDays;
 	private int SellerId;
-	private Blob ProductPhotosLinks;
-	private Blob ProductVideosLinks;
+	private String ProductPhotosLinks;
+	private String ProductVideosLinks;
 	private String ProductThumbnail;
 
 	public ProductsBean() {
@@ -23,9 +22,9 @@ public class ProductsBean {
 	}
 	
 	public ProductsBean(int Id, String ProductName, int ProductCategoryIndex, 
-			Blob ProductDescription, int Price, int AvailableQuantity, 
-			int EstimatedDeliveryDays, int SellerId, Blob ProductPhotosLinks,  
-			Blob ProductVideosLinks, Blob ProductThumbnail){
+			String ProductDescription, int Price, int AvailableQuantity, 
+			int EstimatedDeliveryDays, int SellerId, String ProductPhotosLinks,  
+			String ProductVideosLinks, String ProductThumbnail){
 		
 	}
 	public int getId() {
@@ -52,11 +51,11 @@ public class ProductsBean {
 		ProductCategoryIndex = productCategoryIndex;
 	}
 
-	public Blob getProductDescription() {
+	public String getProductDescription() {
 		return ProductDescription;
 	}
 
-	public void setProductDescription(Blob productDescription) {
+	public void setProductDescription(String productDescription) {
 		ProductDescription = productDescription;
 	}
 
@@ -92,19 +91,19 @@ public class ProductsBean {
 		SellerId = sellerId;
 	}
 
-	public Blob getProductPhotosLinks() {
+	public String getProductPhotosLinks() {
 		return ProductPhotosLinks;
 	}
 
-	public void setProductPhotosLinks(Blob productPhotosLinks) {
+	public void setProductPhotosLinks(String productPhotosLinks) {
 		ProductPhotosLinks = productPhotosLinks;
 	}
 
-	public Blob getProductVideosLinks() {
+	public String getProductVideosLinks() {
 		return ProductVideosLinks;
 	}
 
-	public void setProductVideosLinks(Blob productVideosLinks) {
+	public void setProductVideosLinks(String productVideosLinks) {
 		ProductVideosLinks = productVideosLinks;
 	}
 
@@ -125,10 +124,10 @@ public class ProductsBean {
    	    return return_id;
     }
 
-    public String search(String ProductName) {   
+    public static ArrayList<ProductsBean> search(String ProductName) {   
 	   	DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
-	   	String product = db.productName(ProductName);
+	   	ArrayList<ProductsBean> product = db.DBgetProductbyName(ProductName);
 	   	db.closeConnection();
 	   	return product;
     }

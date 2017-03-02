@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DBAccessClass {
 	Connection conn = null;
@@ -54,29 +55,22 @@ public class DBAccessClass {
 		   * Read all the rows and attributes from the table
 		   */
 		  String sql;
-//		  sql = "DROP TABLE IF EXISTS Employees";
-//		  stmt.executeUpdate(sql);
-//
-//		  sql = "CREATE TABLE Employees " +
-//		          "(ID INTEGER not NULL, " +
-//		          " First_Name VARCHAR(255), " + 
-//		          " Last_Name VARCHAR(255), " + 
-//		          " Salary DOUBLE, " + 
-//		          " PRIMARY KEY ( ID ))"; 
-//
-//		  stmt.executeUpdate(sql);
-
-		  //not really sure how to input a blob
-		  sql = "INSERT INTO Products " +
-		          "VALUES (111, 'Adidas Jacket', '1', 'A really nice jacket',"
-		          + "55, 4, 5, 115, 'this is a photo blob', 'this is a video blob',"
-		          + "'this is thumbnail blob')";
+		  
+		  sql = "Truncate table Products;";
 		  stmt.executeUpdate(sql);
-		  sql = "INSERT INTO Products " +
-		          "VALUES (112, 'Nike Jacket', '2', 'A reall cool jacket'"
-		          + "60, 5, 5, 116, 'this is a photo blob, 'this is avideo blob',"
-		          + "'this is thubmnail blob')";
+		  
+		  sql = "INSERT INTO Products "
+				+ "VALUES (111, 'Adidas Jacket', '1', 'A really nice jacket', "
+		        + "55, 4, 5, 115, 'this is a photo String', 'this is a video String', "
+		        + "'this is thumbnail String');";
 		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO Products "
+				+ "VALUES (112, 'Nike Jacket', '2', 'A reall cool jacket', "
+		        + "60, 5, 5, 116, 'this is a photo String', 'this is a video String', "
+		        + "'this is thubmnail String');";
+		  stmt.executeUpdate(sql);
+		  
 		  
 		  } catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -100,18 +94,51 @@ public class DBAccessClass {
 				dbBean.setId(rs.getInt("Id"));
 				dbBean.setProductName(rs.getString("ProductName"));
 				dbBean.setProductCategoryIndex(rs.getInt("ProductCategoryIndex"));
-				dbBean.setProductDescription(rs.getBlob("ProductDescription"));
+				dbBean.setProductDescription(rs.getString("ProductDescription"));
 				dbBean.setPrice(rs.getInt("Price"));
 				dbBean.setAvailableQuantity(rs.getInt("AvailableQuantity"));
 				dbBean.setSellerId(rs.getInt("SellerId"));
-				dbBean.setProductPhotosLinks(rs.getBlob("ProductPhotosLinks"));
-				dbBean.setProductVideosLinks(rs.getBlob("ProductVideosLinks"));
+				dbBean.setProductPhotosLinks(rs.getString("ProductPhotosLinks"));
+				dbBean.setProductVideosLinks(rs.getString("ProductVideosLinks"));
 				dbBean.setProductThumbnail(rs.getString("ProductThumbnail"));
 			}
 		 } catch (SQLException e) {
 			 e.printStackTrace();
 		 }
 		return dbBean;
+		
+	}
+
+	public ArrayList<ProductsBean> DBgetProductbyName(String name){
+		
+		ArrayList<ProductsBean> dbBeanList = new ArrayList<ProductsBean>();
+		String sql = "SELECT * FROM Products where ProductName=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, name);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+
+                ProductsBean dbBean = new ProductsBean();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setProductName(rs.getString("ProductName"));
+				dbBean.setProductCategoryIndex(rs.getInt("ProductCategoryIndex"));
+				dbBean.setProductDescription(rs.getString("ProductDescription"));
+				dbBean.setPrice(rs.getInt("Price"));
+				dbBean.setAvailableQuantity(rs.getInt("AvailableQuantity"));
+				dbBean.setSellerId(rs.getInt("SellerId"));
+				dbBean.setProductPhotosLinks(rs.getString("ProductPhotosLinks"));
+				dbBean.setProductVideosLinks(rs.getString("ProductVideosLinks"));
+				dbBean.setProductThumbnail(rs.getString("ProductThumbnail"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
 		
 	}
 

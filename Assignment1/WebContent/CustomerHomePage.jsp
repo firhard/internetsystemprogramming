@@ -17,8 +17,10 @@ Product Categories<select>
 	<option value="4">four</option>
 	</select><br>
 <form action="ProductSearchQuery" method="post">
-Search: <input type="text" class="Search" name="Search"><input type="submit" value="Submit" onclick= "document.location.href='ProductSearchResults.jsp'"><br>
+Search: <input type="text" class="Search" name="Search"><input type="submit" value="Submit"><br>
 </form>
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
+<form action="${Logout}" method="post">
+Logout:<input type ="submit" name="Log Out" value="Log Out"  >
+</form>
 </body>
 </html>
