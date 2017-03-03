@@ -109,7 +109,7 @@ public class DBAccessClass {
 		
 	}
 
-	public ArrayList<ProductsBean> DBgetProductbyName(String name){
+	public ArrayList<ProductsBean> DBgetProductsbyName(String name){
 		
 		ArrayList<ProductsBean> dbBeanList = new ArrayList<ProductsBean>();
 		String sql = "SELECT * FROM Products where ProductName=?";
@@ -141,6 +141,41 @@ public class DBAccessClass {
 		return dbBeanList;
 		
 	}
+	
+	public ArrayList<ProductsBean> DBgetProductsbyNameandCategory(String name, int category){
+		
+		ArrayList<ProductsBean> dbBeanList = new ArrayList<ProductsBean>();
+		String sql = "SELECT * FROM Products where ProductName=? AND ProductCategoryIndex=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, name);
+			ps.setInt(2, category);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+
+                ProductsBean dbBean = new ProductsBean();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setProductName(rs.getString("ProductName"));
+				dbBean.setProductCategoryIndex(rs.getInt("ProductCategoryIndex"));
+				dbBean.setProductDescription(rs.getString("ProductDescription"));
+				dbBean.setPrice(rs.getInt("Price"));
+				dbBean.setAvailableQuantity(rs.getInt("AvailableQuantity"));
+				dbBean.setSellerId(rs.getInt("SellerId"));
+				dbBean.setProductPhotosLinks(rs.getString("ProductPhotosLinks"));
+				dbBean.setProductVideosLinks(rs.getString("ProductVideosLinks"));
+				dbBean.setProductThumbnail(rs.getString("ProductThumbnail"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
+		
+	}
+	
 
 	
 	//Example Methods below (not used), these methods figuratively get called by bean methods

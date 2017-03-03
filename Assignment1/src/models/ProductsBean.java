@@ -124,10 +124,18 @@ public class ProductsBean {
    	    return return_id;
     }
 
-    public static ArrayList<ProductsBean> search(String ProductName) {   
+    public static ArrayList<ProductsBean> findProductbyName(String ProductName) {   
 	   	DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
-	   	ArrayList<ProductsBean> product = db.DBgetProductbyName(ProductName);
+	   	ArrayList<ProductsBean> product = db.DBgetProductsbyName(ProductName);
+	   	db.closeConnection();
+	   	return product;
+    }
+    
+    public static ArrayList<ProductsBean> findProductbyNameandCategory(String ProductName, int Category) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	ArrayList<ProductsBean> product = db.DBgetProductsbyNameandCategory(ProductName, Category);
 	   	db.closeConnection();
 	   	return product;
     }

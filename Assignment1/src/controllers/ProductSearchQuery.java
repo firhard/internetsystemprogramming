@@ -34,28 +34,39 @@ public class ProductSearchQuery extends HttpServlet {
 		DBAccessClass db = new DBAccessClass();
 		db.connectMeIn();
 		db.insertProducts();
+		
 		HttpSession session = request.getSession();
 		
 		String search = request.getParameter("Search");
+		int category = Integer.parseInt(request.getParameter("Category"));
 		
-		boolean emptyFields = true;
 		
-		if((search!=null) && (!search.trim().equals(""))) {
-			emptyFields = false;
+		boolean emptyFields = false;
+		
+		if( search==null || search.trim().equals("") || search.trim().equals("Missing")) {
+			emptyFields = true;
+			search = "Missing";
 	    } 
+		
+		session.setAttribute("search", search);
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<ProductsBean> ListName = (ArrayList<ProductsBean>)session.getAttribute("ListName");
 		
-		if (ListName == null || ListName.isEmpty()){
-			ListName = new ArrayList<ProductsBean>();
-			session.setAttribute("ListName", ListName);
-		}
-		
-		ListName.addAll(ProductsBean.search(search));
 		String address = "ProductSearchResults.jsp";
 		if(emptyFields == true){
 		 address = "CustomerHomePage.jsp";
+		} else {
+			
+			if (ListName == null || ListName.isEmpty()){
+				ListName = new ArrayList<ProductsBean>();
+				session.setAttribute("ListName", ListName);
+			}
+			else {
+				ListName.clear();
+			}
+			
+			ListName.addAll(ProductsBean.findProductbyNameandCategory(search, category));
 		}
 		
 	    RequestDispatcher dispatcher =
