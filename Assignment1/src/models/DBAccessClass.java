@@ -356,8 +356,20 @@ public class DBAccessClass {
 		return dbBean.getId() != 0;
 	}
 	
-	public int DBverifyBalance(String cHolderName){
-		
+	public double DBverifyBalance(String cHolderName){
+		double dbBean = 0;
+		String sql = "SELECT * FROM CreditCards where CardHolderName=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cHolderName);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean = rs.getDouble("Balance");
+			}
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}
+		return dbBean;
 	}
 	
 	//Example Methods below (not used), these methods figuratively get called by bean methods
