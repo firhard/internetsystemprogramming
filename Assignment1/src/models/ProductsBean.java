@@ -114,7 +114,6 @@ public class ProductsBean {
    	    db.connectMeIn();
    	    ProductsBean return_id = db.DBgetProductbyId(input_id);
    	    db.closeConnection();
-   	
    	    return return_id;
     }
 
@@ -141,5 +140,6 @@ public class ProductsBean {
 	   	db.closeConnection();
 	   	return user;
     }
+    
 	
 }

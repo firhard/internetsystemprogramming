@@ -29,7 +29,7 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 	  	<td>${product.getPrice()}</td>
 	  	<td>${product.getProductThumbnail()}</td>
 	  	<td>
-		  	<form name="myProduct1" action=ProductSearchResultsServlet method=post>
+		  	<form action=ProductSearchResultsServlet method=post>
 		  		<input type="hidden" name="insert" value="${product.getId()}">
 		  		<input type=submit value="View Product" >
 		  	</form>

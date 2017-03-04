@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,44 +28,45 @@ table, th, td {
 
 </style>
 <body>
+
+
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Back: <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> <br> 
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<form action="UpdateShoppingCart" method="post">
 <table>
-	  <tr>
-	    <th colspan="3">Product Name:</th>
-	    <td>${prodBean.productName}</td>
-	  </tr>
-	  <tr>
-	    <th colspan="3">Price:</th>
-	    <td>${prodBean.Price}</td>
-	  </tr>
-	  <tr>
-	    <th colspan="3">Seller Name:</th>
-	    <td>TODO: Insert Find User/Seller by Product</td>
-	  </tr>
-	  <tr>
-	    <th colspan="3">Available Quantity:</th>
-	    <td>${prodBean.AvailableQuantity}</td>
-	  </tr>
-	  <tr>
-	    <th colspan="3">Estimated Delivery Date:</th>
-	    <td>TODO: Add estimated delivery days in product table to current datetime</td>
-	  </tr>
+	<tr>
+	    <th>Product Name:</th>
+	    <th>Price:</th> 
+	    <th>Seller Name:</th>
+	    <th>Available Quantity:</th>
+	    <th>Product Quantity:
+	    <th>Estimated Delivery Date:</th>
+	</tr>
+  	<tr>
+	    <td><input name="ProductName" value ="${prodBean.getProductName()}"></td>
+	    <td><input name="Price" value ="${prodBean.getPrice()}"></td>
+	    <td><input name="SellerName" value ="TODO: Insert Find User/Seller by Product"></td>
+	    <td><input name="AvailableQuantity value ="${prodBean.getAvailableQuantity()}"></td>
+	    <td>
+    	<td>TODO: Add estimated delivery days in product table to current datetime</td>
+    </tr>
 </table>
 <div>
-	<h2>Description</h2>
-	<p>${prodBean.productDescription}</p>
-</div>
-<div>
 	<h2>Product Photos</h2>
-	<a href="img/${prodBean.productName }.jpg">
+	<a href="img/${prodBean.getProductName()}.jpg">
 		<img src="img/Adidas1.jpg" alt="Adidas image">
 	</a>
 	<a href="img/Adidas2.jpg">
 		<img src="img/Adidas2.jpg" alt="Adidas image 2">
 	</a>
 </div>
+<div>
+	<h2>Products Description</h2>
+	<p>${prodBean.getProductDescription()}</p>
+</div>
+
 <div>
 	<h2>Questions & Answers</h2>
 	<p><b>Q: RoboMaster09:</b> Is this a good Jacket?<p>
@@ -77,9 +80,11 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	<h2>Customer Reviews (4.0 / 5.0 rating):</h2>
 	<p><b>&nbsp; &nbsp;4 stars &nbsp; - &nbsp; &nbsp; June 25, 2015 &nbsp; - &nbsp; &nbsp; Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
 </div>
+
+Product Quantity:<input type="text" class="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit">
 <br>
-Back: <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> <br> 
-Add to Cart: <input type="button" value="Add to Cart" class="Add to Cart" name="Add to Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+Add to Cart: <input type="button" value="Add to Cart" class="AddtoCart" name="Add to Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> 
+</form><br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

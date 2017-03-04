@@ -81,7 +81,7 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 				
 		</table>
 	</div>
-<button type="button" onclick="location = 'ManageOrder.jsp'">Manage Order</button><br>
+<button type="button" onclick="location = 'ManageOrder.jsp'">View</button><br>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 

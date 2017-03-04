@@ -12,17 +12,16 @@ import javax.servlet.http.HttpSession;
 import models.DBAccessClass;
 import models.ProductsBean;
 
-
 /**
- * Servlet implementation class ProductSearchResultsServlet
+ * Servlet implementation class UpdateShoppingCart
  */
-public class ProductSearchResultsServlet extends HttpServlet {
+public class UpdateShoppingCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductSearchResultsServlet() {
+    public UpdateShoppingCart() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,24 +37,19 @@ public class ProductSearchResultsServlet extends HttpServlet {
 		db.insertProducts();
 	    HttpSession session = request.getSession();
 	    
-		int productID = Integer.parseInt(request.getParameter("insert"));
-		
-		
-		 
+	    int Price = Integer.parseInt(request.getParameter("Price"));
+	    int ProductQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
+	    
+	    int overallPrice = Price * ProductQuantity;
+	    
 	    ProductsBean prodBean =
 	      (ProductsBean)session.getAttribute("prodBean");
 	    
-	    if (prodBean == null) {		    
-			prodBean = ProductsBean.findProductbyId(productID);
-			session.setAttribute("prodBean", prodBean);
-	    }
-
-		prodBean = ProductsBean.findProductbyId(productID);
-		String address = "ViewProductDetails.jsp";
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
-
+	    
+	    String address = "View&CheckoutShoppingCart.jsp";
+	    RequestDispatcher dispatcher =
+	  	      request.getRequestDispatcher(address);
+	  	    dispatcher.forward(request, response);
 	}
 
 	/**

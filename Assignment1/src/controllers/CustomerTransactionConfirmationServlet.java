@@ -1,6 +1,9 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.DBAccessClass;
-import models.ProductsBean;
-
+import models.TransactionsBean;
 
 /**
- * Servlet implementation class ProductSearchResultsServlet
+ * Servlet implementation class CustomerTransactionConfirmationServlet
  */
-public class ProductSearchResultsServlet extends HttpServlet {
+public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductSearchResultsServlet() {
+    public CustomerTransactionConfirmationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,30 +34,34 @@ public class ProductSearchResultsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		DBAccessClass db = new DBAccessClass();
 		db.connectMeIn();
 		db.insertProducts();
-	    HttpSession session = request.getSession();
-	    
-		int productID = Integer.parseInt(request.getParameter("insert"));
+		HttpSession session = request.getSession();
+		int Price = Integer.parseInt(request.getParameter("Price"));
+		String cHolderName = request.getParameter("CardHolderName");
+		String cType = request.getParameter("CardType");
+		String cNumber = request.getParameter("CardNumber");
+		String sCode = request.getParameter("SecurityCode");
+		DateFormat formatter = new SimpleDateFormat("MM-yyyy");
+		Date eDate  = formatter.parse(request.getParameter("ExpirationDate"));
+		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
+		
+		session.setAttribute("transactionValue", transactionValue);
+		
+		int AvailableBalance = TransactionsBean.availableBalance(cHolderName, cType, cNumber, sCode, eDate);
+		if (AvailableBalance < Price){
+		}
+		String address = "CustomerTransactionConfirmation.jsp";
 		
 		
-		 
-	    ProductsBean prodBean =
-	      (ProductsBean)session.getAttribute("prodBean");
-	    
-	    if (prodBean == null) {		    
-			prodBean = ProductsBean.findProductbyId(productID);
-			session.setAttribute("prodBean", prodBean);
-	    }
-
-		prodBean = ProductsBean.findProductbyId(productID);
-		String address = "ViewProductDetails.jsp";
+		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
-
+		
 	}
 
 	/**

@@ -54,7 +54,8 @@ Home: <input type="button" value="Home" class="Home" name="Home" onclick="docume
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
-
+<form action=CancelOrderTransactionServlet method=post>
+		  		
 <div class="Products">
 	<table>
 		  <tr>
@@ -77,8 +78,8 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 </div>
 
 
-Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation" onclick="document.location.href='CancellationConfirmation.jsp'"> <br>
-Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
+Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation"> </form><br>
+Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='ManageOrder.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

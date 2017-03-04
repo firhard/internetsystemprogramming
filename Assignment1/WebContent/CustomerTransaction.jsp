@@ -100,24 +100,25 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	</table>
 </div>
 
-<div class="Products">
+<form action="CustomerTransactionConfirmation" method="post">
+<div class="TransactionInfo">
 	<table>
 		<tr>
 			<th>
-				First Name:<input type="text" class="FirstName" name="First Name">
-			</th> 
+				Price:<input type="hidden" name="insert" value="${product.getId()}">
+			</th>
 		</tr>
 		<tr>
 			<th>
-				Last Name:<input type="text" class="LastName" name="Last Name"> 
+				Card Holder Name:<input type="text" class="CardHolderName" name="Card Holder Name">
 			</th> 
 		</tr>
 		<tr>
-			<th>Card Type<select>
-				<option value="1">Visa</option>
-				<option value="2">Master</option>
-				<option value="3">Discover</option>
-				<option value="4">American Express</option>
+			<th>Card Type<select class="CardType" name="CardType">
+				<option value="Visa">Visa</option>
+				<option value="Mastercard">Master Card</option>
+				<option value="Discover">Discover</option>
+				<option value="AmericanExpress">American Express</option>
 				</select>
 			</th>
 		</tr>
@@ -133,7 +134,7 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 		</tr>
 		<tr>
 			<th>
-				Expiration Date:<input type="text" class="ExpirationDate" name="Expiration Date" style="width: 30px">
+				Expiration Date (without the slash. e.g. 0717 for July 2017):<input type="text" class="ExpirationDate" name="Expiration Date" style="width: 30px">
 			</th>
 		</tr>
 		<tr>
@@ -154,8 +155,9 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 		</tr>
 	</table>
 </div>
-
 Confirm Payment: <input type="button" value="Confirm Payment" class="Confirm Payment" name="ConfirmPayment" onclick="document.location.href='CustomerTransactionConfirmation.jsp'"> <br>
+</form>
+
 Cancel Payment: <input type="button" value="Cancel Payment" class="Cancel Payment" name="CancelPayment" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>

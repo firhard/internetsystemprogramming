@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 public class DBAccessClass {
 	Connection conn = null;
@@ -108,7 +110,6 @@ public class DBAccessClass {
 		return dbBean;
 		
 	}
-
 	public ArrayList<ProductsBean> DBgetProductsbyName(String name){
 		
 		ArrayList<ProductsBean> dbBeanList = new ArrayList<ProductsBean>();
@@ -325,6 +326,39 @@ public class DBAccessClass {
 	
 	
 
+	public boolean DBverifyCreditCard(String cHolderName, String cType, String cNumber, String sCode, Date eDate){
+		TransactionsBean dbBean = new TransactionsBean();
+		String sql = "SELECT * FROM CreditCards where CardHolderName=? AND CreditCardNumber=? AND ExpirationDate=? AND CardType=? AND CVV=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, cHolderName);
+			ps.setString(2, cNumber);
+			ps.setDate(3, (java.sql.Date) eDate);
+			ps.setString(4, cType);
+			ps.setString(5, sCode);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setCardHolderName(rs.getString("CardHolderName"));
+				dbBean.setCreditCardNumber(rs.getString("CreditCardNumber"));
+				dbBean.setExpirationDate(rs.getDate("ExpirationDate"));
+				dbBean.setCardType(rs.getString("CardType"));
+				dbBean.setCVV(rs.getString("CVV"));
+				dbBean.setUserId(rs.getInt("UserId"));
+				dbBean.setBalance(rs.getDouble("Balance"));
+			}
+			
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean.getId() != 0;
+	}
+	
+	public int DBverifyBalance(String cHolderName){
+		
+	}
 	
 	//Example Methods below (not used), these methods figuratively get called by bean methods
 //	public String getSalary(String lastName) {

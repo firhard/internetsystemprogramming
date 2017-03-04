@@ -54,6 +54,7 @@ div form {
 <body>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
+<form action=ProductSearchResultsServlet method=post>
 <div class="Products">
 	<a class="thumbnail" href="img/Adidas3.jpg">
 		<img src="img/Adidas3.jpg" alt="Adidas image">
@@ -134,7 +135,8 @@ View Orders: <input type="button" value="View Orders" class="ViewOrders" name="V
 	<div class="Sub_Total"><p><b>$115.00</b></p></div>
 </div>
 <br>
-Checkout <input type="button" value="Checkout" class="Checkout" onclick="document.location.href='CustomerTransaction.jsp'"><br>
+Checkout <input type="button" value="Checkout" class="Checkout"><br>
+</form>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>

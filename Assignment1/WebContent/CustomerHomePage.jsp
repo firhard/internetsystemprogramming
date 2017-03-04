@@ -20,7 +20,7 @@ Product Categories<select name="Category">
 	</select><br>
 Search: <input type="text" class="Search" name="Search" value="${search}"><input type="submit" value="Submit"><br>
 </form>
-<form action="${Logout}" method="post">
+<form action="Logout" method="post">
 Logout:<input type ="submit" name="Log Out" value="Log Out"  >
 </form>
 </body>
