@@ -25,7 +25,7 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 	  <tr>
 	  	<td>${product.getProductName()}</td>
 	  	<td>${product.getProductCategoryIndex()}</td>
-	  	<td>Place holder for seller name</td>
+	  	<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
 	  	<td>${product.getPrice()}</td>
 	  	<td>${product.getProductThumbnail()}</td>
 	  	<td>
@@ -37,6 +37,13 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 	  </tr>
   </c:forEach>
 </table>
+
+<br>
+ <c:if test="${empty ListName}">
+  	 No Products Found
+  </c:if>
+ <br>
+ 
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

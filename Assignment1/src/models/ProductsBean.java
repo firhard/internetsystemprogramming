@@ -21,12 +21,6 @@ public class ProductsBean {
 		super();
 	}
 	
-	public ProductsBean(int Id, String ProductName, int ProductCategoryIndex, 
-			String ProductDescription, int Price, int AvailableQuantity, 
-			int EstimatedDeliveryDays, int SellerId, String ProductPhotosLinks,  
-			String ProductVideosLinks, String ProductThumbnail){
-		
-	}
 	public int getId() {
 		return Id;
 	}
@@ -138,6 +132,14 @@ public class ProductsBean {
 	   	ArrayList<ProductsBean> product = db.DBgetProductsbyNameandCategory(ProductName, Category);
 	   	db.closeConnection();
 	   	return product;
+    }
+    
+	public Users findUserbySellerId(int id) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	Users user = db.DBgetUserbyId(id);
+	   	db.closeConnection();
+	   	return user;
     }
 	
 }

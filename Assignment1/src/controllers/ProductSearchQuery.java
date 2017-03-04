@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import models.DBAccessClass;
 import models.ProductsBean;
+import models.Users;
 
 /**
  * Servlet implementation class ProductSearchQuery
@@ -19,6 +20,13 @@ import models.ProductsBean;
 public class ProductSearchQuery extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
+	public void init() throws ServletException {
+		DBAccessClass db = new DBAccessClass();
+		db.connectMeIn();
+		db.insertProducts();
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,9 +39,6 @@ public class ProductSearchQuery extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DBAccessClass db = new DBAccessClass();
-		db.connectMeIn();
-		db.insertProducts();
 		
 		HttpSession session = request.getSession();
 		
@@ -67,7 +72,10 @@ public class ProductSearchQuery extends HttpServlet {
 			}
 			
 			ListName.addAll(ProductsBean.findProductbyNameandCategory(search, category));
+
 		}
+		
+		 System.out.println(Users.findUserbyId(100).getFirstName());
 		
 	    RequestDispatcher dispatcher =
 	      request.getRequestDispatcher(address);

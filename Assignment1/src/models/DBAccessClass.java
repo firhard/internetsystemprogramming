@@ -61,13 +61,13 @@ public class DBAccessClass {
 		  
 		  sql = "INSERT INTO Products "
 				+ "VALUES (111, 'Adidas Jacket', '1', 'A really nice jacket', "
-		        + "55, 4, 5, 115, 'this is a photo String', 'this is a video String', "
+		        + "55, 4, 5, 100, 'this is a photo String', 'this is a video String', "
 		        + "'this is thumbnail String');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Products "
 				+ "VALUES (112, 'Nike Jacket', '2', 'A reall cool jacket', "
-		        + "60, 5, 5, 116, 'this is a photo String', 'this is a video String', "
+		        + "60, 5, 5, 101, 'this is a photo String', 'this is a video String', "
 		        + "'this is thubmnail String');";
 		  stmt.executeUpdate(sql);
 		  
@@ -175,6 +175,154 @@ public class DBAccessClass {
 		return dbBeanList;
 		
 	}
+	
+	public Users DBgetUserbyUsernameandPassword(String username, String password){
+			
+        Users dbBean = new Users();
+		String sql = "SELECT * FROM Users where Username=? AND Password=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setFirstName(rs.getString("FirstName"));
+				dbBean.setLastName(rs.getString("LastName"));
+				dbBean.setAddress(rs.getString("Address"));
+				dbBean.setCity(rs.getString("City"));
+				dbBean.setState(rs.getString("State"));
+				dbBean.setPostalCode(rs.getString("PostalCode"));
+				dbBean.setEmailAddress(rs.getString("EmailAddress"));
+				dbBean.setPhoneNumber(rs.getString("PhoneNumber"));
+				dbBean.setBirthday(rs.getString("Birthday"));
+				dbBean.setType(rs.getByte("Type"));
+				dbBean.setStatus(rs.getByte("Status"));
+				dbBean.setNumOfVisits(rs.getInt("NumOfVisits"));
+				dbBean.setUserName(rs.getString("Username"));
+				dbBean.setPassword(rs.getString("Password"));
+				
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
+	
+	public boolean DBUsernameTaken(String username){
+		
+        Users dbBean = new Users();
+		String sql = "SELECT * FROM Users where Username=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, username);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+
+				dbBean.setId(rs.getInt("Id"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean.getId() != 0;
+		
+	}
+	
+	public void DBsetUser(String username, String password){
+		
+		
+		try {	
+		  stmt = conn.createStatement();
+		  String sql;
+
+		  	sql = "INSERT INTO Users (Username, Password) " +
+			          "VALUES ('" + username +
+					  "', '" + password + "')";
+			stmt.executeUpdate(sql);
+		  	
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+	}
+	
+	public void insertUsers() {
+		  
+		try {
+		  stmt = conn.createStatement();
+		  String sql;
+		  
+		  sql = "Truncate table Users;";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO Users "
+					+ "VALUES (100, 'Jon', 'Lee', '720 N 81st', "
+			        + "'Lincoln', 'Nebraska', '68505', 'jonathan_lee7@live.com', "
+			        + "'402-419-4133', '06/25/1995', "
+			        + "0, 1, 5, 'jlee', 'super');";
+		  
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO Users "
+					+ "VALUES (101, 'Firhard', 'Roslan', '720 N 81st', "
+			        + "'Lincoln', 'Nebraska', '68505', 'firhard@gmail.com', "
+			        + "'402-419-4133', '06/25/1995', "
+			        + "0, 1, 5, 'mfirhard', 'super');";
+		  
+		  stmt.executeUpdate(sql);
+		  
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
+	}
+	
+	public Users DBgetUserbyId(int id){
+		
+        Users dbBean = new Users();
+		String sql = "SELECT * FROM Users where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setFirstName(rs.getString("FirstName"));
+				dbBean.setLastName(rs.getString("LastName"));
+				dbBean.setAddress(rs.getString("Address"));
+				dbBean.setCity(rs.getString("City"));
+				dbBean.setState(rs.getString("State"));
+				dbBean.setPostalCode(rs.getString("PostalCode"));
+				dbBean.setEmailAddress(rs.getString("EmailAddress"));
+				dbBean.setPhoneNumber(rs.getString("PhoneNumber"));
+				dbBean.setBirthday(rs.getString("Birthday"));
+				dbBean.setType(rs.getByte("Type"));
+				dbBean.setStatus(rs.getByte("Status"));
+				dbBean.setNumOfVisits(rs.getInt("NumOfVisits"));
+				dbBean.setUserName(rs.getString("Username"));
+				dbBean.setPassword(rs.getString("Password"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
+		
+	
 	
 
 	
