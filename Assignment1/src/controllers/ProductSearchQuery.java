@@ -74,9 +74,7 @@ public class ProductSearchQuery extends HttpServlet {
 			ListName.addAll(ProductsBean.findProductbyNameandCategory(search, category));
 
 		}
-		
-		 System.out.println(Users.findUserbyId(100).getFirstName());
-		
+				
 	    RequestDispatcher dispatcher =
 	      request.getRequestDispatcher(address);
 	    dispatcher.forward(request, response);

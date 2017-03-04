@@ -123,7 +123,6 @@ public class Users {
    	    db.connectMeIn();
    	    Users return_user = db.DBgetUserbyUsernameandPassword(username, password);
    	    db.closeConnection();
-   	    System.out.println(return_user);
    	    return (return_user.getId() != 0);
     }
 	
