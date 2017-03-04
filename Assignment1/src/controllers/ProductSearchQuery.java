@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import models.DBAccessClass;
 import models.ProductsBean;
-import models.Users;
 
 /**
  * Servlet implementation class ProductSearchQuery
@@ -54,6 +53,7 @@ public class ProductSearchQuery extends HttpServlet {
 	    } 
 		
 		session.setAttribute("search", search);
+		session.setAttribute("category", category);
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<ProductsBean> ListName = (ArrayList<ProductsBean>)session.getAttribute("ListName");

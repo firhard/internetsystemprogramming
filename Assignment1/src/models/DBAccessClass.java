@@ -64,13 +64,13 @@ public class DBAccessClass {
 		  sql = "INSERT INTO Products "
 				+ "VALUES (111, 'Adidas Jacket', '1', 'A really nice jacket', "
 		        + "55, 4, 5, 100, 'this is a photo String', 'this is a video String', "
-		        + "'this is thumbnail String');";
+		        + "'thumbnails/AdidasThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Products "
 				+ "VALUES (112, 'Nike Jacket', '2', 'A reall cool jacket', "
 		        + "60, 5, 5, 101, 'this is a photo String', 'this is a video String', "
-		        + "'this is thubmnail String');";
+		        + "'thumbnails/NikeThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
 		  

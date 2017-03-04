@@ -27,9 +27,11 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 	  	<td>${product.getProductCategoryIndex()}</td>
 	  	<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
 	  	<td>${product.getPrice()}</td>
-	  	<td>${product.getProductThumbnail()}</td>
-	  	<td>
-		  	<form action=ProductSearchResultsServlet method=post>
+	  	<td><a href="img/${product.getProductThumbnail()}.jpg">
+			<img src="img/${product.getProductThumbnail()}.jpg" alt="Adidas image"></a>
+		</td>
+		<td>
+		  	<form name="myProduct1" action=ProductSearchResultsServlet method=post>
 		  		<input type="hidden" name="insert" value="${product.getId()}">
 		  		<input type=submit value="View Product" >
 		  	</form>
@@ -40,9 +42,9 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
 
 <br>
  <c:if test="${empty ListName}">
-  	 No Products Found
+  	 <h2>No Products Found</h2>
   </c:if>
- <br>
+<br>
  
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>

@@ -13,10 +13,11 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 
 <form action="ProductSearchQuery" method="post">
 Product Categories<select name="Category">
-	<option value="1">one</option>
-	<option value="2">two</option>
-	<option value="3">three</option>
-	<option value="4">four</option>
+	<option value="${category}">${category}</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
 	</select><br>
 Search: <input type="text" class="Search" name="Search" value="${search}"><input type="submit" value="Submit"><br>
 </form>
