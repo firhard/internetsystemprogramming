@@ -45,10 +45,10 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	    <th>Estimated Delivery Date:</th>
 	</tr>
   	<tr>
-	    <td><input name="ProductName" value ="${prodBean.getProductName()}"></td>
-	    <td><input name="Price" value ="${prodBean.getPrice()}"></td>
-	    <td><input name="SellerName" value ="TODO: Insert Find User/Seller by Product"></td>
-	    <td><input name="AvailableQuantity value ="${prodBean.getAvailableQuantity()}"></td>
+	    <td>${prodBean.getProductName()}</td>
+	    <td>${prodBean.getPrice()}</td>
+	    <td>TODO: Insert Find User/Seller by Product</td>
+	    <td>${prodBean.getAvailableQuantity()}</td>
 	    <td>
     	<td>TODO: Add estimated delivery days in product table to current datetime</td>
     </tr>

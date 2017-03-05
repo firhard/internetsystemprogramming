@@ -93,10 +93,10 @@ public class TransactionsBean {
 	   	return verified;
 	}
 	
-	public static int availableBalance(String cHolderName){
+	public static double availableBalance(String cHolderName){
 	   	DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
-	   	int balance = db.DBverifyBalance(cHolderName);
+	   	double balance = db.DBverifyBalance(cHolderName);
 	   	return balance;
 	}
 }

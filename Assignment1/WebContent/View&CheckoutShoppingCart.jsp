@@ -120,7 +120,6 @@ View Orders: <input type="button" value="View Orders" class="ViewOrders" name="V
 		    <td>July 11th, 2017</td>
 		  </tr>
 	</table>
-	<form action=>
 		<input type=submit value="Remove From Cart"> <br> 
 	</form>
 </div>

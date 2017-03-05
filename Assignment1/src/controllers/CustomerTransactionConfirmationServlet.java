@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -40,28 +41,30 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		db.connectMeIn();
 		db.insertProducts();
 		HttpSession session = request.getSession();
+		String address = "CustomerTransactionConfirmation.jsp";
 		int Price = Integer.parseInt(request.getParameter("Price"));
 		String cHolderName = request.getParameter("CardHolderName");
 		String cType = request.getParameter("CardType");
 		String cNumber = request.getParameter("CardNumber");
 		String sCode = request.getParameter("SecurityCode");
 		DateFormat formatter = new SimpleDateFormat("MM-yyyy");
-		Date eDate  = formatter.parse(request.getParameter("ExpirationDate"));
+		Date eDate = null;
+		try {
+			eDate = formatter.parse(request.getParameter("ExpirationDate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
 		
 		session.setAttribute("transactionValue", transactionValue);
 		
-		int AvailableBalance = TransactionsBean.availableBalance(cHolderName, cType, cNumber, sCode, eDate);
+		double AvailableBalance = TransactionsBean.availableBalance(cHolderName);
 		if (AvailableBalance < Price){
+			
 		}
-		String address = "CustomerTransactionConfirmation.jsp";
-		
-		
-		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
-		
 	}
 
 	/**

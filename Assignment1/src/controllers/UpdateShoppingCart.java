@@ -37,14 +37,16 @@ public class UpdateShoppingCart extends HttpServlet {
 		db.insertProducts();
 	    HttpSession session = request.getSession();
 	    
-	    int Price = Integer.parseInt(request.getParameter("Price"));
-	    int ProductQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
-	    
-	    int overallPrice = Price * ProductQuantity;
-	    
+  
 	    ProductsBean prodBean =
 	      (ProductsBean)session.getAttribute("prodBean");
 	    
+	    int Price = prodBean.getPrice(); 
+	    		//Integer.parseInt(request.getParameter()));
+	    int ProductQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
+	    
+	    int overallPrice = Price * ProductQuantity;
+	  
 	    
 	    String address = "View&CheckoutShoppingCart.jsp";
 	    RequestDispatcher dispatcher =
