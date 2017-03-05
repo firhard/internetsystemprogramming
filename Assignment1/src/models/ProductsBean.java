@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class ProductsBean {
 	
-	
 	private int Id;
 	private String ProductName;
 	private int ProductCategoryIndex;
