@@ -59,7 +59,7 @@ public class ManageOrderServlet extends HttpServlet {
 		}
 		
 		prodOrderList.addAll(ProductsBean.findbyOrderId);
-		//TODO: Find all products with orderId, put orderId into Products Table and Bean
+		
 
 
 		String address = "ManageOrder.jsp";

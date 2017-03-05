@@ -36,15 +36,14 @@ public class ProductSearchResultsServlet extends HttpServlet {
 		int productID = Integer.parseInt(request.getParameter("insert"));
 		
 		
-	    ProductsBean prodBean =
-	      (ProductsBean)session.getAttribute("prodBean");
+	    ProductsBean prodBean = (ProductsBean)session.getAttribute("prodBean");
 	    
 	    if (prodBean == null) {		    
 			prodBean = ProductsBean.findProductbyId(productID);
-			session.setAttribute("prodBean", prodBean);
 	    }
 
 		prodBean = ProductsBean.findProductbyId(productID);
+		session.setAttribute("prodBean", prodBean);
 		String address = "ViewProductDetails.jsp";
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);

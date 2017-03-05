@@ -66,7 +66,7 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 			</tr>
 			<tr>
 				<th>Product quantity</th>
-				<td>${product.getQuantity()}</td>
+				<td>TODO: Create OrderItemsBean</td>
 			</tr>
 			<tr>
 				<th>Total price</th>
@@ -78,7 +78,7 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 			</tr>
 			<tr>
 				<th>Shipping status</th>
-					<td>Active</td>
+				<td>TODO: Create OrderItemsBean</td>
 			</tr>
 			<tr>
 				<th>View</th>

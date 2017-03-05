@@ -12,11 +12,9 @@ public class OrdersBean {
 	private String ShippingAddress;
 	private String BillingAddress;
 	private String CrediCardNumber;
-	private ArrayList<Integer> ProductsIds;
 
 	public OrdersBean() {
 		super();
-		ProductsIds = new ArrayList<Integer>();
 	}
 
 	public int getId() {

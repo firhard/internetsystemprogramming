@@ -111,9 +111,9 @@ public class ProductsBean {
     public static ProductsBean findProductbyId(int input_id) {
    	    DBAccessClass db = new DBAccessClass();
    	    db.connectMeIn();
-   	    ProductsBean return_id = db.DBgetProductbyId(input_id);
+   	    ProductsBean returnbean = db.DBgetProductbyId(input_id);
    	    db.closeConnection();
-   	    return return_id;
+   	    return returnbean;
     }
 
     public static ArrayList<ProductsBean> findProductbyName(String ProductName) {   
