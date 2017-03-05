@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,67 +54,64 @@
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+
+<h2>Order Number ${manageOrderBean.getId()}</h2>
+
+<c:forEach var="product" items="${prodOrderList}">
 	<div class="Products">
 		<table>
 			<tr>
-				<th>
-					Order Number:
-				</th>
-				<td colspan="2">2</td>
-			</tr>
-			<tr>
 				<th>Product name</th>
-					<td>Adidas Hot Fire Jacket</td>
-					<td>Nike Extreme Weather Jacket</td>
+				<td>${product.getProductName()}</td>
 			</tr>
 			<tr>
 				<th>Product quantity</th>
-					<td>1</td>
-					<td>1</td>
-					</tr>
+				<td>${product.getQuantity()}</td>
+			</tr>
 			<tr>
 				<th>Total price</th>
-					<td>$55</td>
-					<td>$60</td>
+				<td>${product.getPrice}</td>
 			</tr>
 			<tr>
 				<th>Seller name</th>
-					<td>Firhard</td>
-					<td>Jon</td>
+				<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
 			</tr>
 			<tr>
 				<th>Shipping status</th>
-					<td>Active</td>
 					<td>Active</td>
 			</tr>
 			<tr>
 				<th>View</th>
 					<td>View: <input type="button" value="View Product Details" class="ViewProductDetails" name="View Product Details" onclick="document.location.href='ViewProductDetails.jsp'"></td>
-					<td>View: <input type="button" value="View Product Details" class="ViewProductDetails" name="View Product Details" onclick="document.location.href='ViewProductDetails.jsp'"></td>
 			</tr>
 			<tr>
 				<th>Cancel</th>
 					<td>Cancel Order: <input type="button" value="Cancel Order" class="CancelOrder" name="Cancel Order" onclick="document.location.href='CancelOrder.jsp'"></td>
-					<td>Cancel Order: <input type="button" value="Cancel Order" class="CancelOrder" name="Cancel Order" onclick="document.location.href='CancelOrder.jsp'"></td>
-			</tr>		
-			<tr>
-				<th>Order Total:</th>
-				<td colspan="2">$155</td>
 			</tr>
-			<tr>
-				<th>
-					Order Date:
-				</th>
-				<td colspan="2">
-					January 19, 2017
-				</td>
-			</tr>		
-			<tr>
-				<th>Shipping Address:</th>
-				<td colspan="2">White House</td>
-			</tr>
-		</table>
+	</table>	
 	</div>
+</c:forEach>
+<br>
+<br>
+<table>
+		<tr>
+			<th>Order Total:</th>
+			<td>$155</td>
+		</tr>
+		<tr>
+			<th>
+				Order Date:
+			</th>
+			<td>
+				January 19, 2017
+			</td>
+		</tr>		
+		<tr>
+			<th>Shipping Address:</th>
+			<td>White House</td>
+		</tr>
+</table>
+	
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

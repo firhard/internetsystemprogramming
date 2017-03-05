@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.DBAccessClass;
 import models.ProductsBean;
 
 
@@ -31,17 +30,12 @@ public class ProductSearchResultsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		DBAccessClass db = new DBAccessClass();
-		db.connectMeIn();
-		db.insertProducts();
+		
 	    HttpSession session = request.getSession();
 	    
 		int productID = Integer.parseInt(request.getParameter("insert"));
 		
 		
-		 
 	    ProductsBean prodBean =
 	      (ProductsBean)session.getAttribute("prodBean");
 	    

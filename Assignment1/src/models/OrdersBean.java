@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class OrdersBean {
 
 	private int Id;
@@ -9,9 +12,11 @@ public class OrdersBean {
 	private String ShippingAddress;
 	private String BillingAddress;
 	private String CrediCardNumber;
+	private ArrayList<Integer> ProductsIds;
 
 	public OrdersBean() {
 		super();
+		ProductsIds = new ArrayList<Integer>();
 	}
 
 	public int getId() {

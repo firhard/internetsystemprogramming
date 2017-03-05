@@ -1,10 +1,16 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import models.OrdersBean;
 
 /**
  * Servlet implementation class ViewOrdersServlet
@@ -24,8 +30,23 @@ public class ViewOrdersServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		HttpSession session = request.getSession();
+		
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
+		
+		if (OrdersList == null || OrdersList.isEmpty()){
+			OrdersList = new ArrayList<OrdersBean>();
+			session.setAttribute("OrdersList", OrdersList);
+			//TODO: search database for the current user with their orders
+		}
+			
+		String address = "ViewOrders.jsp";
+	    RequestDispatcher dispatcher =
+	     request.getRequestDispatcher(address);
+	    dispatcher.forward(request, response);
 	}
 
 	/**

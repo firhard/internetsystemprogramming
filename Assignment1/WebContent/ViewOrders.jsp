@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,6 +53,7 @@
 <body>
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<c:forEach var="order" items="${OrdersList}">
 	<div class="Products">
 		<table>
 			<tr>
@@ -59,15 +61,15 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 					Order Number:
 				</th>
 				<td>
-					2
+					${order.getId()}
 				</td>
 			</tr>
 			<tr>
 				<th>
-					Order Total:
+					Order Cost:
 				</th>
 				<td>
-					$115
+					${order.getTotalCost()}
 				</td>
 			</tr>
 			<tr>
@@ -75,13 +77,19 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 					Order Date:
 				</th>
 				<td>
-					January 19, 2017
+					${order.getOrderDate()}
 				</td>
 			</tr>
-				
 		</table>
+		<form name="myOrder" action=ManageOrderServlet method=post>
+	  		<input type="hidden" name="view" value="${order.getId()}">
+	  		<input type=submit value="Manage Order" >
+	  	</form>
 	</div>
 <button type="button" onclick="location = 'ManageOrder.jsp'">View</button><br>
+ </c:forEach>
+
+
 Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 
