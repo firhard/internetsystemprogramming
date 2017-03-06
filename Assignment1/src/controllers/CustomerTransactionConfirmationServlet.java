@@ -21,6 +21,12 @@ import models.TransactionsBean;
  */
 public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public void init() throws ServletException {
+		DBAccessClass db = new DBAccessClass();
+		db.connectMeIn();
+		db.insertCreditCard();
+	}
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,34 +40,41 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		DBAccessClass db = new DBAccessClass();
-		db.connectMeIn();
-		db.insertProducts();
 		HttpSession session = request.getSession();
+		
 		String address = "CustomerTransactionConfirmation.jsp";
-		int Price = Integer.parseInt(request.getParameter("Price"));
+		//int Price = Integer.parseInt(request.getParameter("Price"));
+		int Price = 55;
+		int color = 1;
 		String cHolderName = request.getParameter("CardHolderName");
 		String cType = request.getParameter("CardType");
 		String cNumber = request.getParameter("CardNumber");
 		String sCode = request.getParameter("SecurityCode");
-		DateFormat formatter = new SimpleDateFormat("MM-yyyy");
-		Date eDate = null;
-		try {
-			eDate = formatter.parse(request.getParameter("ExpirationDate"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		boolean Valid = true;
+		String eDate = request.getParameter("ExpirationDate");
+		
 		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
 		
 		session.setAttribute("transactionValue", transactionValue);
 		
 		double AvailableBalance = TransactionsBean.availableBalance(cHolderName);
-		if (AvailableBalance < Price){
-			
+		if(transactionValue == false){
+			Valid = false;
+			color = 0;
 		}
+		
+		if(AvailableBalance < Price){
+			Valid = false;
+			color = 2;
+		}
+		
+		session.setAttribute("color", color);
+		session.setAttribute("price", Price);
+		session.setAttribute("cardHolderName", cHolderName);
+		session.setAttribute("sCode", sCode);
+		session.setAttribute("eDate", eDate);
+		session.setAttribute("cNumber", cNumber);
+		
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

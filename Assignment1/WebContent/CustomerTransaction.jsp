@@ -52,9 +52,9 @@ div form {
 
 </style>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
 
 <div class="Products">
@@ -100,17 +100,17 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	</table>
 </div>
 
-<form action="CustomerTransactionConfirmation" method="post">
+<form action="CustomerTransactionConfirmationServlet" method="post">
 <div class="TransactionInfo">
 	<table>
 		<tr>
 			<th>
-				Price:<input type="hidden" name="insert" value="${product.getId()}">
+				Price:<input type="hidden" name="Price" value="${product.getId()}">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Card Holder Name:<input type="text" class="CardHolderName" name="Card Holder Name">
+				Card Holder Name:<input type="text" class="CardHolderName" name="CardHolderName">
 			</th> 
 		</tr>
 		<tr>
@@ -124,41 +124,35 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 		</tr>
 		<tr>
 			<th>
-				Card Number:<input type="text" class="CardNumber" name="Card Number">
+				Card Number:<input type="text" class="CardNumber" name="CardNumber">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Security Code:<input type="text" class="SecurityCode" name="Security Code" style="width: 30px">
+				Security Code:<input type="text" class="SecurityCode" name="SecurityCode" style="width: 30px">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Expiration Date (without the slash. e.g. 0717 for July 2017):<input type="text" class="ExpirationDate" name="Expiration Date" style="width: 30px">
+				Expiration Date (without the slash. e.g. 0717 for July 2017):<input type="text" class="ExpirationDate" name="ExpirationDate" style="width: 30px">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Billing Address:<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 7%"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
+				Billing Address:<input type="text" class="BillingAddress" name="Billing Address"><br>
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Checking Address:<input type="text" class="BillingAddress" name="Billing Address"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
-								<input type="text" class="BillingAddress" name="Billing Address" style="margin-left: 47%"><br>
+				Checking Address:<input type="text" class="CheckingAddress" name="Checking Address"><br>
 			</th>
 		</tr>
 	</table>
 </div>
-Confirm Payment: <input type="button" value="Confirm Payment" class="Confirm Payment" name="ConfirmPayment" onclick="document.location.href='CustomerTransactionConfirmation.jsp'"> <br>
+Confirm Payment: <input type="Submit" value="Confirm Payment" class="ConfirmPayment" name="ConfirmPayment"> <br>
+Cancel Payment: <input type="button" value="Cancel Payment" class="CancelPayment" name="CancelPayment"> <br>
 </form>
 
-Cancel Payment: <input type="button" value="Cancel Payment" class="Cancel Payment" name="CancelPayment" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

@@ -30,11 +30,12 @@ table, th, td {
 <body>
 
 
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Back: <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> <br> 
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-<form action="UpdateShoppingCart" method="post">
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> 
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
+<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a><br>
+<br><br><form action="UpdateShoppingCart" method="post">
 <table>
 	<tr>
 	    <th>Product Name:</th>
@@ -49,10 +50,12 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	    <td>${prodBean.getPrice()}</td>
 	    <td>TODO: Insert Find User/Seller by Product</td>
 	    <td>${prodBean.getAvailableQuantity()}</td>
-	    <td>
+	    <td></td>
     	<td>TODO: Add estimated delivery days in product table to current datetime</td>
     </tr>
 </table>
+Add to Cart:<input type="text" class="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit" value="Add to Cart">
+<br>
 <div>
 	<h2>Product Photos</h2>
 	<a href="img/${prodBean.getProductName()}.jpg">
@@ -67,6 +70,7 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	<p>${prodBean.getProductDescription()}</p>
 </div>
 
+</form><br>
 <div>
 	<h2>Questions & Answers</h2>
 	<p><b>Q: RoboMaster09:</b> Is this a good Jacket?<p>
@@ -80,11 +84,5 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 	<h2>Customer Reviews (4.0 / 5.0 rating):</h2>
 	<p><b>&nbsp; &nbsp;4 stars &nbsp; - &nbsp; &nbsp; June 25, 2015 &nbsp; - &nbsp; &nbsp; Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
 </div>
-
-Product Quantity:<input type="text" class="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit">
-<br>
-Add to Cart: <input type="button" value="Add to Cart" class="AddtoCart" name="Add to Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> 
-</form><br>
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

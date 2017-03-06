@@ -325,9 +325,38 @@ public class DBAccessClass {
 	}
 		
 	
-	
+	public void insertCreditCard(){
+		  
+		  try {
+			stmt = conn.createStatement();
 
-	public boolean DBverifyCreditCard(String cHolderName, String cType, String cNumber, String sCode, Date eDate){
+		  String sql;
+		  
+		  sql = "Truncate table CreditCards;";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO CreditCards "
+				+ "VALUES (1, 'Firhard', '950611146279', 100.00, "
+		        + "'Visa', 13, 158, "
+		        + "'0511');";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO CreditCards "
+					+ "VALUES (2, 'Jonathan', '0123456789', 200.00, "
+			        + "'Master Card', 11, 352, "
+			        + "'0612');";
+		  stmt.executeUpdate(sql);
+		  
+		  
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
+	
+	}
+
+	public boolean DBverifyCreditCard(String cHolderName, String cType, String cNumber, String sCode, String eDate){
 		TransactionsBean dbBean = new TransactionsBean();
 		String sql = "SELECT * FROM CreditCards where CardHolderName=? AND CreditCardNumber=? AND ExpirationDate=? AND CardType=? AND CVV=?";
 		try{
@@ -335,20 +364,13 @@ public class DBAccessClass {
 			
 			ps.setString(1, cHolderName);
 			ps.setString(2, cNumber);
-			ps.setDate(3, (java.sql.Date) eDate);
+			ps.setString(3, eDate);
 			ps.setString(4, cType);
 			ps.setString(5, sCode);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				dbBean.setId(rs.getInt("Id"));
-				dbBean.setCardHolderName(rs.getString("CardHolderName"));
-				dbBean.setCreditCardNumber(rs.getString("CreditCardNumber"));
-				dbBean.setExpirationDate(rs.getDate("ExpirationDate"));
-				dbBean.setCardType(rs.getString("CardType"));
-				dbBean.setCVV(rs.getString("CVV"));
-				dbBean.setUserId(rs.getInt("UserId"));
-				dbBean.setBalance(rs.getDouble("Balance"));
 			}
 			
 		} catch (SQLException e) {
@@ -372,6 +394,7 @@ public class DBAccessClass {
 		}
 		return dbBean;
 	}
+	
 	
 	public void insertOrders() {
 		  

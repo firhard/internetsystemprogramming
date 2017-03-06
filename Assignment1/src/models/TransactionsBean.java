@@ -86,7 +86,7 @@ public class TransactionsBean {
 		this.ExpirationDate = expirationDate;
 	}
 
-	public static boolean verifyCreditCard(String cHolderName, String cType, String cNumber, String sCode, Date eDate){
+	public static boolean verifyCreditCard(String cHolderName, String cType, String cNumber, String sCode, String eDate){
 	   	DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
 	   	boolean verified = db.DBverifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
