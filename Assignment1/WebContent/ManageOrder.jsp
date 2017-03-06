@@ -57,36 +57,48 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 
 <h2>Order Number ${manageOrderBean.getId()}</h2>
 
-<c:forEach var="product" items="${prodOrderList}">
+<c:forEach var="orderItem" items="${orderList}">
 	<div class="Products">
 		<table>
 			<tr>
 				<th>Product name</th>
-				<td>${product.getProductName()}</td>
+				<td>${manageOrderBean.findProductbyProductId(orderItem.getProductId()).getProductName()}</td>
 			</tr>
 			<tr>
 				<th>Product quantity</th>
-				<td>TODO: Create OrderItemsBean</td>
+				<td>${orderItem.getQuantity()}</td>
 			</tr>
 			<tr>
 				<th>Total price</th>
-				<td>${product.getPrice}</td>
+				<td>${orderItem.getProductPrice()}</td>
 			</tr>
 			<tr>
 				<th>Seller name</th>
-				<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
+				<td>${manageOrderBean.findProductbyProductId(orderItem.getProductId()).findUserbySellerId(product.getSellerId()).getFullName()}</td>
 			</tr>
 			<tr>
 				<th>Shipping status</th>
-				<td>TODO: Create OrderItemsBean</td>
+				<td>orderItem.getShippingStatus()</td>
 			</tr>
 			<tr>
+
 				<th>View</th>
-					<td>View: <input type="button" value="View Product Details" class="ViewProductDetails" name="View Product Details" onclick="document.location.href='ViewProductDetails.jsp'"></td>
+				<td>
+					<form action=ProductSearchResultsServlet method=post>
+				  		<input type="hidden" name="insert" value="${orderItems.getProductId()}">
+				  		<input type=submit value="Cancel Order" >
+			  		</form>
+			  	</td>
 			</tr>
 			<tr>
 				<th>Cancel</th>
-					<td>Cancel Order: <input type="button" value="Cancel Order" class="CancelOrder" name="Cancel Order" onclick="document.location.href='CancelOrder.jsp'"></td>
+				<td>	
+					<form action=CancelOrderServlet method=post>
+				  		<input type="hidden" name="orderId" value="${manageOrderBean.getId()}">
+				  		<input type="hidden" name="orderItemsId" value="${orderItems.getId()}">
+				  		<input type=submit value="Cancel Order" >
+			  		</form>
+			  	</td>
 			</tr>
 	</table>	
 	</div>
@@ -96,19 +108,17 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 <table>
 		<tr>
 			<th>Order Total:</th>
-			<td>$155</td>
+			<td>${manageOrderBean.getTotalCost() }</td>
 		</tr>
 		<tr>
 			<th>
 				Order Date:
 			</th>
-			<td>
-				January 19, 2017
-			</td>
+			<td>${manageOrderBean.getOrderDate()}</td>
 		</tr>		
 		<tr>
 			<th>Shipping Address:</th>
-			<td>White House</td>
+			<td>${manageOrderBean.getShippingAddress()}</td>
 		</tr>
 </table>
 	

@@ -323,6 +323,42 @@ public class DBAccessClass {
 		return dbBean;
 		
 	}
+	
+public Users DBgetUserbyUserName(String username){
+		
+        Users dbBean = new Users();
+		String sql = "SELECT * FROM Users where Username=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, username);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setFirstName(rs.getString("FirstName"));
+				dbBean.setLastName(rs.getString("LastName"));
+				dbBean.setAddress(rs.getString("Address"));
+				dbBean.setCity(rs.getString("City"));
+				dbBean.setState(rs.getString("State"));
+				dbBean.setPostalCode(rs.getString("PostalCode"));
+				dbBean.setEmailAddress(rs.getString("EmailAddress"));
+				dbBean.setPhoneNumber(rs.getString("PhoneNumber"));
+				dbBean.setBirthday(rs.getString("Birthday"));
+				dbBean.setType(rs.getByte("Type"));
+				dbBean.setStatus(rs.getByte("Status"));
+				dbBean.setNumOfVisits(rs.getInt("NumOfVisits"));
+				dbBean.setUserName(rs.getString("Username"));
+				dbBean.setPassword(rs.getString("Password"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
 		
 	
 	public void insertCreditCard(){
@@ -423,6 +459,93 @@ public class DBAccessClass {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 		}
+		
+	}
+
+	public OrdersBean DBgetOrderbyId(int id){
+		OrdersBean dbBean = new OrdersBean();
+		String sql = "SELECT * FROM Products where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setCustomerId(rs.getInt("CustomerId"));
+				dbBean.setTotalCost(rs.getInt("TotalCost"));
+				dbBean.setOrderDate(rs.getString("OrderDate"));
+				dbBean.setShippingAddress(rs.getString("ShippingAddress"));
+				dbBean.setBillingAddress(rs.getString("BillingAddress"));
+				dbBean.setCrediCardNumber(rs.getString("CreditCardNumber"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
+	
+	public ArrayList<OrdersBean> DBgetOrderbyCustomerId(int CustomerId){
+
+		ArrayList<OrdersBean> dbBeanList = new ArrayList<OrdersBean>();
+		String sql = "SELECT * FROM Products where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, CustomerId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				
+                OrdersBean dbBean = new OrdersBean();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setCustomerId(rs.getInt("CustomerId"));
+				dbBean.setTotalCost(rs.getInt("TotalCost"));
+				dbBean.setOrderDate(rs.getString("OrderDate"));
+				dbBean.setShippingAddress(rs.getString("ShippingAddress"));
+				dbBean.setBillingAddress(rs.getString("BillingAddress"));
+				dbBean.setCrediCardNumber(rs.getString("CreditCardNumber"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
+		
+	}
+	
+	public ArrayList<OrderItems> DBgetOrderItemsbyOrderID(int orderId){
+
+		ArrayList<OrderItems> dbBeanList = new ArrayList<OrderItems>();
+		String sql = "SELECT * FROM Products where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, orderId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				
+                OrderItems dbBean = new OrderItems();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setOrderId(rs.getInt("OrderId"));
+				dbBean.setSellerId(rs.getInt("SellerId"));
+				dbBean.setProductId(rs.getInt("ProductId"));
+				dbBean.setQuantity(rs.getInt("Quantity"));
+				dbBean.setShippingStatus(rs.getByte("ShippingStatus"));
+				dbBean.setShippingRefNo(rs.getInt("ShippingRefNo"));
+				dbBean.setStatus(rs.getByte("Status"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
 		
 	}
 	

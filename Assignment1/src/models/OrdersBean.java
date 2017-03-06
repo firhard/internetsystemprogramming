@@ -1,7 +1,6 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class OrdersBean {
 
@@ -73,7 +72,20 @@ public class OrdersBean {
 		CrediCardNumber = crediCardNumber;
 	}
 	
-	
-	
+    public static OrdersBean findOrderbyId(int input_id) {
+   	    DBAccessClass db = new DBAccessClass();
+   	    db.connectMeIn();
+   	    OrdersBean returnbean = db.DBgetOrderbyId(input_id);
+   	    db.closeConnection();
+   	    return returnbean;
+    }
+    
+    public static ArrayList<OrdersBean> findOrderbyCustomerId(int input_id) {
+   	    DBAccessClass db = new DBAccessClass();
+   	    db.connectMeIn();
+   	    ArrayList<OrdersBean> returnList = db.DBgetOrderbyCustomerId(input_id);
+   	    db.closeConnection();
+   	    return returnList;
+    }
 	
 }

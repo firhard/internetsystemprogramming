@@ -1,10 +1,13 @@
 package models;
 
+import java.util.ArrayList;
+
 public class OrderItems {
 
 	
 	private int Id;
 	private int OrderId;
+	private int SellerId;
 	private int ProductId;
 	private int ProductPrice;
 	private int Quantity;
@@ -22,6 +25,14 @@ public class OrderItems {
 
 	public void setId(int id) {
 		Id = id;
+	}
+	
+	public int getSellerId() {
+		return SellerId;
+	}
+
+	public void setSellerId(int sellerId) {
+		SellerId = sellerId;
 	}
 
 	public int getOrderId() {
@@ -79,6 +90,21 @@ public class OrderItems {
 	public void setStatus(byte status) {
 		Status = status;
 	}
-
+	
+    public static ArrayList<OrderItems> findOrderItemsbyOrderId(int id) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	ArrayList<OrderItems> OrderItems = db.DBgetOrderItemsbyOrderID(id);
+	   	db.closeConnection();
+	   	return OrderItems;
+    }
+    
+	public ProductsBean findProductbyProductId(int id) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	ProductsBean product = db.DBgetProductbyId(id);
+	   	db.closeConnection();
+	   	return product;
+    }
 
 }

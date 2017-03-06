@@ -150,6 +150,14 @@ public class Users {
 	   	db.closeConnection();
 	   	return user;
     }
+	
+	public static Users findUserbyUserName(String username) {   
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	Users user = db.DBgetUserbyUserName(username);
+	   	db.closeConnection();
+	   	return user;
+    }
 
 	
 	

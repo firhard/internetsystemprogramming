@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.OrdersBean;
+import models.Users;
 
 /**
  * Servlet implementation class ViewOrdersServlet
@@ -33,15 +34,20 @@ public class ViewOrdersServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		
 		@SuppressWarnings("unchecked")
 		ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
 		
 		if (OrdersList == null || OrdersList.isEmpty()){
 			OrdersList = new ArrayList<OrdersBean>();
 			session.setAttribute("OrdersList", OrdersList);
-			//TODO: search database for the current user with their orders
 		}
+		else{
+			OrdersList.clear();
+		}
+		
+		String username = (String)session.getAttribute("fuserName");
+		Users aUser = Users.findUserbyUserName(username);
+		OrdersList.addAll(OrdersBean.findOrderbyCustomerId(aUser.getId()));
 			
 		String address = "ViewOrders.jsp";
 	    RequestDispatcher dispatcher =
