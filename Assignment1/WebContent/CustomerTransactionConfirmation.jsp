@@ -66,17 +66,39 @@ Your order has been
     	<h2>a failure! Because the information that you insert was wrong.</h2>
         <br />
     </c:when>  
-        <c:when test="${color eq 0}">
+    <c:when test="${color eq 2}">
     	<h2>a failure! Because you have insufficient amount of balance</h2>
         <br />
     </c:when>          
 	<c:otherwise>
-		placed! The amount that you paid was ${price}
+		placed! The amount that you paid was $${price}
 		<br>
-		Card Holder Name: ${cardHolderName}
-		CVV: ${sCode}
-		Expiration Date: ${eDate}
-		Confirmation Number: ${cNumber} 
+		<table>
+			<tr>
+				<td>Card Holder Name: </td>
+				<th>${cardHolderName}</th>
+			</tr>
+			<tr>
+				<td>CVV:</td> 
+				<th>${sCode}</th>
+			</tr>
+			<tr>
+				<td>Expiration Date: </td>
+				<th>${eDate}</th>
+			</tr>
+			<tr>
+				<td>Confirmation Number: </td>
+				<th>${cNumber}</th>
+			</tr>
+			<tr>
+				<td>Billing Address: </td>
+				<th>${billingAddress}</th>
+			</tr>
+			<tr>
+				<td>Checking Address: </td>
+				<th>${checkingAddress}</th>
+			</tr>
+		</table> 
 	</c:otherwise>
 </c:choose> 
 </body>

@@ -139,12 +139,12 @@ div form {
 		</tr>
 		<tr>
 			<th>
-				Billing Address:<input type="text" class="BillingAddress" name="Billing Address"><br>
+				Billing Address:<input type="text" class="BillingAddress" name="BillingAddress"><br>
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Checking Address:<input type="text" class="CheckingAddress" name="Checking Address"><br>
+				Checking Address:<input type="text" class="CheckingAddress" name="CheckingAddress"><br>
 			</th>
 		</tr>
 	</table>

@@ -52,7 +52,8 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		String sCode = request.getParameter("SecurityCode");
 		boolean Valid = true;
 		String eDate = request.getParameter("ExpirationDate");
-		
+		String billingAddress = request.getParameter("BillingAddress");
+		String checkingAddress = request.getParameter("CheckingAddress");
 		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
 		
 		session.setAttribute("transactionValue", transactionValue);
@@ -63,7 +64,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			color = 0;
 		}
 		
-		if(AvailableBalance < Price){
+		if(AvailableBalance < Price && transactionValue == true){
 			Valid = false;
 			color = 2;
 		}
@@ -74,7 +75,8 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		session.setAttribute("sCode", sCode);
 		session.setAttribute("eDate", eDate);
 		session.setAttribute("cNumber", cNumber);
-		
+		session.setAttribute("checkingAddress", checkingAddress);
+		session.setAttribute("billingAddress", billingAddress);
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
