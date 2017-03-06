@@ -99,4 +99,11 @@ public class TransactionsBean {
 	   	double balance = db.DBverifyBalance(cHolderName);
 	   	return balance;
 	}
+
+	public static double addCreditafterCancellation(double productPrice, int input_id) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	double balance = db.DBaddCredit(productPrice, input_id);
+	   	return balance;
+	}
 }

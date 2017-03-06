@@ -99,6 +99,21 @@ public class OrderItems {
 	   	return OrderItems;
     }
     
+    public static OrderItems findOrderItembyOrderItemId(int input_id) {
+   	    DBAccessClass db = new DBAccessClass();
+   	    db.connectMeIn();
+   	    OrderItems OrderItem = db.DBgetOrderItembyOrderItemId(input_id);
+   	    db.closeConnection();
+   	    return OrderItem;
+    }
+    
+    public static boolean verifyShipmentStatus(int input_id){
+    	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	boolean verified = db.DBverifyShipment(input_id);
+	   	return verified;
+    }
+    
 	public ProductsBean findProductbyProductId(int id) {   
 	   	DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
@@ -106,5 +121,13 @@ public class OrderItems {
 	   	db.closeConnection();
 	   	return product;
     }
+
+	public static OrderItems dropOrderItembyOrderItemId(int orderItemId) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	OrderItems orderItem = db.DBDeleteOrderItem(orderItemId);
+	   	db.closeConnection();
+		return orderItem;
+	}
 
 }

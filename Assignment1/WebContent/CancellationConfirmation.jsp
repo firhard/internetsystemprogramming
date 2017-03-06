@@ -50,34 +50,12 @@
 	}
 </style>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-<a href="ViewOrders.jsp">View Orders</a><br>
-<div class="Products">
-	<table>
-		  <tr>
-		    <th colspan="3">Product Name:</th>
-		    <td>Adidas Hot Fire Jacket</td>
-		  </tr>
-		  <tr>
-		  	<th colspan="3">Product Quantity:</th>
-		  	<td>1</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Total Price:</th>
-		    <td>$55</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Seller Name:</th>
-		    <td>Firhard</td>
-		  </tr>
-	</table>
-</div>
-Order Cancelled!<br>
-Refundable Amount: $55 (no damage)<br>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> 
+<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a><br>
 
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
+Order Cancelled!<br>
 
 </body>
 </html>

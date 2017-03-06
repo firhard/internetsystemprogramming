@@ -518,6 +518,8 @@ public Users DBgetUserbyUserName(String username){
 		
 	}
 	
+	
+	
 	public ArrayList<OrderItems> DBgetOrderItemsbyOrderID(int orderId){
 
 		ArrayList<OrderItems> dbBeanList = new ArrayList<OrderItems>();
@@ -549,6 +551,86 @@ public Users DBgetUserbyUserName(String username){
 		
 	}
 	
+	public OrderItems DBgetOrderItembyOrderItemId(int id){
+		
+		OrderItems dbBean = new OrderItems();
+		String sql = "SELECT * FROM OrderItems where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setOrderId(rs.getInt("OrderId"));
+				dbBean.setSellerId(rs.getInt("SellerId"));
+				dbBean.setProductId(rs.getInt("ProductId"));
+				dbBean.setProductPrice(rs.getInt("ProductPrice"));
+				dbBean.setQuantity(rs.getInt("Quantity"));
+				dbBean.setShippingStatus(rs.getByte("ShippingStatus"));
+				dbBean.setShippingRefNo(rs.getInt("ShippingRefNo"));
+				dbBean.setStatus(rs.getByte("Status"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
+		
+	}
+	
+	public boolean DBverifyShipment(int input_id){
+		OrderItems dbBean = new OrderItems();
+		String sql = "SELECT * FROM CreditCards where ShippingStatus=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, input_id);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+			}
+			
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean.getId() != 0;
+	}
+	
+	public OrderItems DBDeleteOrderItem(int input_id){
+		OrderItems dbBean = new OrderItems();
+		String sql = "DELETE FROM OrderItems where Id=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1,input_id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return dbBean;
+	}
+
+	public double DBaddCredit(double productPrice, int input_id) {
+		TransactionsBean dbBean = new TransactionsBean();
+		String sql ="SELECT * FROM Credit Cards WHERE Id=? AND (?+Balance)=Balance";
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, input_id);
+			ps.setDouble(2,productPrice);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return dbBean;
+	}
 }
 	
 	

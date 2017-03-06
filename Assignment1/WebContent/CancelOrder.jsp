@@ -50,36 +50,47 @@
 	}
 </style>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-<a href="ViewOrders.jsp">View Orders</a><br>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
+
 <form action=CancelOrderTransactionServlet method=post>
-		  		
+ 
 <div class="Products">
+
 	<table>
 		  <tr>
 		    <th colspan="3">Product Name:</th>
-		    <td>Adidas Hot Fire Jacket</td>
+		    <td>${orderItems.getProductId()}</td>
 		  </tr>
 		  <tr>
 		  	<th colspan="3">Product Quantity:</th>
-		  	<td>1</td>
+		  	<td>${orderItems.getQuantity()}</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Total Price:</th>
-		    <td>$55</td>
+		    <td>${orderItems.getProductPrice()}</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Seller Name:</th>
-		    <td>Firhard</td>
+		    <td>${orderItems.getSellerId()}</td>
+		  </tr>
+		  <tr>
+		    <th colspan="3">Seller Name:</th>
+		    <td>${orderItems.getSellerId()}</td>
+		  </tr>
+		  <tr>
+		      <th colspan="3">Confirm Cancellation:</th>
+			  <td>
+			  		<input type="hidden" name="CancelSubmit" value="${orderItems.getId() }">
+			  		<input type=submit value="Submit" >
+			  </td>
 		  </tr>
 	</table>
 </div>
-
-
-Confirm Cancellation: <input type="button" value="Confirm Cancellation" class="ConfirmCancellation" name="Confirm Cancellation"> </form><br>
-Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="Discard Cancellation" onclick="document.location.href='ManageOrder.jsp'"> <br>
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
+</form>
+<br>
+Discard Cancellation: <input type="button" value="Discard Cancellation" class="DiscardCancellation" name="DiscardCancellation" onclick="document.location.href='ManageOrder.jsp'"> <br>
 </body>
 </html>
