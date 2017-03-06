@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-
 
 public class DBAccessClass {
 	Connection conn = null;
@@ -64,13 +62,13 @@ public class DBAccessClass {
 		  
 		  sql = "INSERT INTO Products "
 				+ "VALUES (111, 'Adidas Jacket', '1', 'A really nice jacket', "
-		        + "55, 4, 5, 100, 'this is a photo String', 'this is a video String', "
+		        + "55, 4, 5, 100, 'Adidas', 'this is a video String', "
 		        + "'thumbnails/AdidasThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Products "
 				+ "VALUES (112, 'Nike Jacket', '2', 'A reall cool jacket', "
-		        + "60, 5, 5, 101, 'this is a photo String', 'this is a video String', "
+		        + "60, 5, 3, 101, 'Nike', 'this is a video String', "
 		        + "'thumbnails/NikeThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
@@ -100,6 +98,7 @@ public class DBAccessClass {
 				dbBean.setProductDescription(rs.getString("ProductDescription"));
 				dbBean.setPrice(rs.getInt("Price"));
 				dbBean.setAvailableQuantity(rs.getInt("AvailableQuantity"));
+				dbBean.setEstimatedDeliveryDays(rs.getInt("EstimatedDeliveryDays"));
 				dbBean.setSellerId(rs.getInt("SellerId"));
 				dbBean.setProductPhotosLinks(rs.getString("ProductPhotosLinks"));
 				dbBean.setProductVideosLinks(rs.getString("ProductVideosLinks"));

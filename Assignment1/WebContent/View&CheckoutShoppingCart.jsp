@@ -58,7 +58,7 @@ div form {
 <a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a><br>
 <form action=ProductSearchResultsServlet method=post>
 <div class="Products">
-	<c:forEach var="product" items="${ShoppingCart}" >
+	<c:forEach var="product" items="${ShoppingCart}" varStatus="status">
 		<table>
 			<tr>
 				<th colspan="3">
@@ -76,11 +76,11 @@ div form {
 			</tr>
 			<tr>
 			  	<th colspan="3">Products Detail:</th>
-	  			<td></td>
+	  			<td>${product.getProductDescription() }</td>
 			</tr>
 			<tr>
 			  	<th colspan="3">Price:</th>
-	  			<td>$${product.getPrice()}</td>
+	  			<td>$${product.getPrice()*RequestedQuantityList[status.index]}</td>
 			</tr>
 			<tr>
 			  	<th colspan="3">Seller Name:</th>
@@ -92,21 +92,18 @@ div form {
 			</tr>
 			<tr>
 				<th colspan="3">Requested Quantity:</th>
-				<td>${RequestedQuantity}</td>
+				<td>${RequestedQuantityList[status.index]}</td>
 			</tr>
 			<tr>
 			  	<th colspan="3">Estimated Delivery Date:</th>
-	  			<td>Test</td>
-			</tr><br>
-			<tr>
-			  	<th colspan="3">Total Cost for this Item:</th>
-	  			<td>$</td>
-			</tr><br>
+	  			<td>${DateList[status.index]}</td>
+			</tr>
 		</table><br>
 	</c:forEach>
 </div>
 	<br>
 	
+	<h2>Total Price: $${TotalPrice}</h2>
 	<input type="button" value="Checkout" class="Checkout"><br>
 	</form>
 </body>

@@ -42,27 +42,25 @@ table, th, td {
 	    <th>Price:</th> 
 	    <th>Seller Name:</th>
 	    <th>Available Quantity:</th>
-	    <th>Product Quantity:
 	    <th>Estimated Delivery Date:</th>
 	</tr>
   	<tr>
 	    <td>${prodBean.getProductName()}</td>
 	    <td>${prodBean.getPrice()}</td>
-	    <td>TODO: Insert Find User/Seller by Product</td>
+	    <td>${prodBean.findUserbySellerId(prodBean.getSellerId()).getFullName()}</td>
 	    <td>${prodBean.getAvailableQuantity()}</td>
-	    <td></td>
-    	<td>TODO: Add estimated delivery days in product table to current datetime</td>
+    	<td>${prodBean.getEstimatedDeliveryDays()}</td>
     </tr>
 </table>
 Add to Cart:<input type="text" class="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit" value="Add to Cart">
 <br>
 <div>
 	<h2>Product Photos</h2>
-	<a href="img/${prodBean.getProductName()}.jpg">
-		<img src="img/Adidas1.jpg" alt="Adidas image">
+	<a href="img/${prodBean.getProductPhotosLinks()}1.jpg">
+		<img src="img/${prodBean.getProductPhotosLinks()}1.jpg" alt="Adidas image">
 	</a>
-	<a href="img/Adidas2.jpg">
-		<img src="img/Adidas2.jpg" alt="Adidas image 2">
+	<a href="img/${prodBean.getProductPhotosLinks()}2.jpg">
+		<img src="img/${prodBean.getProductPhotosLinks()}2.jpg" alt="Adidas image 2">
 	</a>
 </div>
 <div>

@@ -1,8 +1,10 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -12,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.DBAccessClass;
-import models.OrderItems;
 import models.ProductsBean;
-import models.Users;
 
 /**
  * Servlet implementation class UpdateShoppingCart
@@ -45,19 +44,59 @@ public class UpdateShoppingCart extends HttpServlet {
 		    session.setAttribute("ShoppingCart", ShoppingCart);
 		}
 		
-	    ProductsBean prodBean =
-	      (ProductsBean)session.getAttribute("prodBean");
+		ArrayList<Integer> RequestedQuantityList = (ArrayList<Integer>)session.getAttribute("RequestedQuantityList");
+		if(RequestedQuantityList == null){
+			RequestedQuantityList = new ArrayList<Integer>();
+			session.setAttribute("RequestedQuantityList", RequestedQuantityList);
+		}
+		
+		ArrayList<Integer> TotalsList = (ArrayList<Integer>)session.getAttribute("TotalsList");
+		if(TotalsList == null){
+			TotalsList = new ArrayList<Integer>();
+			session.setAttribute("TotalsList", TotalsList);
+		}
+		
+		ArrayList<String> DateList = (ArrayList<String>)session.getAttribute("DateList");
+		if(DateList == null){
+			DateList = new ArrayList<String>();
+			session.setAttribute("DateList", DateList);
+		}
+		
+	    ProductsBean prodBean = (ProductsBean)session.getAttribute("prodBean");
 	    
 	    int RequestedQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
-	    String address = "View&CheckoutShoppingCart.jsp";
 	    int AvailableQuantity = prodBean.getAvailableQuantity();
 	    session.setAttribute("RequestedQuantity", RequestedQuantity);
-	    session.setAttribute("AvailableQuantity", AvailableQuantity);
+	    
+	    String address = "View&CheckoutShoppingCart.jsp";
 	    if (RequestedQuantity > AvailableQuantity){
 	    	address = "ViewProductDetails.jsp";
+	    } else{
+	    
+		    SimpleDateFormat formattedDate = new SimpleDateFormat("yyyyMMdd");            
+		    Calendar c = Calendar.getInstance();        
+		    c.add(Calendar.DATE, prodBean.getEstimatedDeliveryDays());  // number of days to add      
+		    String EstimatedDeliveryTime = (String)(formattedDate.format(c.getTime()));
+		    
+		    System.out.println(EstimatedDeliveryTime);
+		    DateList.add(EstimatedDeliveryTime);
+		    ShoppingCart.add(prodBean);
+		    TotalsList.add(RequestedQuantity*prodBean.getPrice());
+		    RequestedQuantityList.add(RequestedQuantity);
+
+		    int total = 0;
+		    for (Integer temp : TotalsList) {
+		    	   total = total + temp;
+		    }
+		    
+
+
+		    
+			session.setAttribute("TotalPrice", total);
 	    }
 	    
-	    ShoppingCart.add(prodBean);
+
+	    
 	    RequestDispatcher dispatcher =
 	  	      request.getRequestDispatcher(address);
 	  	    dispatcher.forward(request, response);

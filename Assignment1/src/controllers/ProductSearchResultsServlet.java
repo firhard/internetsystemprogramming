@@ -43,6 +43,7 @@ public class ProductSearchResultsServlet extends HttpServlet {
 	    }
 
 		prodBean = ProductsBean.findProductbyId(productID);
+		System.out.println(prodBean.getEstimatedDeliveryDays());
 		session.setAttribute("prodBean", prodBean);
 		String address = "ViewProductDetails.jsp";
 		RequestDispatcher dispatcher = 
