@@ -53,9 +53,15 @@ div form {
 
 </style>
 <body>
+<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
+	<c:redirect url="Login.jsp">
+	</c:redirect>
+</c:if>
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
-<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a><br>
+<form action="LogoutServlet" method="post">
+<input type ="Submit" name="Logout" value="Logout">
+</form>
 <form action=ProductSearchResultsServlet method=post>
 <div class="Products">
 	<c:forEach var="product" items="${ShoppingCart}" varStatus="status">

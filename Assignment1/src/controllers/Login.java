@@ -53,7 +53,10 @@ public class Login extends HttpServlet {
 				if (Users.validateUser(fuserName, fpassWord)) {			
 				    HttpSession session=request.getSession();  
 				    session.setAttribute("fuserName", fuserName);
-					response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
+				    
+					session.setAttribute("isUserLoggedIn",true);
+				    response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
+					
 				} else {
 					response.sendRedirect("Registration.jsp"); // Link-redirection
 				}

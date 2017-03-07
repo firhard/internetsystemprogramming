@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,9 +9,13 @@
 <title>Home</title>
 </head>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
+	<c:redirect url="Login.jsp">
+	</c:redirect>
+</c:if>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 
 <form action="ProductSearchQuery" method="post">
 Product Categories<select name="Category">
@@ -21,8 +27,8 @@ Product Categories<select name="Category">
 	</select><br>
 Search: <input type="text" class="Search" name="Search" value="${search}"><input type="submit" value="Submit"><br>
 </form>
-<form action="Logout" method="post">
-Logout:<input type ="submit" name="Log Out" value="Log Out"  >
+<form action="LogoutServlet" method="post">
+<input type ="Submit" name="Logout" value="Logout">
 </form>
 </body>
 </html>

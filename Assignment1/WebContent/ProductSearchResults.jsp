@@ -8,10 +8,17 @@
 <title>Search</title>
 </head>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-View Orders: <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'"> <br>
+<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
+	<c:redirect url="Login.jsp">
+	</c:redirect>
+</c:if>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
+<input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'"> <br>
+<form action="LogoutServlet" method="post">
+<input type ="Submit" name="Logout" value="Logout">
+</form>
 
 <table style="width:50%">
   <tr>
@@ -45,7 +52,5 @@ Manage Orders: <input type="button" value="Manage Order" class="ManageOrder" nam
   	 <h2>No Products Found</h2>
   </c:if>
 <br>
- 
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
-</body>
+ </body>
 </html>

@@ -34,18 +34,17 @@ public class CancelOrderTransactionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		int OrderItemId = Integer.parseInt(request.getParameter("ConfirmSubmit"));
-		int cancelNumber = 1;
-		double ProductPrice = Integer.parseInt(request.getParameter(OrderItems.getProductPrice()));
-//		OrderItems orderItems = ;
-//		session.setAttribute(, arg1);
-		
+		int ProductPrice = Integer.parseInt(request.getParameter("Price"));
+
 		OrderItems dropNumber = OrderItems.dropOrderItembyOrderItemId(OrderItemId);
 		double addCredit = TransactionsBean.addCreditafterCancellation(ProductPrice, OrderItemId);
+		session.setAttribute("addCredit", addCredit);
+		session.setAttribute("dropNumber", dropNumber);
+		
 		String address = "CancellationConfirmation.jsp";
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
-		
+		dispatcher.forward(request, response);	
 	}
 
 	/**

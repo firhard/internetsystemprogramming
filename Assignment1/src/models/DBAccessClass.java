@@ -12,6 +12,7 @@ public class DBAccessClass {
 	Connection conn = null;
 	Statement stmt = null;
 	PreparedStatement ps = null;
+	PreparedStatement ps2 = null;
 	
 	// JDBC driver name and database URL
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
@@ -615,20 +616,54 @@ public Users DBgetUserbyUserName(String username){
 	}
 
 	public double DBaddCredit(double productPrice, int input_id) {
-		TransactionsBean dbBean = new TransactionsBean();
-		String sql ="SELECT * FROM Credit Cards WHERE Id=? AND (?+Balance)=Balance";
+		double dbBean = 0;
+		double summation = 0;
+		String sql2 = "SELECT * FROM CreditCards";
+		String sql ="UPDATE CreditCards SET Balance = ? WHERE Id = ?";
 		try{
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, input_id);
-			ps.setDouble(2,productPrice);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				dbBean.setId(rs.getInt("Id"));
+			ps = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps.executeQuery();
+			while(rs2.next()){
+				dbBean = rs2.getDouble("Balance");
 			}
+			summation = dbBean + productPrice;
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, summation);
+			ps.setInt(2, input_id);
+			sql ="UPDATE CreditCards SET Balance = " + summation + " WHERE Id = " + input_id;
+			ps.executeUpdate(sql);
+			
+			
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		return dbBean;
+		return summation;
+	}
+
+	public double DBdeductCredit(double price, String cNumber, String sCode) {
+		double dbBean = 0;
+		double summation = 0;
+		String sql2 = "SELECT * FROM CreditCards";
+		String sql ="UPDATE CreditCards SET Balance = ? WHERE CreditCardNumber = ? AND CVV = ?";
+		try{
+			ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()){
+				dbBean = rs2.getDouble("Balance");
+			}
+			summation = dbBean - price;
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, summation);
+			ps.setString(2, cNumber);
+			ps.setString(3, sCode);
+			sql = "UPDATE CreditCards SET Balance = " + summation + " WHERE CreditCardNumber = " + cNumber + " AND CVV = " + sCode;
+			ps.executeUpdate(sql);
+			
+			System.out.println("Inserted records into the table...");
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return summation;
 	}
 }
 	

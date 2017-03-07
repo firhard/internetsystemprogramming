@@ -51,8 +51,16 @@
 	}
 </style>
 <body>
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
+<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
+	<c:redirect url="Login.jsp">
+	</c:redirect>
+</c:if>
+<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
+<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
+<form action="LogoutServlet" method="post">
+<input type ="Submit" name="Logout" value="Logout">
+</form>
+
 <c:forEach var="order" items="${OrdersList}">
 	<div class="Products">
 		<table>
@@ -89,9 +97,6 @@ Shopping Cart: <input type="button" value="Shopping Cart" class="Shopping Cart" 
 <button type="button" onclick="location = 'ManageOrder.jsp'">View</button><br>
  </c:forEach>
 
-
-Home: <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'"> <br>
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 
 </body>
 </html>

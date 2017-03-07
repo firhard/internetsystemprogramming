@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,10 +53,17 @@ div form {
 
 </style>
 <body>
+<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
+	<c:redirect url="Login.jsp">
+	</c:redirect>
+</c:if>
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 <a href="ViewOrders.jsp">View Orders</a><br>
+<form action="LogoutServlet" method="post">
+<input type ="Submit" name="Logout" value="Logout">
+</form>
 
 <div class="Products">
 	<table>
@@ -74,28 +82,6 @@ div form {
 		  <tr>
 		    <th colspan="3">Seller Name:</th>
 		    <td>Firhard</td>
-		  </tr>
-	</table>
-</div>
-
-
-<div class="Products">
-	<table>
-		  <tr>
-		    <th colspan="3">Product Name:</th>
-		    <td>Nike Extreme Weather Jacket</td>
-		  </tr>
-		  <tr>
-		  	<th colspan="3">Product Quantity:</th>
-		  	<td>1</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Total Price:</th>
-		    <td>$60</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Seller Name:</th>
-		    <td>Jon</td>
 		  </tr>
 	</table>
 </div>
@@ -152,7 +138,5 @@ div form {
 Confirm Payment: <input type="Submit" value="Confirm Payment" class="ConfirmPayment" name="ConfirmPayment"> <br>
 Cancel Payment: <input type="button" value="Cancel Payment" class="CancelPayment" name="CancelPayment"> <br>
 </form>
-
-Logout:<a href="Logout"><input type ="submit" name="Log Out" value="Log Out"  ></a>
 </body>
 </html>

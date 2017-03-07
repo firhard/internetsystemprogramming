@@ -106,4 +106,11 @@ public class TransactionsBean {
 	   	double balance = db.DBaddCredit(productPrice, input_id);
 	   	return balance;
 	}
+
+	public static double deductCredit(double Price, String cNumber, String sCode) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	double balance = db.DBdeductCredit(Price, cNumber, sCode);
+	   	return balance;
+	}
 }
