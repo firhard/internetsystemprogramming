@@ -109,9 +109,9 @@ div form {
 		<tr>
 			<th>Card Type<select class="CardType" name="CardType">
 				<option value="Visa">Visa</option>
-				<option value="Mastercard">Master Card</option>
+				<option value="Master Card">Master Card</option>
 				<option value="Discover">Discover</option>
-				<option value="AmericanExpress">American Express</option>
+				<option value="American Express">American Express</option>
 				</select>
 			</th>
 		</tr>

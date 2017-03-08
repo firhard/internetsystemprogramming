@@ -50,7 +50,6 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		String billingAddress = request.getParameter("BillingAddress");
 		String checkingAddress = request.getParameter("CheckingAddress");
 		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
-		
 		session.setAttribute("transactionValue", transactionValue);
 		
 		double AvailableBalance = TransactionsBean.availableBalance(cHolderName);

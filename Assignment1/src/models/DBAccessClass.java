@@ -74,8 +74,8 @@ public class DBAccessClass {
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Products "
-					+ "VALUES (200, 'Yeezy', '3', 'A really cool shoe', "
-			        + "60, 5, 3, 101, 'Adidas', 'this is a video String', "
+					+ "VALUES (113, 'Yeezy', '3', 'A really cool shoe', "
+			        + "60, 5, 3, 102, 'Adidas', 'this is a video String', "
 			        + "'thumbnails/YeezyThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
@@ -286,6 +286,14 @@ public class DBAccessClass {
 		  
 		  stmt.executeUpdate(sql);
 		  
+		  sql = "INSERT INTO Users "
+					+ "VALUES (102, 'Tianyi, 'Wang', '720 N 81st', "
+			        + "'Lincoln', 'Nebraska', '68505', 'tianyiwang@gmail.com', "
+			        + "'402-419-4133', '06/25/1995', "
+			        + "0, 1, 5, 'mfirhard', 'super');";
+		  
+		  stmt.executeUpdate(sql);
+		  
 		} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -375,17 +383,29 @@ public Users DBgetUserbyUserName(String username){
 		  
 		  sql = "Truncate table CreditCards;";
 		  stmt.executeUpdate(sql);
+
+		  sql = "INSERT INTO CreditCards "
+					+ "VALUES (2, 'Jon Lee', '0123456789', 20000.00, "
+			        + "'Master Card', 100, 352, "
+			        + "'0612');";
+		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO CreditCards "
-				+ "VALUES (1, 'Firhard', '950611146279', 100.00, "
-		        + "'Visa', 13, 158, "
+				+ "VALUES (1, 'Firhard Roslan', '950611146279', 10000.00, "
+		        + "'Visa', 101, 158, "
 		        + "'0511');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO CreditCards "
-					+ "VALUES (2, 'Jonathan', '0123456789', 200.00, "
-			        + "'Master Card', 11, 352, "
+					+ "VALUES (3, 'Tianyi Wang', '987654321123456789', 30000.00, "
+			        + "'American Express', 102, 588, "
 			        + "'0612');";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO CreditCards "
+					+ "VALUES (4, '1', '1', 3000000.00, "
+			        + "'Visa', 102, 1, "
+			        + "'1');";
 		  stmt.executeUpdate(sql);
 		  
 		  
@@ -458,6 +478,12 @@ public Users DBgetUserbyUserName(String username){
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO Products "
+					+ "VALUES (102, 102, 60, '01/30/2016', "
+			        + "'720 N 81st', '720 N 81st', "
+			        + "'4111111111111111');";
+			  stmt.executeUpdate(sql);
 		  
 		  
 		  } catch (SQLException e) {
