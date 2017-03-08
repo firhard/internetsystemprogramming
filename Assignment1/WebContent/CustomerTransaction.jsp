@@ -57,33 +57,40 @@ div form {
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
-<form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
-<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
+<form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
 </form>
-<br>
 
 <div class="Products">
+<c:forEach var="product" items="${ShoppingCart}" varStatus="status">
 	<table>
-		  <tr>
-		    <th colspan="3">Product Name:</th>
-		    <td>Adidas Hot Fire Jacket</td>
-		  </tr>
-		  <tr>
-		  	<th colspan="3">Product Quantity:</th>
-		  	<td>1</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Total Price:</th>
-		    <td>$55</td>
-		  </tr>
-		  <tr>
-		    <th colspan="3">Seller Name:</th>
-		    <td>Firhard</td>
-		  </tr>
-	</table>
+		<tr>
+			<th colspan="6">
+				<a href="img/${product.getProductName()}.jpg">
+					<img src="img/${product.getProductThumbnail()}.jpg" alt="Adidas image">
+				</a>
+			</th>			
+		</tr>
+  		<tr>
+	    	<th colspan="3">Product Name:</th>
+  			<td>${product.getProductName()} </td>			
+		</tr>
+		<tr>
+		  	<th colspan="3">Price:</th>
+  			<td>$${product.getPrice()*RequestedQuantityList[status.index]}</td>
+		</tr>
+		<tr>
+		  	<th colspan="3">Seller Name:</th>
+  			<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
+		</tr>
+			<tr>
+				<th colspan="3">Requested Quantity:</th>
+				<td>${RequestedQuantityList[status.index]}</td>
+			</tr>
+	</table><br>
+	</c:forEach>
 </div>
 
 <form action="CustomerTransactionConfirmationServlet" method="post">
@@ -91,7 +98,7 @@ div form {
 	<table>
 		<tr>
 			<th>
-				Price:<input type="hidden" name="Price" value="${product.getId()}">
+				<h2>Total Price: $${TotalPrice}</h2>	
 			</th>
 		</tr>
 		<tr>
@@ -136,7 +143,7 @@ div form {
 	</table>
 </div>
 Confirm Payment: <input type="Submit" value="Confirm Payment" class="ConfirmPayment" name="ConfirmPayment"> <br>
-Cancel Payment: <input type="button" value="Cancel Payment" class="CancelPayment" name="CancelPayment"> <br>
+Cancel Payment: <input type="button" value="Cancel Payment" class="CancelPayment" name="CancelPayment"  onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
 </form>
 </body>
 </html>

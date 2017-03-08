@@ -1,12 +1,9 @@
 package controllers;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -61,24 +58,69 @@ public class UpdateShoppingCart extends HttpServlet {
 			DateList = new ArrayList<String>();
 			session.setAttribute("DateList", DateList);
 		}
+		//HashMap<Integer, Integer> QuantityPerProduct
 		
 	    ProductsBean prodBean = (ProductsBean)session.getAttribute("prodBean");
-	    
-	    int RequestedQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
-	    int AvailableQuantity = prodBean.getAvailableQuantity();
+		
+	    int RequestedQuantity = 0;
+	    int AvailableQuantity = 0;
+	    int removeProductIndex = -1;
+
+	    boolean newBean = true;
+	    if(request.getParameter("remove") != null)
+	    {
+		    removeProductIndex = Integer.parseInt(request.getParameter("remove"));
+	    } else if(RequestedQuantity == 0){
+	    	RequestedQuantity = Integer.parseInt(request.getParameter("ProductQuantity"));
+		    AvailableQuantity = prodBean.getAvailableQuantity();
+		    
+		    for (int i=0; i<ShoppingCart.size(); i++) {
+			    if(prodBean.getId() == ShoppingCart.get(i).getId()){
+			    	RequestedQuantity += RequestedQuantityList.get(i);
+				    if (RequestedQuantity <= AvailableQuantity){
+				    	RequestedQuantityList.set(i, RequestedQuantity);
+					    TotalsList.set(i, RequestedQuantity*prodBean.getPrice());
+				    	newBean = false;
+				    }
+			    }
+
+		    }
+	    }
+
 	    session.setAttribute("RequestedQuantity", RequestedQuantity);
 	    
 	    String address = "View&CheckoutShoppingCart.jsp";
-	    if (RequestedQuantity > AvailableQuantity){
+	    if (RequestedQuantity > AvailableQuantity || RequestedQuantity == 0){
 	    	address = "ViewProductDetails.jsp";
+	    } else if(newBean == false){
+	    	
+		    int total = 0;
+		    for (Integer temp : TotalsList) {
+		    	   total = total + temp;
+		    }
+		    
+			session.setAttribute("TotalPrice", total);
+
+	    	
+	    } else if(removeProductIndex != -1){
+	    	ShoppingCart.remove(removeProductIndex);
+			TotalsList.remove(removeProductIndex);
+			RequestedQuantityList.remove(removeProductIndex);
+			
+		    int total = 0;
+		    for (Integer temp : TotalsList) {
+		    	   total = total + temp;
+		    }
+		     
+			session.setAttribute("TotalPrice", total);
+	    	
 	    } else{
 	    
 		    SimpleDateFormat formattedDate = new SimpleDateFormat("yyyyMMdd");            
 		    Calendar c = Calendar.getInstance();        
-		    c.add(Calendar.DATE, prodBean.getEstimatedDeliveryDays());  // number of days to add      
+		    c.add(Calendar.DATE, prodBean.getEstimatedDeliveryDays());    
 		    String EstimatedDeliveryTime = (String)(formattedDate.format(c.getTime()));
 		    
-		    System.out.println(EstimatedDeliveryTime);
 		    DateList.add(EstimatedDeliveryTime);
 		    ShoppingCart.add(prodBean);
 		    TotalsList.add(RequestedQuantity*prodBean.getPrice());
@@ -88,9 +130,6 @@ public class UpdateShoppingCart extends HttpServlet {
 		    for (Integer temp : TotalsList) {
 		    	   total = total + temp;
 		    }
-		    
-
-
 		    
 			session.setAttribute("TotalPrice", total);
 	    }

@@ -57,12 +57,13 @@ div form {
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
-<form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<form action=ViewOrdersServlet>
+    <input type="submit" value="View Orders" />
+</form>
+<form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
-</form><br>
-<form action=ProductSearchResultsServlet method=post>
+</form>
 <div class="Products">
 	<c:forEach var="product" items="${ShoppingCart}" varStatus="status">
 		<table>
@@ -73,7 +74,10 @@ div form {
 					</a>
 				</th>			
 				<td colspan="3">
-						<input type=submit value="Remove From Cart" name="Remove">
+				  	<form name="Remove" action=UpdateShoppingCart method=post>
+				  		<input type="hidden" name="remove" value="${status.index}">
+				  		<input type=submit value="Remove From Cart" >
+				  	</form>
 				</td>
 			</tr>
 	  		<tr>
@@ -107,10 +111,8 @@ div form {
 		</table><br>
 	</c:forEach>
 </div>
-	<br>
-	
-	<h2>Total Price: $${TotalPrice}</h2>
-	<input type="button" value="Checkout" class="Checkout"><br>
-	</form>
+<br>
+<h2>Total Price: $${TotalPrice}</h2>
+<input type="button" value="Checkout" name="Checkout" onclick="document.location.href='CustomerTransaction.jsp'"><br>
 </body>
 </html>
