@@ -55,9 +55,9 @@
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
+<form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
-<form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
 </form>
 

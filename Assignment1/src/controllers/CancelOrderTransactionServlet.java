@@ -32,7 +32,6 @@ public class CancelOrderTransactionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		
 		int OrderItemId = Integer.parseInt(request.getParameter("ConfirmSubmit"));
 		int ProductPrice = Integer.parseInt(request.getParameter("Price"));
 
@@ -40,7 +39,6 @@ public class CancelOrderTransactionServlet extends HttpServlet {
 		double addCredit = TransactionsBean.addCreditafterCancellation(ProductPrice, OrderItemId);
 		session.setAttribute("addCredit", addCredit);
 		session.setAttribute("dropNumber", dropNumber);
-		
 		String address = "CancellationConfirmation.jsp";
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);

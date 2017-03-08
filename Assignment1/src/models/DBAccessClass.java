@@ -73,6 +73,11 @@ public class DBAccessClass {
 		        + "'thumbnails/NikeThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
+		  sql = "INSERT INTO Products "
+					+ "VALUES (200, 'Yeezy', '3', 'A really cool shoe', "
+			        + "60, 5, 3, 101, 'Adidas', 'this is a video String', "
+			        + "'thumbnails/YeezyThumbnail');";
+		  stmt.executeUpdate(sql);
 		  
 		  } catch (SQLException e) {
 				// TODO Auto-generated catch block

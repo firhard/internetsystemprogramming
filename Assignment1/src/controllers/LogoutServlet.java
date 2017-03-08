@@ -26,6 +26,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 HttpSession session = request.getSession(false);
+		 session.setAttribute("isUserLoggedIn", false);
 		 String value = request.getParameter("Logout");
 		 System.out.println(value);
 		 if(session != null){

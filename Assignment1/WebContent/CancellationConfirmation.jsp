@@ -55,14 +55,23 @@
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
+<form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> 
-<form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
 </form><br>
 Your order has been cancelled!<br>
 
 Your total balance is :${addCredit}<br>
+<%
+	Integer applicationCount = (Integer)session.getAttribute("applicationCount");
+    if (applicationCount == null) {
+        applicationCount = new Integer(1);
+    } else {
+        applicationCount= new Integer(applicationCount.intValue() + 1);
+    }
+    session.setAttribute("applicationCount", applicationCount); %>
+Visit Time:${applicationCount}<br>
 </body>
 </html>

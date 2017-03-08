@@ -33,12 +33,11 @@ table, th, td {
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
-
+<form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> 
 <input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
-<form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
 </form>
 <br><br><form action="UpdateShoppingCart" method="post">

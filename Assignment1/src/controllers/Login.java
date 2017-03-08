@@ -51,9 +51,8 @@ public class Login extends HttpServlet {
 				out.println("You didn't specify a password");
 			} else {
 				if (Users.validateUser(fuserName, fpassWord)) {			
-				    HttpSession session=request.getSession();  
+				    HttpSession session=request.getSession(); 
 				    session.setAttribute("fuserName", fuserName);
-				    
 					session.setAttribute("isUserLoggedIn",true);
 				    response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
 					

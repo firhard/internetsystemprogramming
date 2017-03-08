@@ -58,8 +58,6 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		session.setAttribute("transactionValue", transactionValue);
 		
 		double AvailableBalance = TransactionsBean.availableBalance(cHolderName);
-		double deductCredit = TransactionsBean.deductCredit(Price, cNumber, sCode);
-		System.out.println(deductCredit);
 		if(transactionValue == false){
 			color = 0;
 		}
@@ -68,6 +66,11 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			color = 2;
 		}
 		
+		if(transactionValue == true){
+			double deductCredit = TransactionsBean.deductCredit(Price, cNumber, sCode);
+			System.out.println(deductCredit);
+			session.setAttribute("deductCredit", deductCredit);
+		}
 		session.setAttribute("color", color);
 		session.setAttribute("price", Price);
 		session.setAttribute("cardHolderName", cHolderName);
@@ -76,7 +79,6 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		session.setAttribute("cNumber", cNumber);
 		session.setAttribute("checkingAddress", checkingAddress);
 		session.setAttribute("billingAddress", billingAddress);
-		session.setAttribute("deductCredit", deductCredit);
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
