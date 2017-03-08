@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import models.ProductsBean;
 
 /**
@@ -90,8 +89,20 @@ public class UpdateShoppingCart extends HttpServlet {
 	    session.setAttribute("RequestedQuantity", RequestedQuantity);
 	    
 	    String address = "View&CheckoutShoppingCart.jsp";
-	    if (RequestedQuantity > AvailableQuantity || RequestedQuantity == 0){
-	    	address = "ViewProductDetails.jsp";
+	    
+	    if(removeProductIndex != -1){
+	    	ShoppingCart.remove(removeProductIndex);
+			TotalsList.remove(removeProductIndex);
+			RequestedQuantityList.remove(removeProductIndex);
+			System.out.println("Got here");
+		    int total = 0;
+		    for (Integer temp : TotalsList) {
+		    	   total = total + temp;
+		    }
+		     
+			session.setAttribute("TotalPrice", total);
+	    } else if (RequestedQuantity > AvailableQuantity || RequestedQuantity == 0){
+		    	address = "ViewProductDetails.jsp";	
 	    } else if(newBean == false){
 	    	
 		    int total = 0;
@@ -101,19 +112,6 @@ public class UpdateShoppingCart extends HttpServlet {
 		    
 			session.setAttribute("TotalPrice", total);
 
-	    	
-	    } else if(removeProductIndex != -1){
-	    	ShoppingCart.remove(removeProductIndex);
-			TotalsList.remove(removeProductIndex);
-			RequestedQuantityList.remove(removeProductIndex);
-			
-		    int total = 0;
-		    for (Integer temp : TotalsList) {
-		    	   total = total + temp;
-		    }
-		     
-			session.setAttribute("TotalPrice", total);
-	    	
 	    } else{
 	    
 		    SimpleDateFormat formattedDate = new SimpleDateFormat("yyyyMMdd");            

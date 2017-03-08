@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 public class ProductsBean {
 	
 	private int Id;
@@ -139,6 +141,15 @@ public class ProductsBean {
 	   	db.closeConnection();
 	   	return user;
     }
+	
+	
+	public void invalidateShoppingCart(HttpSession session){
+		session.removeAttribute("ShoppingCart");
+		session.removeAttribute("RequestedQuantityList");
+		session.removeAttribute("TotalsList");
+		session.removeAttribute("DateList");
+		session.removeAttribute("TotalPrice");
+	}
     
 	
 }

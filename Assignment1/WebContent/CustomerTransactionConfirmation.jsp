@@ -67,47 +67,48 @@ div form {
 Your order has been    
 <c:choose>
     <c:when test="${color eq 0}">
-    	<h2>a failure! Because the information that you insert was wrong.</h2>
+    	a failure. Because the information that you insert was incorrect
         <br />
     </c:when>  
     <c:when test="${color eq 2}">
-    	<h2>a failure! Because you have insufficient amount of balance</h2>
+    	a failure. Because you have insufficient amount of balance
         <br />
     </c:when>          
 	<c:otherwise>
-		placed! The amount that you paid was $${price}
+		placed! The amount that you paid was $${TotalPrice}
+		<input type="submit" value="print" onClick="window.print()"/> 
 		<br>
-		<table>
-			<tr>
-				<td>Card Holder Name: </td>
-				<th>${cardHolderName}</th>
-			</tr>
-			<tr>
-				<td>CVV:</td> 
-				<th>${sCode}</th>
-			</tr>
-			<tr>
-				<td>Expiration Date: </td>
-				<th>${eDate}</th>
-			</tr>
-			<tr>
-				<td>Confirmation Number: </td>
-				<th>${cNumber}</th>
-			</tr>
-			<tr>
-				<td>Billing Address: </td>
-				<th>${billingAddress}</th>
-			</tr>
-			<tr>
-				<td>Checking Address: </td>
-				<th>${checkingAddress}</th>
-			</tr>
-			<tr>
-				<td>Balance: </td>
-				<th>$${deductCredit}</th>
-			</tr>
-		</table> 
+		<div class="Products">
+		<c:forEach var="product" items="${ShoppingCart}" varStatus="status">
+			<table>
+				<tr>
+					<th colspan="6">
+						<a href="img/${product.getProductName()}.jpg">
+							<img src="img/${product.getProductThumbnail()}.jpg" alt="Adidas image">
+						</a>
+					</th>			
+				</tr>
+		  		<tr>
+			    	<th colspan="3">Product Name:</th>
+		  			<td>${product.getProductName()} </td>			
+				</tr>
+				<tr>
+				  	<th colspan="3">Price:</th>
+		  			<td>$${product.getPrice()*RequestedQuantityList[status.index]}</td>
+				</tr>
+				<tr>
+				  	<th colspan="3">Seller Name:</th>
+		  			<td>${product.findUserbySellerId(product.getSellerId()).getFullName()}</td>
+				</tr>
+					<tr>
+						<th colspan="3">Requested Quantity:</th>
+						<td>${RequestedQuantityList[status.index]}</td>
+					</tr>
+			</table><br>
+			</c:forEach>
+		</div>
 	</c:otherwise>
-</c:choose> 
+</c:choose>
+${ShoppingCart[0].invalidateShoppingCart(Session)}
 </body>
 </html>

@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,10 +36,9 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+	
 		String address = "CustomerTransactionConfirmation.jsp";
-		//int Price = Integer.parseInt(request.getParameter("Price"));
-		int Price = 55;
+		int Price = (Integer)session.getAttribute("TotalPrice");
 		int color = 1;
 		String cHolderName = request.getParameter("CardHolderName");
 		String cType = request.getParameter("CardType");
@@ -61,10 +59,11 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			color = 2;
 		}
 		
-		if(transactionValue == true){
+		if(transactionValue == true && color!=2){
 			double deductCredit = TransactionsBean.deductCredit(Price, cNumber, sCode);
-			System.out.println(deductCredit);
+
 			session.setAttribute("deductCredit", deductCredit);
+			session.setAttribute("Session", session);
 		}
 		session.setAttribute("color", color);
 		session.setAttribute("price", Price);
