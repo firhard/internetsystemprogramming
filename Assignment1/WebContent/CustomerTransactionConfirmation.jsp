@@ -104,7 +104,7 @@ Your order has been
 			</tr>
 			<tr>
 				<td>Balance: </td>
-				<th>${deductCredit}</th>
+				<th>$${deductCredit}</th>
 			</tr>
 		</table> 
 	</c:otherwise>
