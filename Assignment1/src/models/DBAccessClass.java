@@ -75,7 +75,7 @@ public class DBAccessClass {
 		  
 		  sql = "INSERT INTO Products "
 					+ "VALUES (113, 'Yeezy', '3', 'A really cool shoe', "
-			        + "60, 5, 3, 102, 'Adidas', 'this is a video String', "
+			        + "60, 5, 3, 100, 'Adidas', 'this is a video String', "
 			        + "'thumbnails/YeezyThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
@@ -695,6 +695,39 @@ public Users DBgetUserbyUserName(String username){
 			e.printStackTrace();
 		}
 		return summation;
+	}
+
+	public Users DBgetUserinfo(String username, String password) {
+		Users dbBean = new Users();
+		String sql = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setFirstName(rs.getString("FirstName"));
+				dbBean.setLastName(rs.getString("LastName"));
+				dbBean.setAddress(rs.getString("Address"));
+				dbBean.setCity(rs.getString("City"));
+				dbBean.setState(rs.getString("State"));
+				dbBean.setPostalCode(rs.getString("PostalCode"));
+				dbBean.setEmailAddress(rs.getString("EmailAddress"));
+				dbBean.setPhoneNumber(rs.getString("PhoneNumber"));
+				dbBean.setBirthday(rs.getString("Birthday"));
+				dbBean.setType(rs.getByte("Type"));
+				dbBean.setStatus(rs.getByte("Status"));
+				dbBean.setNumOfVisits(rs.getInt("NumOfVisits"));
+				dbBean.setUserName(rs.getString("Username"));
+				dbBean.setPassword(rs.getString("Password"));
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBean;
 	}
 }
 	

@@ -13,10 +13,11 @@
 <c:if test="${isUserLoggedIn == true}">
 	<c:redirect url="CustomerHomePage.jsp">
 	</c:redirect>
+	<br><br>
 </c:if>
 	Username:
 	 <input type=text name=userName value= > <br>
-	 
+	 <br>
 	Password:
 	<input type=password name=passWord value= > <br>
 	 

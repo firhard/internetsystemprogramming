@@ -126,6 +126,14 @@ public class Users {
    	    return (return_user.getId() != 0);
     }
 	
+	public static Users userInfo(String username, String password){
+		DBAccessClass db = new DBAccessClass();
+		db.connectMeIn();
+		Users userinfo = db.DBgetUserinfo(username,password);
+		db.closeConnection();
+		return userinfo;
+	}
+	
 	public static boolean existingUserName(String username){
    	    DBAccessClass db = new DBAccessClass();
    	    db.connectMeIn();
