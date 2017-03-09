@@ -137,7 +137,7 @@ div form {
 		</tr>
 		<tr>
 			<th>
-				Checking Address:<input type="text" class="CheckingAddress" name="CheckingAddress"><br>
+				Shipping Address:<input type="text" class="ShippingAddress" name="ShippingAddress"><br>
 			</th>
 		</tr>
 	</table>

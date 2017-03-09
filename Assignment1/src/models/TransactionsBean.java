@@ -2,8 +2,6 @@ package models;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpSession;
-
 public class TransactionsBean {
 
 	private int Id;
