@@ -75,7 +75,7 @@ public class DBAccessClass {
 		  
 		  sql = "INSERT INTO Products "
 					+ "VALUES (113, 'Yeezy', '3', 'A really cool shoe', "
-			        + "60, 5, 3, 100, 'Adidas', 'this is a video String', "
+			        + "60, 5, 3, 100, 'Yeezy', 'this is a video String', "
 			        + "'thumbnails/YeezyThumbnail');";
 		  stmt.executeUpdate(sql);
 		  
