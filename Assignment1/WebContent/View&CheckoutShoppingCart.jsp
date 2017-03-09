@@ -58,12 +58,12 @@ div form {
 	</c:redirect>
 </c:if>
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<form action=ViewOrdersServlet>
-    <input type="submit" value="View Orders" />
-</form>
 <form action="LogoutServlet" method="post">
 <input type ="Submit" name="Logout" value="Logout">
 </form>
+
+<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
+
 <div class="Products">
 	<c:forEach var="product" items="${ShoppingCart}" varStatus="status">
 		<table>

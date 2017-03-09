@@ -14,11 +14,11 @@
 </c:if>
 <form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
 <input type="button" value="Manage Order" class="ManageOrder" name="Manage Order" onclick="document.location.href='ManageOrder.jsp'">
 <input type ="Submit" name="Logout" value="Logout">
 </form>
+<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
 <br>
 <table style="width:50%">
   <tr>

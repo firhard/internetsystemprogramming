@@ -28,6 +28,7 @@ public class Login extends HttpServlet {
 		db.insertProducts();
 		db.insertOrders();
 		db.insertCreditCard();
+		db.insertOrderItems();
 	}
 	
     /**

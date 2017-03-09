@@ -468,19 +468,19 @@ public Users DBgetUserbyUserName(String username){
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-				+ "VALUES (100, 100, 55, '01/15/2016', "
+				+ "VALUES (100, 100, 515, '01/15/2016', "
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-				+ "VALUES (101, 101, 60, '01/23/2016', "
+				+ "VALUES (101, 101, 360, '01/23/2016', "
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-					+ "VALUES (102, 102, 60, '01/30/2016', "
+					+ "VALUES (102, 102, 180, '01/30/2016', "
 			        + "'720 N 81st', '720 N 81st', "
 			        + "'4111111111111111');";
 			  stmt.executeUpdate(sql);
@@ -757,6 +757,45 @@ public Users DBgetUserbyUserName(String username){
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public void insertOrderItems() {
+		  
+		  try {
+			stmt = conn.createStatement();
+		
+		 
+		  /** Following sql statements create an Employee table
+		   * Insert values into the table
+		   * Read all the rows and attributes from the table
+		   */
+		  String sql;
+		  
+		  sql = "Truncate table OrderItems;";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO OrderItems VALUES (1, 100, 100, 111, 60, 3, 0, 1, 1)";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO OrderItems VALUES (2, 101, 101, 112, 60, 3, 1, 2, 1)";
+		  stmt.executeUpdate(sql);
+
+		  sql = "INSERT INTO OrderItems VALUES (3, 102, 102, 113, 60, 3, 1, 3, 0)";
+		  stmt.executeUpdate(sql);
+
+		  sql = "INSERT INTO OrderItems VALUES (4, 100, 100, 114, 55, 3, 0, 4, 1)";
+		  stmt.executeUpdate(sql);
+		 
+		  sql = "INSERT INTO OrderItems VALUES (5, 100, 100, 113, 60, 3, 0, 3, 1)";
+		  stmt.executeUpdate(sql);
+		 
+		  sql = "INSERT INTO OrderItems VALUES (6, 101, 101, 113, 60, 3, 1, 3, 0)";
+		  stmt.executeUpdate(sql);
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
 	}
 }
 	
