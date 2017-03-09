@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.DBAccessClass;
 import models.OrdersBean;
 import models.Users;
 
@@ -26,6 +27,12 @@ public class ViewOrdersServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+	public void init() throws ServletException {
+		DBAccessClass db = new DBAccessClass();
+		db.connectMeIn();
+		db.insertOrders();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,13 +48,11 @@ public class ViewOrdersServlet extends HttpServlet {
 			OrdersList = new ArrayList<OrdersBean>();
 			session.setAttribute("OrdersList", OrdersList);
 		}
-		else{
-			OrdersList.clear();
-		}
 		
-		String username = (String)session.getAttribute("fuserName");
-		Users aUser = Users.findUserbyUserName(username);
+	    Users aUser = (Users)session.getAttribute("loggedInUser");
+	    System.out.println(aUser.getId());
 		OrdersList.addAll(OrdersBean.findOrderbyCustomerId(aUser.getId()));
+		System.out.println(OrdersList.get(0).getId());
 			
 		String address = "ViewOrders.jsp";
 	    RequestDispatcher dispatcher =

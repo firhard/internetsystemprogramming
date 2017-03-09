@@ -287,7 +287,7 @@ public class DBAccessClass {
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Users "
-					+ "VALUES (102, 'Tianyi, 'Wang', '720 N 81st', "
+					+ "VALUES (102, 'Tianyi', 'Wang', '720 N 81st', "
 			        + "'Lincoln', 'Nebraska', '68505', 'tianyiwang@gmail.com', "
 			        + "'402-419-4133', '06/25/1995', "
 			        + "0, 1, 5, 'mfirhard', 'super');";
@@ -473,13 +473,13 @@ public Users DBgetUserbyUserName(String username){
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
-		  sql = "INSERT INTO Products "
+		  sql = "INSERT INTO Orders "
 				+ "VALUES (101, 101, 60, '01/23/2016', "
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
-		  sql = "INSERT INTO Products "
+		  sql = "INSERT INTO Orders "
 					+ "VALUES (102, 102, 60, '01/30/2016', "
 			        + "'720 N 81st', '720 N 81st', "
 			        + "'4111111111111111');";
@@ -495,7 +495,7 @@ public Users DBgetUserbyUserName(String username){
 
 	public OrdersBean DBgetOrderbyId(int id){
 		OrdersBean dbBean = new OrdersBean();
-		String sql = "SELECT * FROM Products where Id=?";
+		String sql = "SELECT * FROM Orders where Id=?";
 		try{
 			ps = conn.prepareStatement(sql);
 			
@@ -522,7 +522,7 @@ public Users DBgetUserbyUserName(String username){
 	public ArrayList<OrdersBean> DBgetOrderbyCustomerId(int CustomerId){
 
 		ArrayList<OrdersBean> dbBeanList = new ArrayList<OrdersBean>();
-		String sql = "SELECT * FROM Products where Id=?";
+		String sql = "SELECT * FROM Orders where Id=?";
 		try{
 			ps = conn.prepareStatement(sql);
 			
@@ -554,7 +554,7 @@ public Users DBgetUserbyUserName(String username){
 	public ArrayList<OrderItems> DBgetOrderItemsbyOrderID(int orderId){
 
 		ArrayList<OrderItems> dbBeanList = new ArrayList<OrderItems>();
-		String sql = "SELECT * FROM Products where Id=?";
+		String sql = "SELECT * FROM OrderItems where Id=?";
 		try{
 			ps = conn.prepareStatement(sql);
 			

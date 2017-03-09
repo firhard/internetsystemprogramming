@@ -94,7 +94,6 @@
 	  		<input type=submit value="Manage Order" >
 	  	</form>
 	</div>
-<button type="button" onclick="location = 'ManageOrder.jsp'">View</button><br>
  </c:forEach>
 
 

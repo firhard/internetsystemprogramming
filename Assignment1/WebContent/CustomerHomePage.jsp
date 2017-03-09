@@ -13,12 +13,9 @@
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
-<form action="LogoutServlet" method="post">
-<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<input type="button" value="View Orders" class="ViewOrders" name="View Orders" onclick="document.location.href='ViewOrders.jsp'">
+<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
 <input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
-<input type ="Submit" name="Logout" value="Logout">
-</form>
+<form action=LogoutServlet method="post"><input type ="Submit" name="Logout" value="Logout"></form>
 <br>
 <form action="ProductSearchQuery" method="post">
 Product Categories<select name="Category">

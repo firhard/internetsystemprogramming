@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.DBAccessClass;
 import models.OrderItems;
 import models.OrdersBean;
-import models.ProductsBean;
 
 /**
  * Servlet implementation class ManageOrderServlet
@@ -28,6 +26,7 @@ public class ManageOrderServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,17 +48,14 @@ public class ManageOrderServlet extends HttpServlet {
 		session.setAttribute("manageOrderBean", manageOrderBean);
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<OrderItems> orderList = (ArrayList<OrderItems>)session.getAttribute("orderList");
+		ArrayList<OrderItems> orderItemsList = (ArrayList<OrderItems>)session.getAttribute("orderItemsList");
 				
-		if (orderList == null || orderList.isEmpty()){
-			orderList = new ArrayList<OrderItems>();
-			session.setAttribute("orderList", orderList);
+		if (orderItemsList == null || orderItemsList.isEmpty()){
+			orderItemsList = new ArrayList<OrderItems>();
+			session.setAttribute("orderItemsList", orderItemsList);
 		}
-		else {
-			orderList.clear();
-		}
-				
-		orderList.addAll(OrderItems.findOrderItemsbyOrderId(orderID));
+
+		orderItemsList.addAll(OrderItems.findOrderItemsbyOrderId(orderID));
 
 		String address = "ManageOrder.jsp";
 		RequestDispatcher dispatcher = 

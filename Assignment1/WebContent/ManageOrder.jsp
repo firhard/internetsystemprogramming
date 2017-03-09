@@ -63,8 +63,8 @@
 </form><br>
 <h2>Order Number ${manageOrderBean.getId()}</h2>
 
-<c:forEach var="orderItem" items="${orderItemsList}">
 	<div class="Products">
+	<c:forEach var="orderItem" items="${orderItemsList}">
 		<table>
 			<tr>
 				<th>Product name</th>
@@ -106,9 +106,9 @@
 			  		</form>
 			  	</td>
 			</tr>
-	</table>	
+	</table>
+	</c:forEach>	
 	</div>
-</c:forEach>
 <br>
 <br>
 <table>

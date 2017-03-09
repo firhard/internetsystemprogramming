@@ -78,7 +78,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		    String EstimatedDeliveryTime = (String)(formattedDate.format(c.getTime()));
 
 			OrdersBean ordBean = new OrdersBean();
-			//ordBean.setId(5);
+			ordBean.setId(5);
 			ordBean.setCustomerId(100);
 			ordBean.setTotalCost(TotalPrice);
 			ordBean.setOrderDate(EstimatedDeliveryTime);
