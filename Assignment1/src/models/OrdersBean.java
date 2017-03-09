@@ -88,11 +88,10 @@ public class OrdersBean {
    	    return returnList;
     }
 	
-    public static OrdersBean addOrder(OrdersBean ordBean){
+    public static void addOrder(OrdersBean ordBean){
     	DBAccessClass db = new DBAccessClass();
    	    db.connectMeIn();
-   	    OrdersBean addOrder = db.DBaddOrder(ordBean);
+   	    db.DBaddOrder(ordBean);
    	    db.closeConnection();
-   	    return addOrder;
     }
 }

@@ -730,34 +730,33 @@ public Users DBgetUserbyUserName(String username){
 		return dbBean;
 	}
 
-	public OrdersBean DBaddOrder(OrdersBean ordBean) {
-		OrdersBean dbBean = new OrdersBean();
-		String sql = "INSERT INTO Orders VALUES (" + ordBean.getId() + ", " 
-					+ ordBean.getCustomerId() + ", " + ordBean.getTotalCost() + ", '" 
-					+ ordBean.getOrderDate() + "', '" + ordBean.getShippingAddress() + "', '" 
-					+ ordBean.getBillingAddress() + "', '" + ordBean.getCrediCardNumber() + "')";
+	public void DBaddOrder(OrdersBean ordBean) {
 		try{
-			ps = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
+			String sql;
+			sql = "INSERT INTO Orders (Id, CustomerId, TotalCost, OrderDate, ShippingAddress, BillingAddress, CreditCardNumber) VALUES (" + ordBean.getId() + ", " 
+				+ ordBean.getCustomerId() + ", " + ordBean.getTotalCost() + ", '" 
+				+ ordBean.getOrderDate() + "', '" + ordBean.getShippingAddress() + "', '" 
+				+ ordBean.getBillingAddress() + "', '" + ordBean.getCrediCardNumber() + "')";
+			stmt.executeUpdate(sql);
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		return dbBean;
 	}
 
-	public OrderItems DBaddOrderItem(OrderItems ordItem) {
-		OrderItems dbBean = new OrderItems();
-		String sql = "INSERT INTO OrderItems VALUES (" + ordItem.getId() + ", " 
-					+ ordItem.getOrderId() + ", " + ordItem.getSellerId() + ", " 
-					+ ordItem.getProductId() + ", " + ordItem.getProductPrice() + ", " 
-					+ ordItem.getQuantity() + ", " + ordItem.getShippingStatus() + ", "
-					+ ordItem.getShippingRefNo() + ", " + ordItem.getStatus() + ")";
+	public void DBaddOrderItem(OrderItems ordItem) {
 		try{
-			ps = conn.prepareStatement(sql);
+			stmt = conn.createStatement();
+			String sql;
+			sql = "INSERT INTO OrderItems (Id, OrderId, SellerId, ProductId, ProductPrice, Quantity, ShippingStatus, ShippingRefNo, Status) VALUES (" + ordItem.getId() + ", " 
+				+ ordItem.getOrderId() + ", " + ordItem.getSellerId() + ", " 
+				+ ordItem.getProductId() + ", " + ordItem.getProductPrice() + ", " 
+				+ ordItem.getQuantity() + ", " + ordItem.getShippingStatus() + ", "
+				+ ordItem.getShippingRefNo() + ", " + ordItem.getStatus() + ")";
+			stmt.executeUpdate(sql);
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		return dbBean;
 	}
 }
-	
 	
