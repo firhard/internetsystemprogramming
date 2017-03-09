@@ -783,7 +783,7 @@ public Users DBgetUserbyUserName(String username){
 		  sql = "INSERT INTO OrderItems VALUES (3, 102, 102, 113, 60, 3, 1, 3, 0)";
 		  stmt.executeUpdate(sql);
 
-		  sql = "INSERT INTO OrderItems VALUES (4, 100, 100, 114, 55, 3, 0, 4, 1)";
+		  sql = "INSERT INTO OrderItems VALUES (4, 100, 100, 112, 55, 3, 0, 4, 1)";
 		  stmt.executeUpdate(sql);
 		 
 		  sql = "INSERT INTO OrderItems VALUES (5, 100, 100, 113, 60, 3, 0, 3, 1)";
