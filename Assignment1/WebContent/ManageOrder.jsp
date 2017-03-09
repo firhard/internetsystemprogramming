@@ -76,7 +76,7 @@
 				<td>${orderItem.getQuantity()}</td>
 			</tr>
 			<tr>
-				<th>Total price</th>
+				<th>Price</th>
 				<td>$${orderItem.getProductPrice()}</td>
 			</tr>
 			<tr>
@@ -89,11 +89,11 @@
 			</tr>
 			<tr>
 
-				<th>View</th>
+				<th>Product Details</th>
 				<td>
 					<form action=ProductSearchResultsServlet method=post>
 				  		<input type="hidden" name="insert" value="${orderItem.getProductId()}">
-				  		<input type=submit value="View Order" >
+				  		<input type=submit value="Details" >
 			  		</form>
 			  	</td>
 			</tr>

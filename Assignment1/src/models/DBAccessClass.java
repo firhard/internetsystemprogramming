@@ -569,6 +569,7 @@ public Users DBgetUserbyUserName(String username){
 				dbBean.setOrderId(rs.getInt("OrderId"));
 				dbBean.setSellerId(rs.getInt("SellerId"));
 				dbBean.setProductId(rs.getInt("ProductId"));
+				dbBean.setProductPrice(rs.getInt("ProductPrice"));
 				dbBean.setQuantity(rs.getInt("Quantity"));
 				dbBean.setShippingStatus(rs.getByte("ShippingStatus"));
 				dbBean.setShippingRefNo(rs.getInt("ShippingRefNo"));
