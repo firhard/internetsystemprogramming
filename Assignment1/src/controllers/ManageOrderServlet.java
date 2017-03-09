@@ -47,13 +47,7 @@ public class ManageOrderServlet extends HttpServlet {
 		manageOrderBean = OrdersBean.findOrderbyId(orderID);
 		session.setAttribute("manageOrderBean", manageOrderBean);
 		
-		@SuppressWarnings("unchecked")
-		ArrayList<OrderItems> orderItemsList = (ArrayList<OrderItems>)session.getAttribute("orderItemsList");
-				
-		if (orderItemsList == null || orderItemsList.isEmpty()){
-			orderItemsList = new ArrayList<OrderItems>();
-			session.setAttribute("orderItemsList", orderItemsList);
-		}
+		ArrayList<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
 		orderItemsList.addAll(OrderItems.findOrderItemsbyOrderId(orderID));
 

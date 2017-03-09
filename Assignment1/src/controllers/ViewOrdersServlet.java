@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import models.DBAccessClass;
 import models.OrdersBean;
 import models.Users;
 
@@ -27,12 +25,7 @@ public class ViewOrdersServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-	public void init() throws ServletException {
-		DBAccessClass db = new DBAccessClass();
-		db.connectMeIn();
-		db.insertOrders();
-	}
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,18 +34,11 @@ public class ViewOrdersServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		@SuppressWarnings("unchecked")
-		ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
-		
-		if (OrdersList == null || OrdersList.isEmpty()){
-			OrdersList = new ArrayList<OrdersBean>();
-			session.setAttribute("OrdersList", OrdersList);
-		}
-		
+		ArrayList<OrdersBean> OrdersListView = new ArrayList<OrdersBean>();
+
 	    Users aUser = (Users)session.getAttribute("loggedInUser");
-	    System.out.println(aUser.getId());
-		OrdersList.addAll(OrdersBean.findOrderbyCustomerId(aUser.getId()));
-		System.out.println(OrdersList.get(0).getId());
+		OrdersListView.addAll(OrdersBean.findOrderbyCustomerId(aUser.getId()));
+		session.setAttribute("OrdersListView", OrdersListView);
 			
 		String address = "ViewOrders.jsp";
 	    RequestDispatcher dispatcher =

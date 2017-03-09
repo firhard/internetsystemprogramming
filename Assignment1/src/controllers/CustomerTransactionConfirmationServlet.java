@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import models.DBAccessClass;
 import models.OrderItems;
 import models.OrdersBean;
 import models.ProductsBean;
@@ -23,13 +21,7 @@ import models.TransactionsBean;
  */
 public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public void init() throws ServletException {
-		DBAccessClass db = new DBAccessClass();
-		db.connectMeIn();
-		db.insertCreditCard();
-	}
-       
+	   
     /**
      * @see HttpServlet#HttpServlet()
      */

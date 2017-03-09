@@ -61,7 +61,7 @@
 <input type ="Submit" name="Logout" value="Logout">
 </form>
 
-<c:forEach var="order" items="${OrdersList}">
+<c:forEach var="order" items="${OrdersListView}">
 	<div class="Products">
 		<table>
 			<tr>

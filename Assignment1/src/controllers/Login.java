@@ -25,6 +25,9 @@ public class Login extends HttpServlet {
 		DBAccessClass db = new DBAccessClass();
 		db.connectMeIn();
 		db.insertUsers();
+		db.insertProducts();
+		db.insertOrders();
+		db.insertCreditCard();
 	}
 	
     /**
