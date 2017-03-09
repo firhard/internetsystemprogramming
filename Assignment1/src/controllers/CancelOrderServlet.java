@@ -12,15 +12,15 @@ import javax.servlet.http.HttpSession;
 import models.OrderItems;
 
 /**
- * Servlet implementation class CancleOrderServlet
+ * Servlet implementation class CancelOrderServlet
  */
-public class CancleOrderServlet extends HttpServlet {
+public class CancelOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CancleOrderServlet() {
+    public CancelOrderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

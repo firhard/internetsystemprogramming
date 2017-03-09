@@ -111,13 +111,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>CancleOrderServlet</display-name>
-    <servlet-name>CancleOrderServlet</servlet-name>
-    <servlet-class>controllers.CancleOrderServlet</servlet-class>
+    <display-name>CancelOrderServlet</display-name>
+    <servlet-name>CancelOrderServlet</servlet-name>
+    <servlet-class>controllers.CancelOrderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CancleOrderServlet</servlet-name>
-    <url-pattern>/CancleOrderServlet</url-pattern>
+    <servlet-name>CancelOrderServlet</servlet-name>
+    <url-pattern>/CancelOrderServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

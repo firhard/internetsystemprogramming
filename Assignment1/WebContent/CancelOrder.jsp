@@ -72,28 +72,28 @@
 	<table>
 		  <tr>
 		    <th colspan="3">Product Name:</th>
-		    <td>${orderItems.getProductId()}</td>
+		    <td>${orderItem.getProductId()}</td>
 		  </tr>
 		  <tr>
 		  	<th colspan="3">Product Quantity:</th>
-		  	<td>${orderItems.getQuantity()}</td>
+		  	<td>${orderItem.getQuantity()}</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Total Price:</th>
-		    <td><a name="price">${orderItems.getProductPrice()}</a></td>
+		    <td><a name="price">${orderItem.getProductPrice()}</a></td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Seller Name:</th>
-		    <td>${orderItems.getSellerId()}</td>
+		    <td>${orderItem.getSellerId()}</td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Seller Name:</th>
-		    <td>${orderItems.getSellerId()}</td>
+		    <td>${orderItem.getSellerId()}</td>
 		  </tr>
 		  <tr>
 		      <th colspan="3">Confirm Cancellation:</th>
 			  <td>
-			  		<input type="hidden" name="CancelSubmit" value="${orderItems.getId() }">
+			  		<input type="hidden" name="CancelSubmit" value="${orderItem.getId() }">
 			  		<input type=submit value="Submit" >
 			  </td>
 		  </tr>
