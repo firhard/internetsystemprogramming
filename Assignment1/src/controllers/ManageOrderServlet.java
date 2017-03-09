@@ -37,19 +37,12 @@ public class ManageOrderServlet extends HttpServlet {
 	    
 		int orderID = Integer.parseInt(request.getParameter("view"));
 		
-	    OrdersBean manageOrderBean =
-	      (OrdersBean)session.getAttribute("manageOrderBean");
-	    
-	    if (manageOrderBean == null) {		    
-			manageOrderBean = OrdersBean.findOrderbyId(orderID);
-	    }
-	    
-		manageOrderBean = OrdersBean.findOrderbyId(orderID);
+		OrdersBean manageOrderBean = OrdersBean.findOrderbyId(orderID);
 		session.setAttribute("manageOrderBean", manageOrderBean);
 		
 		ArrayList<OrderItems> orderItemsList = new ArrayList<OrderItems>();
-
 		orderItemsList.addAll(OrderItems.findOrderItemsbyOrderId(orderID));
+		session.setAttribute("orderItemsList", orderItemsList);
 
 		String address = "ManageOrder.jsp";
 		RequestDispatcher dispatcher = 

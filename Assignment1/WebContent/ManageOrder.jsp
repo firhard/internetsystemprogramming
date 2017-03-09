@@ -69,7 +69,7 @@
 		<table>
 			<tr>
 				<th>Product name</th>
-				<td>${manageOrderBean.findProductbyProductId(orderItem.getProductId()).getProductName()}</td>
+				<td>${orderItem.findProductbyProductId(orderItem.getProductId()).getProductName()}</td>
 			</tr>
 			<tr>
 				<th>Product quantity</th>
@@ -77,23 +77,23 @@
 			</tr>
 			<tr>
 				<th>Total price</th>
-				<td>${orderItem.getProductPrice()}</td>
+				<td>$${orderItem.getProductPrice()}</td>
 			</tr>
 			<tr>
 				<th>Seller name</th>
-				<td>${manageOrderBean.findProductbyProductId(orderItem.getProductId()).findUserbySellerId(product.getSellerId()).getFullName()}</td>
+				<td>${orderItem.findProductbyProductId(orderItem.getProductId()).findUserbySellerId(orderItem.getSellerId()).getFullName()}</td>
 			</tr>
 			<tr>
 				<th>Shipping status</th>
-				<td>orderItem.getShippingStatus()</td>
+				<td>${orderItem.getShippingStatus()}</td>
 			</tr>
 			<tr>
 
 				<th>View</th>
 				<td>
 					<form action=ProductSearchResultsServlet method=post>
-				  		<input type="hidden" name="insert" value="${orderItems.getProductId()}">
-				  		<input type=submit value="Cancel Order" >
+				  		<input type="hidden" name="insert" value="${orderItem.getProductId()}">
+				  		<input type=submit value="View Order" >
 			  		</form>
 			  	</td>
 			</tr>
@@ -102,7 +102,7 @@
 				<td>	
 					<form action=CancelOrderServlet method=post>
 				  		<input type="hidden" name="orderId" value="${manageOrderBean.getId()}">
-				  		<input type="hidden" name="orderItemsId" value="${orderItems.getId()}">
+				  		<input type="hidden" name="orderItemsId" value="${orderItem.getId()}">
 				  		<input type=submit value="Cancel Order" >
 			  		</form>
 			  	</td>
@@ -115,7 +115,7 @@
 <table>
 		<tr>
 			<th>Order Total:</th>
-			<td>${manageOrderBean.getTotalCost() }</td>
+			<td>$${manageOrderBean.getTotalCost() }</td>
 		</tr>
 		<tr>
 			<th>

@@ -554,7 +554,7 @@ public Users DBgetUserbyUserName(String username){
 	public ArrayList<OrderItems> DBgetOrderItemsbyOrderID(int orderId){
 
 		ArrayList<OrderItems> dbBeanList = new ArrayList<OrderItems>();
-		String sql = "SELECT * FROM OrderItems where Id=?";
+		String sql = "SELECT * FROM OrderItems where OrderId=?";
 		try{
 			ps = conn.prepareStatement(sql);
 			

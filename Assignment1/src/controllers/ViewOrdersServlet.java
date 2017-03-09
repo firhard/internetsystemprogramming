@@ -39,7 +39,7 @@ public class ViewOrdersServlet extends HttpServlet {
 	    Users aUser = (Users)session.getAttribute("loggedInUser");
 		OrdersListView.addAll(OrdersBean.findOrderbyCustomerId(aUser.getId()));
 		session.setAttribute("OrdersListView", OrdersListView);
-			
+
 		String address = "ViewOrders.jsp";
 	    RequestDispatcher dispatcher =
 	     request.getRequestDispatcher(address);
