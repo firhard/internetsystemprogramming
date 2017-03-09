@@ -130,4 +130,12 @@ public class OrderItems {
 		return orderItem;
 	}
 
+	public static OrderItems addOrderItem(OrderItems ordItem) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	OrderItems addOrderItem = db.DBaddOrderItem(ordItem);
+	   	db.closeConnection();
+		return addOrderItem;
+	}
+
 }

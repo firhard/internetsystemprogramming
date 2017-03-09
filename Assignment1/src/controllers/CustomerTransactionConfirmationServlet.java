@@ -85,7 +85,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			ordBean.setBillingAddress(billingAddress);
 			ordBean.setCrediCardNumber(cNumber);
 			ordBean.setShippingAddress(shippingAddress);
-			
+			OrdersBean.addOrder(ordBean);
 			session.setAttribute("Orders", ordBean);
 			@SuppressWarnings("unchecked")
 			ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
@@ -119,6 +119,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 				ordItem.setShippingStatus((byte) 0);
 				ordItem.setShippingRefNo(1000*(int) Math.random());
 				ordItem.setStatus((byte) 1);
+				OrderItems.addOrderItem(ordItem);
 				OrderItemsList.add(ordItem);
 		    }
 		}
