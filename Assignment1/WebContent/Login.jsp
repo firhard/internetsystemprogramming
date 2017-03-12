@@ -27,15 +27,7 @@
 <form action=Registration.jsp method=get>
 	<input type=submit value=Registration>
 </form>
-<%
-	Integer applicationCount = (Integer)session.getAttribute("applicationCount");
-    if (applicationCount == null) {
-        applicationCount = new Integer(1);
-    } else {
-        applicationCount= new Integer(applicationCount.intValue() + 1);
-    }
-    session.setAttribute("applicationCount", applicationCount); %>
-Visit Time:${applicationCount}<br>
+
 
 </body>
 </html>

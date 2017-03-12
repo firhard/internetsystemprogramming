@@ -38,6 +38,10 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	
 		String address = "CustomerTransactionConfirmation.jsp";
 		int Price = (Integer)session.getAttribute("TotalPrice");
+		@SuppressWarnings("unchecked")
+		ArrayList<Integer> requestedQuantity = (ArrayList<Integer>)session.getAttribute("RequestedQuantityList");
+		@SuppressWarnings("unchecked")
+		ArrayList<ProductsBean> Products = (ArrayList<ProductsBean>)session.getAttribute("ShoppingCart");
 		int color = 1;
 		String cHolderName = request.getParameter("CardHolderName");
 		String cType = request.getParameter("CardType");
@@ -60,7 +64,9 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		
 		if(transactionValue == true && color!=2){
 			double deductCredit = TransactionsBean.deductCredit(Price, cNumber, sCode);
-
+			for(int i = 0; i < requestedQuantity.size(); i++){
+				ProductsBean.deleteRequestedQuantity(requestedQuantity.get(i), Products.get(i).getId());
+			}
 			session.setAttribute("deductCredit", deductCredit);
 			session.setAttribute("Session", session);
 			

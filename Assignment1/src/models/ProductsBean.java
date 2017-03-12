@@ -151,5 +151,11 @@ public class ProductsBean {
 		session.removeAttribute("TotalPrice");
 	}
     
-	
+	public static int deleteRequestedQuantity(int requestedQuantity, int input_id){
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	int product = db.DBdeleteRequestedQuantity(requestedQuantity, input_id);
+	   	db.closeConnection();
+	   	return product;
+	}
 }

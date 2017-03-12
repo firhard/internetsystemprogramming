@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 				out.println("You didn't specify a password");
 			} else {
 				if (Users.validateUser(fuserName, fpassWord)) {			
-				    HttpSession session=request.getSession(); 
+				    HttpSession session=request.getSession();
 				    session.setAttribute("fuserName", fuserName);
 				    session.setAttribute("loggedInUser", Users.userInfo(fuserName,fpassWord));
 					session.setAttribute("isUserLoggedIn",true);

@@ -7,16 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.CookiesUtilities;
+import models.LongLivedCookie;
+
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class ClientAccessCount
  */
-public class LogoutServlet extends HttpServlet {
+public class ClientAccessCount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public ClientAccessCount() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -24,14 +27,17 @@ public class LogoutServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 HttpSession session = request.getSession(false);
-		 String value = request.getParameter("Logout");
-		 System.out.println(value);
-		 if(session != null){
-			 session.invalidate(); 
-		 }
-		 response.sendRedirect(response.encodeRedirectURL("Login.jsp"));
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String countString = CookiesUtilities.getCookieValue(request,"accessCount","1");
+		int count = 1;
+		try {
+			count = Integer.parseInt(countString); 
+		} catch(NumberFormatException nfe) {
+		} 
+		LongLivedCookie c = new LongLivedCookie("accessCount", String.valueOf(count+1));
+		session.setAttribute("countString", countString);
+		session.setAttribute("c", c);
 	}
 
 	/**

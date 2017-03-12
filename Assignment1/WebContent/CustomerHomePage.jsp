@@ -26,7 +26,10 @@ Product Categories<select name="Category">
 	<option value="4">4</option>
 	</select><br>
 Search: <input type="text" class="Search" name="Search" value="${search}"><input type="submit" value="Submit"><br>
-</form>
 
+</form>
+<form action=ClientAccessCount method="post">
+Visit Time:${countString}<br>
+</form>
 </body>
 </html>

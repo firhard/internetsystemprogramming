@@ -759,7 +759,7 @@ public Users DBgetUserbyUserName(String username){
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void insertOrderItems() {
 		  
 		  try {
@@ -798,5 +798,27 @@ public Users DBgetUserbyUserName(String username){
 		}
 		
 	}
+
+	public int DBdeleteRequestedQuantity(int requestedQuantity, int input_id){
+		int dbBean = 0;
+		int newAvailableQuantity = 0;
+		String sql2 = "SELECT AvailableQuantity FROM Products WHERE Id = ?";
+		try{
+			ps = conn.prepareStatement(sql2);
+			ps.setInt(1, input_id);
+			ResultSet rs2 = ps.executeQuery();
+			while(rs2.next()){
+				dbBean = rs2.getInt("AvailableQuantity");
+			}
+			newAvailableQuantity = dbBean - requestedQuantity;
+			System.out.println("UPDATE Products SET AvailableQuantity = " + newAvailableQuantity + " WHERE Id = " + input_id);
+			String sql ="UPDATE Products SET AvailableQuantity = " + newAvailableQuantity + " WHERE Id = " + input_id;
+			ps.executeUpdate(sql);
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		return newAvailableQuantity;
+	}
+	//END
 }
 	
