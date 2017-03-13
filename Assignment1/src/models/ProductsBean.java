@@ -150,6 +150,13 @@ public class ProductsBean {
 		session.removeAttribute("DateList");
 		session.removeAttribute("TotalPrice");
 	}
+	
+	public void addQuanity(int id, int add){
+	   	DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	db.DBaddQuantity(id, add);
+	   	db.closeConnection();
+	}
     
 	public static int deleteRequestedQuantity(int requestedQuantity, int input_id){
 		DBAccessClass db = new DBAccessClass();

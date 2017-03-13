@@ -88,10 +88,18 @@ public class OrdersBean {
    	    return returnList;
     }
 	
-    public static void addOrder(OrdersBean ordBean){
+    public static OrdersBean addOrder(OrdersBean ordBean){
     	DBAccessClass db = new DBAccessClass();
    	    db.connectMeIn();
-   	    db.DBaddOrder(ordBean);
+   	    OrdersBean ord = db.DBaddOrder(ordBean);
+   	    db.closeConnection();
+   	    return ord;
+    }
+    
+    public static void decrementOrderTotal(int id, int subtract){
+    	DBAccessClass db = new DBAccessClass();
+   	    db.connectMeIn();
+   	    db.DBdecrementOrderTotal(id, subtract);
    	    db.closeConnection();
     }
 }

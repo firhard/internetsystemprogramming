@@ -15,6 +15,7 @@ import models.OrderItems;
 import models.OrdersBean;
 import models.ProductsBean;
 import models.TransactionsBean;
+import models.Users;
 
 /**
  * Servlet implementation class CustomerTransactionConfirmationServlet
@@ -75,15 +76,15 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		    Calendar c = Calendar.getInstance();        
 		    String EstimatedDeliveryTime = (String)(formattedDate.format(c.getTime()));
 
-			OrdersBean ordBean = new OrdersBean();
-			ordBean.setId(5);
-			ordBean.setCustomerId(100);
-			ordBean.setTotalCost(TotalPrice);
-			ordBean.setOrderDate(EstimatedDeliveryTime);
-			ordBean.setBillingAddress(billingAddress);
-			ordBean.setCrediCardNumber(cNumber);
-			ordBean.setShippingAddress(shippingAddress);
-			OrdersBean.addOrder(ordBean);
+			OrdersBean ordBeanInit = new OrdersBean();
+		    Users aUser = (Users)session.getAttribute("loggedInUser");
+			ordBeanInit.setCustomerId(aUser.getId());
+			ordBeanInit.setTotalCost(TotalPrice);
+			ordBeanInit.setOrderDate(EstimatedDeliveryTime);
+			ordBeanInit.setBillingAddress(billingAddress);
+			ordBeanInit.setCrediCardNumber(cNumber);
+			ordBeanInit.setShippingAddress(shippingAddress);
+			OrdersBean ordBean = OrdersBean.addOrder(ordBeanInit);
 			session.setAttribute("Orders", ordBean);
 			@SuppressWarnings("unchecked")
 			ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
@@ -109,12 +110,12 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			for (int i=0; i<ShoppingCart.size(); i++) {
 				OrderItems ordItem = new OrderItems();
 				
-				ordItem.setOrderId(5);
+				ordItem.setOrderId(ordBean.getId());
 				ordItem.setSellerId(ShoppingCart.get(i).getSellerId());
 				ordItem.setProductId(ShoppingCart.get(i).getId());
 				ordItem.setProductPrice(ShoppingCart.get(i).getPrice());
 				ordItem.setQuantity(RequestedQuantityList.get(i));
-				ordItem.setShippingStatus((byte) 0);
+				ordItem.setShippingStatus((byte) 1);
 				ordItem.setShippingRefNo(1000*(int) Math.random());
 				ordItem.setStatus((byte) 1);
 				OrderItems.addOrderItem(ordItem);

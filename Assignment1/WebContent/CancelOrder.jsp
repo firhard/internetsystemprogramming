@@ -72,7 +72,11 @@
 	<table>
 		  <tr>
 		    <th colspan="3">Product Name:</th>
-		    <td>${orderItem.getProductId()}</td>
+		    <td>${orderItem.findProductbyProductId(orderItem.getProductId()).getProductName()}</td>
+		  </tr>
+		   <tr>
+		    <th colspan="3">Product Description:</th>
+		    <td>${orderItem.findProductbyProductId(orderItem.getProductId()).getProductDescription()}</td>
 		  </tr>
 		  <tr>
 		  	<th colspan="3">Product Quantity:</th>
@@ -80,20 +84,21 @@
 		  </tr>
 		  <tr>
 		    <th colspan="3">Total Price:</th>
-		    <td><a name="price">${orderItem.getProductPrice()}</a></td>
+		    <td><a name="price">$${orderItem.getProductPrice()*orderItem.getQuantity()}</a></td>
 		  </tr>
 		  <tr>
 		    <th colspan="3">Seller Name:</th>
-		    <td>${orderItem.getSellerId()}</td>
+		    <td>${orderItem.findProductbyProductId(orderItem.getProductId()).findUserbySellerId(orderItem.getSellerId()).getFullName()}</td>
+		   <tr>
+		    <th colspan="3">Order Number:</th>
+		    <td>${manageOrderBean.getId()}</td>
 		  </tr>
-		  <tr>
-		    <th colspan="3">Seller Name:</th>
-		    <td>${orderItem.getSellerId()}</td>
-		  </tr>
+		  
 		  <tr>
 		      <th colspan="3">Confirm Cancellation:</th>
 			  <td>
-			  		<input type="hidden" name="CancelSubmit" value="${orderItem.getId() }">
+			  		<input type="hidden" name="ConfirmSubmit" value="${orderItem.getId()}">
+			  		<input type="hidden" name="ProductPrice" value="${orderItem.getProductPrice()*orderItem.getQuantity()}">
 			  		<input type=submit value="Submit" >
 			  </td>
 		  </tr>

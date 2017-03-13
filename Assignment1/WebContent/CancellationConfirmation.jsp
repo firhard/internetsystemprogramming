@@ -66,5 +66,6 @@ Your order has been cancelled!<br>
 
 Your total balance is :${addCredit}<br>
 Visit Time:${applicationCount}<br>
+
 </body>
 </html>

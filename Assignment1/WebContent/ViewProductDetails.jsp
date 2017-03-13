@@ -53,7 +53,7 @@ table, th, td {
 	</tr>
   	<tr>
 	    <td>${prodBean.getProductName()}</td>
-	    <td>${prodBean.getPrice()}</td>
+	    <td>$${prodBean.getPrice()}</td>
 	    <td>${prodBean.findUserbySellerId(prodBean.getSellerId()).getFullName()}</td>
 	    <td>${prodBean.getAvailableQuantity()}</td>
     	<td>${prodBean.getEstimatedDeliveryDays()}</td>

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.OrderItems;
+import models.OrdersBean;
+import models.ProductsBean;
 import models.TransactionsBean;
 
 /**
@@ -33,12 +35,21 @@ public class CancelOrderTransactionServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		int OrderItemId = Integer.parseInt(request.getParameter("ConfirmSubmit"));
-		int ProductPrice = Integer.parseInt(request.getParameter("Price"));
+		int ProductPrice = Integer.parseInt(request.getParameter("ProductPrice"));
 
-		OrderItems dropNumber = OrderItems.dropOrderItembyOrderItemId(OrderItemId);
+		OrderItems.changeOrderItemStatusCancelled(OrderItemId);
+		OrderItems ordItem = OrderItems.findOrderItembyOrderItemId(OrderItemId);
+		ProductsBean prodBean = ordItem.findProductbyProductId(ordItem.getProductId());
+		prodBean.addQuanity(prodBean.getId(), ordItem.getQuantity());
+		
+		//find Order by OrderId
+		//Subtract OrderItems ProductPrice * Quantity
+		OrdersBean ord = OrdersBean.findOrderbyId(ordItem.getOrderId());
+		OrdersBean.decrementOrderTotal(ord.getId(), ordItem.getProductPrice());
+		
+		
 		double addCredit = TransactionsBean.addCreditafterCancellation(ProductPrice, OrderItemId);
 		session.setAttribute("addCredit", addCredit);
-		session.setAttribute("dropNumber", dropNumber);
 		String address = "CancellationConfirmation.jsp";
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);

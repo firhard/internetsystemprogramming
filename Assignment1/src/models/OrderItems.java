@@ -122,12 +122,11 @@ public class OrderItems {
 	   	return product;
     }
 
-	public static OrderItems dropOrderItembyOrderItemId(int orderItemId) {
+	public static void changeOrderItemStatusCancelled(int orderItemId) {
 		DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
-	   	OrderItems orderItem = db.DBDeleteOrderItem(orderItemId);
+	   	db.DBChangeOrderItemStatusCancelled(orderItemId);
 	   	db.closeConnection();
-		return orderItem;
 	}
 
 	public static void addOrderItem(OrderItems ordItem) {

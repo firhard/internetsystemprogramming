@@ -290,7 +290,7 @@ public class DBAccessClass {
 					+ "VALUES (102, 'Tianyi', 'Wang', '720 N 81st', "
 			        + "'Lincoln', 'Nebraska', '68505', 'tianyiwang@gmail.com', "
 			        + "'402-419-4133', '06/25/1995', "
-			        + "0, 1, 5, 'mfirhard', 'super');";
+			        + "0, 1, 5, 'twang', 'super');";
 		  
 		  stmt.executeUpdate(sql);
 		  
@@ -468,19 +468,19 @@ public Users DBgetUserbyUserName(String username){
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-				+ "VALUES (100, 100, 515, '01/15/2016', "
+				+ "VALUES (100, 100, 360, '01/15/2016', "
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-				+ "VALUES (101, 101, 360, '01/23/2016', "
+				+ "VALUES (101, 101, 180, '01/23/2016', "
 		        + "'720 N 81st', '720 N 81st', "
 		        + "'4111111111111111');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO Orders "
-					+ "VALUES (102, 102, 180, '01/30/2016', "
+					+ "VALUES (102, 102, 0, '01/30/2016', "
 			        + "'720 N 81st', '720 N 81st', "
 			        + "'4111111111111111');";
 			  stmt.executeUpdate(sql);
@@ -522,7 +522,7 @@ public Users DBgetUserbyUserName(String username){
 	public ArrayList<OrdersBean> DBgetOrderbyCustomerId(int CustomerId){
 
 		ArrayList<OrdersBean> dbBeanList = new ArrayList<OrdersBean>();
-		String sql = "SELECT * FROM Orders where Id=?";
+		String sql = "SELECT * FROM Orders where CustomerId=?";
 		try{
 			ps = conn.prepareStatement(sql);
 			
@@ -547,6 +547,27 @@ public Users DBgetUserbyUserName(String username){
 		 }
 		return dbBeanList;
 		
+	}
+	
+	public void DBdecrementOrderTotal(int input_id, int take_back){
+		int current_quantity = 0;
+		int new_quantity = 0;
+		String sql2 = "SELECT * FROM Orders";
+		try{
+			ps = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps.executeQuery();
+			while(rs2.next()){
+				current_quantity = rs2.getInt("TotalCost");
+			}
+			new_quantity = current_quantity - take_back;
+			String sql = "UPDATE Orders SET TotalCost = " + new_quantity + " WHERE Id = " + input_id;
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate(sql);
+			
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -631,20 +652,35 @@ public Users DBgetUserbyUserName(String username){
 		return dbBean.getId() != 0;
 	}
 	
-	public OrderItems DBDeleteOrderItem(int input_id){
-		OrderItems dbBean = new OrderItems();
-		String sql = "DELETE FROM OrderItems where Id=?";
+	public void DBChangeOrderItemStatusCancelled(int input_id){
+		String sql = "UPDATE OrderItems SET Status = " + 0 + " where Id= " + input_id;
 		try{
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1,input_id);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				dbBean.setId(rs.getInt("Id"));
-			}
+			ps.executeUpdate(sql);
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
-		return dbBean;
+	}
+	
+	public void DBaddQuantity(int input_id, int add_back){
+		int current_quantity = 0;
+		int new_quantity = 0;
+		String sql2 = "SELECT * FROM Products";
+		try{
+			ps = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps.executeQuery();
+			while(rs2.next()){
+				current_quantity = rs2.getInt("AvailableQuantity");
+			}
+			new_quantity = current_quantity + add_back;
+			String sql = "UPDATE Products SET AvailableQuantity = " + new_quantity + " WHERE Id = " + input_id;
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate(sql);
+			
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 
 	public double DBaddCredit(double productPrice, int input_id) {
@@ -731,18 +767,45 @@ public Users DBgetUserbyUserName(String username){
 		return dbBean;
 	}
 
-	public void DBaddOrder(OrdersBean ordBean) {
+	public OrdersBean DBaddOrder(OrdersBean ordBean) {
+		
+		OrdersBean dbBean = new OrdersBean();
 		try{
 			stmt = conn.createStatement();
 			String sql;
-			sql = "INSERT INTO Orders (Id, CustomerId, TotalCost, OrderDate, ShippingAddress, BillingAddress, CreditCardNumber) VALUES (" + ordBean.getId() + ", " 
+			sql = "INSERT INTO Orders (Id, CustomerId, TotalCost, OrderDate, ShippingAddress, BillingAddress, CreditCardNumber) VALUES (Null, " 
 				+ ordBean.getCustomerId() + ", " + ordBean.getTotalCost() + ", '" 
 				+ ordBean.getOrderDate() + "', '" + ordBean.getShippingAddress() + "', '" 
 				+ ordBean.getBillingAddress() + "', '" + ordBean.getCrediCardNumber() + "')";
 			stmt.executeUpdate(sql);
+			
+			sql = "SELECT * FROM Orders WHERE CustomerId = ? AND TotalCost = ? "
+					+ "AND OrderDate = ? AND ShippingAddress = ? AND BillingAddress = ? "
+					+ "AND CreditCardNumber = ?";
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, ordBean.getCustomerId());
+			ps.setInt(2, ordBean.getTotalCost());
+			ps.setString(3, ordBean.getOrderDate());
+			ps.setString(4, ordBean.getShippingAddress());
+			ps.setString(5, ordBean.getShippingAddress());
+			ps.setString(6, ordBean.getCrediCardNumber());
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setCustomerId(rs.getInt("CustomerId"));
+				dbBean.setTotalCost(rs.getInt("TotalCost"));
+				dbBean.setOrderDate(rs.getString("OrderDate"));
+				dbBean.setShippingAddress(rs.getString("ShippingAddress"));
+				dbBean.setBillingAddress(rs.getString("BillingAddress"));
+				dbBean.setCrediCardNumber(rs.getString("CreditCardNumber"));
+			}
+
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
+		return dbBean;
 	}
 
 	public void DBaddOrderItem(OrderItems ordItem) {
@@ -755,6 +818,7 @@ public Users DBgetUserbyUserName(String username){
 				+ ordItem.getQuantity() + ", " + ordItem.getShippingStatus() + ", "
 				+ ordItem.getShippingRefNo() + ", " + ordItem.getStatus() + ")";
 			stmt.executeUpdate(sql);
+			
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
@@ -775,7 +839,7 @@ public Users DBgetUserbyUserName(String username){
 		  sql = "Truncate table OrderItems;";
 		  stmt.executeUpdate(sql);
 		  
-		  sql = "INSERT INTO OrderItems VALUES (1, 100, 100, 111, 60, 3, 0, 1, 1)";
+		  sql = "INSERT INTO OrderItems VALUES (1, 100, 100, 111, 60, 3, 1, 1, 1)";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO OrderItems VALUES (2, 101, 101, 112, 60, 3, 1, 2, 1)";
@@ -784,7 +848,7 @@ public Users DBgetUserbyUserName(String username){
 		  sql = "INSERT INTO OrderItems VALUES (3, 102, 102, 113, 60, 3, 1, 3, 0)";
 		  stmt.executeUpdate(sql);
 
-		  sql = "INSERT INTO OrderItems VALUES (4, 100, 100, 112, 55, 3, 0, 4, 1)";
+		  sql = "INSERT INTO OrderItems VALUES (4, 100, 100, 112, 55, 3, 1, 4, 0)";
 		  stmt.executeUpdate(sql);
 		 
 		  sql = "INSERT INTO OrderItems VALUES (5, 100, 100, 113, 60, 3, 0, 3, 1)";

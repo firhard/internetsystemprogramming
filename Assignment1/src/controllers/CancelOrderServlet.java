@@ -34,17 +34,14 @@ public class CancelOrderServlet extends HttpServlet {
 		int orderItemsId = Integer.parseInt(request.getParameter("orderItemsId"));
 		int orderId = Integer.parseInt(request.getParameter("orderId"));
 		OrderItems orderItem = (OrderItems)session.getAttribute("orderItem");
-		String address = "CancelOrder.jsp";
-		
-		if(orderItem == null){
-			orderItem = OrderItems.findOrderItembyOrderItemId(orderItemsId);
-		}
 		
 		orderItem = OrderItems.findOrderItembyOrderItemId(orderItemsId);
 		
+		session.setAttribute("orderItem", orderItem);
 		session.setAttribute("orderItemsId", orderItemsId);
 		session.setAttribute("orderId", orderId);
 		
+		String address = "CancelOrder.jsp";
 		RequestDispatcher dispatcher = 
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);		

@@ -76,8 +76,8 @@
 				<td>${orderItem.getQuantity()}</td>
 			</tr>
 			<tr>
-				<th>Price</th>
-				<td>$${orderItem.getProductPrice()}</td>
+				<th>Total Price</th>
+				<td>$${orderItem.getProductPrice()*orderItem.getQuantity()}</td>
 			</tr>
 			<tr>
 				<th>Seller name</th>
@@ -97,16 +97,26 @@
 			  		</form>
 			  	</td>
 			</tr>
-			<tr>
-				<th>Cancel</th>
-				<td>	
-					<form action=CancelOrderServlet method=post>
-				  		<input type="hidden" name="orderId" value="${manageOrderBean.getId()}">
-				  		<input type="hidden" name="orderItemsId" value="${orderItem.getId()}">
-				  		<input type=submit value="Cancel Order" >
-			  		</form>
-			  	</td>
-			</tr>
+			<c:if test="${orderItem.getShippingStatus() == 1 && orderItem.getStatus() == 1}">
+				<tr>
+					<th>Cancel</th>
+					<td>	
+						<form action=CancelOrderServlet method=post>
+					  		<input type="hidden" name="orderId" value="${manageOrderBean.getId()}">
+					  		<input type="hidden" name="orderItemsId" value="${orderItem.getId()}">
+					  		<input type=submit value="Cancel Order" >
+				  		</form>
+				  	</td>
+				</tr>
+			</c:if>
+			<c:if test="${orderItem.getStatus() == 0}">
+				<tr>
+					<th>Cancel</th>
+					<td>	
+						<h2>Cancelled</h2>
+				  	</td>
+				</tr>
+			</c:if>
 	</table>
 	</c:forEach>	
 	</div>
