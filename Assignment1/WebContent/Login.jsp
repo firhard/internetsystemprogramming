@@ -28,6 +28,8 @@
 	<input type=submit value=Registration>
 </form>
 
+<h2>${accessCount}</h2>
+
 
 </body>
 </html>

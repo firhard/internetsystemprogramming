@@ -13,6 +13,7 @@ import models.OrderItems;
 import models.OrdersBean;
 import models.ProductsBean;
 import models.TransactionsBean;
+import models.Users;
 
 /**
  * Servlet implementation class CancelOrderTransactionServlet
@@ -39,16 +40,17 @@ public class CancelOrderTransactionServlet extends HttpServlet {
 
 		OrderItems.changeOrderItemStatusCancelled(OrderItemId);
 		OrderItems ordItem = OrderItems.findOrderItembyOrderItemId(OrderItemId);
+
 		ProductsBean prodBean = ordItem.findProductbyProductId(ordItem.getProductId());
 		prodBean.addQuanity(prodBean.getId(), ordItem.getQuantity());
 		
-		//find Order by OrderId
-		//Subtract OrderItems ProductPrice * Quantity
 		OrdersBean ord = OrdersBean.findOrderbyId(ordItem.getOrderId());
-		OrdersBean.decrementOrderTotal(ord.getId(), ordItem.getProductPrice());
+		OrdersBean.decrementOrderTotal(ord.getId(), ordItem.getProductPrice()*ordItem.getQuantity());
 		
 		
-		double addCredit = TransactionsBean.addCreditafterCancellation(ProductPrice, OrderItemId);
+	    Users aUser = (Users)session.getAttribute("loggedInUser");
+
+		double addCredit = TransactionsBean.addCreditafterCancellation(ProductPrice, OrderItemId, aUser.getId());
 		session.setAttribute("addCredit", addCredit);
 		String address = "CancellationConfirmation.jsp";
 		RequestDispatcher dispatcher = 

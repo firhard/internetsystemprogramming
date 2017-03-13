@@ -31,5 +31,7 @@ Search: <input type="text" class="Search" name="Search" value="${search}"><input
 <form action=ClientAccessCount method="post">
 Visit Time:${countString}<br>
 </form>
+
+<p> Last Successful Login: ${timeStamp}</p>
 </body>
 </html>

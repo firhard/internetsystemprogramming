@@ -78,14 +78,15 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 
 			OrdersBean ordBeanInit = new OrdersBean();
 		    Users aUser = (Users)session.getAttribute("loggedInUser");
+		    ordBeanInit.setId((int)(Math.random()*1000000));
 			ordBeanInit.setCustomerId(aUser.getId());
 			ordBeanInit.setTotalCost(TotalPrice);
 			ordBeanInit.setOrderDate(EstimatedDeliveryTime);
 			ordBeanInit.setBillingAddress(billingAddress);
 			ordBeanInit.setCrediCardNumber(cNumber);
 			ordBeanInit.setShippingAddress(shippingAddress);
-			OrdersBean ordBean = OrdersBean.addOrder(ordBeanInit);
-			session.setAttribute("Orders", ordBean);
+			OrdersBean.addOrder(ordBeanInit);
+			session.setAttribute("Orders", ordBeanInit);
 			@SuppressWarnings("unchecked")
 			ArrayList<OrdersBean> OrdersList = (ArrayList<OrdersBean>)session.getAttribute("OrdersList");
 			if(OrdersList == null){
@@ -93,7 +94,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 				session.setAttribute("OrdersList", OrdersList);
 			}
 			
-			OrdersList.add(ordBean);
+			OrdersList.add(ordBeanInit);
 			
 			@SuppressWarnings("unchecked")
 			ArrayList<ProductsBean> ShoppingCart = (ArrayList<ProductsBean>)session.getAttribute("ShoppingCart");
@@ -110,7 +111,7 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 			for (int i=0; i<ShoppingCart.size(); i++) {
 				OrderItems ordItem = new OrderItems();
 				
-				ordItem.setOrderId(ordBean.getId());
+				ordItem.setOrderId(ordBeanInit.getId());
 				ordItem.setSellerId(ShoppingCart.get(i).getSellerId());
 				ordItem.setProductId(ShoppingCart.get(i).getId());
 				ordItem.setProductPrice(ShoppingCart.get(i).getPrice());

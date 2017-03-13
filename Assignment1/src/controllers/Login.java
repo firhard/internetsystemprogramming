@@ -3,6 +3,9 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,7 @@ import models.Utility;
  */
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public String timeStamp;
        
 	
 	public void init() throws ServletException {
@@ -47,7 +51,7 @@ public class Login extends HttpServlet {
 		
 		String fuserName = Utility.filter(request.getParameter("userName"));
 		String fpassWord = Utility.filter(request.getParameter("passWord"));
-		PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();		
 			
 			if (Utility.is_blank(fuserName)) {
 				out.println("You didn't specify a username");
@@ -60,6 +64,14 @@ public class Login extends HttpServlet {
 				    session.setAttribute("loggedInUser", Users.userInfo(fuserName,fpassWord));
 					session.setAttribute("isUserLoggedIn",true);
 				    response.sendRedirect("CustomerHomePage.jsp"); // Link-redirection
+				    
+					synchronized(this) {	
+					   DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+					   Date date = new Date();
+					   timeStamp = dateFormat.format(date);
+					   session.setAttribute("timeStamp", timeStamp);
+					}	
+					
 					
 				} else {
 					response.sendRedirect("Registration.jsp"); // Link-redirection

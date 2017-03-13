@@ -78,7 +78,7 @@
 					Order Cost:
 				</th>
 				<td>
-					${order.getTotalCost()}
+					$${order.getTotalCost()}
 				</td>
 			</tr>
 			<tr>

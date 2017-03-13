@@ -64,8 +64,7 @@
 <form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form><br>
 Your order has been cancelled!<br>
 
-Your total balance is :${addCredit}<br>
-Visit Time:${applicationCount}<br>
+Your total balance is: $${addCredit}<br>
 
 </body>
 </html>

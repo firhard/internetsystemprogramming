@@ -100,10 +100,10 @@ public class TransactionsBean {
 	   	return balance;
 	}
 
-	public static double addCreditafterCancellation(double productPrice, int input_id) {
+	public static double addCreditafterCancellation(double productPrice, int input_id, int user_id) {
 		DBAccessClass db = new DBAccessClass();
 	   	db.connectMeIn();
-	   	double balance = db.DBaddCredit(productPrice, input_id);
+	   	double balance = db.DBaddCredit(productPrice, input_id, user_id);
 	   	return balance;
 	}
 

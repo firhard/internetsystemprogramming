@@ -552,7 +552,7 @@ public Users DBgetUserbyUserName(String username){
 	public void DBdecrementOrderTotal(int input_id, int take_back){
 		int current_quantity = 0;
 		int new_quantity = 0;
-		String sql2 = "SELECT * FROM Orders";
+		String sql2 = "SELECT * FROM Orders WHERE Id = " + input_id;
 		try{
 			ps = conn.prepareStatement(sql2);
 			ResultSet rs2 = ps.executeQuery();
@@ -665,7 +665,7 @@ public Users DBgetUserbyUserName(String username){
 	public void DBaddQuantity(int input_id, int add_back){
 		int current_quantity = 0;
 		int new_quantity = 0;
-		String sql2 = "SELECT * FROM Products";
+		String sql2 = "SELECT * FROM Products WHERE Id = " + input_id;
 		try{
 			ps = conn.prepareStatement(sql2);
 			ResultSet rs2 = ps.executeQuery();
@@ -683,10 +683,10 @@ public Users DBgetUserbyUserName(String username){
 		}
 	}
 
-	public double DBaddCredit(double productPrice, int input_id) {
+	public double DBaddCredit(double productPrice, int input_id, int user_id) {
 		double dbBean = 0;
 		double summation = 0;
-		String sql2 = "SELECT * FROM CreditCards";
+		String sql2 = "SELECT * FROM CreditCards WHERE UserId = " + user_id;
 		String sql ="UPDATE CreditCards SET Balance = ? WHERE Id = ?";
 		try{
 			ps = conn.prepareStatement(sql2);
@@ -711,7 +711,7 @@ public Users DBgetUserbyUserName(String username){
 	public double DBdeductCredit(double price, String cNumber, String sCode) {
 		double dbBean = 0;
 		double summation = 0;
-		String sql2 = "SELECT * FROM CreditCards";
+		String sql2 = "SELECT * FROM CreditCards WHERE CreditCardNumber = " + cNumber;
 		String sql ="UPDATE CreditCards SET Balance = ? WHERE CreditCardNumber = ? AND CVV = ?";
 		try{
 			ps2 = conn.prepareStatement(sql2);
@@ -773,34 +773,34 @@ public Users DBgetUserbyUserName(String username){
 		try{
 			stmt = conn.createStatement();
 			String sql;
-			sql = "INSERT INTO Orders (Id, CustomerId, TotalCost, OrderDate, ShippingAddress, BillingAddress, CreditCardNumber) VALUES (Null, " 
+			sql = "INSERT INTO Orders (Id, CustomerId, TotalCost, OrderDate, ShippingAddress, BillingAddress, CreditCardNumber) VALUES (" + ordBean.getId() + ", " 
 				+ ordBean.getCustomerId() + ", " + ordBean.getTotalCost() + ", '" 
 				+ ordBean.getOrderDate() + "', '" + ordBean.getShippingAddress() + "', '" 
 				+ ordBean.getBillingAddress() + "', '" + ordBean.getCrediCardNumber() + "')";
 			stmt.executeUpdate(sql);
 			
-			sql = "SELECT * FROM Orders WHERE CustomerId = ? AND TotalCost = ? "
-					+ "AND OrderDate = ? AND ShippingAddress = ? AND BillingAddress = ? "
-					+ "AND CreditCardNumber = ?";
-			ps = conn.prepareStatement(sql);
-			
-			ps.setInt(1, ordBean.getCustomerId());
-			ps.setInt(2, ordBean.getTotalCost());
-			ps.setString(3, ordBean.getOrderDate());
-			ps.setString(4, ordBean.getShippingAddress());
-			ps.setString(5, ordBean.getShippingAddress());
-			ps.setString(6, ordBean.getCrediCardNumber());
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				dbBean.setId(rs.getInt("Id"));
-				dbBean.setCustomerId(rs.getInt("CustomerId"));
-				dbBean.setTotalCost(rs.getInt("TotalCost"));
-				dbBean.setOrderDate(rs.getString("OrderDate"));
-				dbBean.setShippingAddress(rs.getString("ShippingAddress"));
-				dbBean.setBillingAddress(rs.getString("BillingAddress"));
-				dbBean.setCrediCardNumber(rs.getString("CreditCardNumber"));
-			}
+//			sql = "SELECT * FROM Orders WHERE CustomerId = ? AND TotalCost = ? "
+//					+ "AND OrderDate = ? AND ShippingAddress = ? AND BillingAddress = ? "
+//					+ "AND CreditCardNumber = ?";
+//			ps = conn.prepareStatement(sql);
+//			
+//			ps.setInt(1, ordBean.getCustomerId());
+//			ps.setInt(2, ordBean.getTotalCost());
+//			ps.setString(3, ordBean.getOrderDate());
+//			ps.setString(4, ordBean.getShippingAddress());
+//			ps.setString(5, ordBean.getShippingAddress());
+//			ps.setString(6, ordBean.getCrediCardNumber());
+//			
+//			ResultSet rs = ps.executeQuery();
+//			while(rs.next()){
+//				dbBean.setId(rs.getInt("Id"));
+//				dbBean.setCustomerId(rs.getInt("CustomerId"));
+//				dbBean.setTotalCost(rs.getInt("TotalCost"));
+//				dbBean.setOrderDate(rs.getString("OrderDate"));
+//				dbBean.setShippingAddress(rs.getString("ShippingAddress"));
+//				dbBean.setBillingAddress(rs.getString("BillingAddress"));
+//				dbBean.setCrediCardNumber(rs.getString("CreditCardNumber"));
+//			}
 
 		} catch (SQLException e){
 			e.printStackTrace();
