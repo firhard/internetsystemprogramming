@@ -6,6 +6,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+	function addToCart() {
+		//var firstName = $("#fName").val();
+		//var lastName  = $("#lName").val();
+        var productId = $("table").attr("data-ProductId");
+        var requestedQuantity = $("#ProductQuantity").val(); //document.getElementsByClassName("ProductQuantity");
+        //var productTable = document.getElementById('product');
+        //var productId = productTable.getAttribute('data-ProductId');
+	   
+	       $.get("UpdateShoppingCart", {ProductQuantitySend:requestedQuantity, ProductIdSend:productId}, function(data,status) {
+
+	    		if(data == 1) {	
+			        alert("Succeeded in adding item");
+				} else if(data == -1) {	    			
+	    			alert("Failed to add item");
+	    		}
+				else {
+					alert("Unknown error");
+				}
+	    		
+	    			
+	  	  });
+	  }
+</script>
 <title>View Products</title>
 </head>
 <style>
@@ -33,6 +59,7 @@ table, th, td {
 	<c:redirect url="Login.jsp">
 	</c:redirect>
 </c:if>
+		
 <form action="LogoutServlet" method="post">
 <input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
 <input type="button" value="Back" class="Back" name="Back" onclick="document.location.href='ProductSearchResults.jsp'"> 
@@ -40,10 +67,10 @@ table, th, td {
 <input type ="Submit" name="Logout" value="Logout">
 </form>
 
-<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
+<form action=ViewOrdersServlet method="post"><input type="button" value="View Orders" name="View Orders"></form>
 
-<br><br><form action="UpdateShoppingCart" method="post">
-<table>
+<br><br>
+<table id="product" data-ProductId="${prodBean.getId()}">
 	<tr>
 	    <th>Product Name:</th>
 	    <th>Price:</th> 
@@ -59,7 +86,7 @@ table, th, td {
     	<td>${prodBean.getEstimatedDeliveryDays()}</td>
     </tr>
 </table>
-Add to Cart:<input type="text" class="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit" value="Add to Cart">
+Add to Cart:<input type="text" id="ProductQuantity" name="ProductQuantity"><input type="submit" value="Submit" value="Add to Cart" onclick="addToCart()">
 <br>
 <div>
 	<h2>Product Photos</h2>
@@ -75,7 +102,7 @@ Add to Cart:<input type="text" class="ProductQuantity" name="ProductQuantity"><i
 	<p>${prodBean.getProductDescription()}</p>
 </div>
 
-</form><br>
+<br>
 <div>
 	<h2>Questions & Answers</h2>
 	<p><b>Q: RoboMaster09:</b> Is this a good Jacket?<p>
