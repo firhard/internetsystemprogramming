@@ -33,6 +33,8 @@ public class Login extends HttpServlet {
 		db.insertOrders();
 		db.insertCreditCard();
 		db.insertOrderItems();
+		db.insertReviews();
+		db.insertQuestions();
 	}
 	
     /**

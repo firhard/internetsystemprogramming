@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.ProductsBean;
+import models.QuestionsBean;
+import models.ReviewBean;
 
 /**
  * Servlet implementation class ProductSearchQuery
@@ -48,6 +50,8 @@ public class ProductSearchQuery extends HttpServlet {
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<ProductsBean> ListName = (ArrayList<ProductsBean>)session.getAttribute("ListName");
+		ArrayList<ReviewBean> ReviewList = new ArrayList<ReviewBean>();
+		ArrayList<QuestionsBean> QuestionList = new ArrayList<QuestionsBean>();
 		
 		String address = "ProductSearchResults.jsp";
 		if(emptyFields == true){
@@ -62,8 +66,12 @@ public class ProductSearchQuery extends HttpServlet {
 				ListName.clear();
 			}
 			
-			ListName.addAll(ProductsBean.findProductbyNameandCategory(search, category));
-
+			ArrayList<ProductsBean> prodBeanList = ProductsBean.findProductbyNameandCategory(search, category);
+			ListName.addAll(prodBeanList);
+			ReviewList.addAll(ReviewBean.findReviewsbyProductID(prodBeanList.get(0).getId()));
+			QuestionList.addAll(QuestionsBean.findQuesetionsbyProductId(prodBeanList.get(0).getId()));
+			session.setAttribute("ReviewList", ReviewList);
+			session.setAttribute("QuestionList", QuestionList);
 		}
 				
 	    RequestDispatcher dispatcher =

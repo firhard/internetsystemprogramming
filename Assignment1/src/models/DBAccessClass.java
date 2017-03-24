@@ -86,6 +86,127 @@ public class DBAccessClass {
 		
 	}
 	
+	public void insertReviews() {
+		
+		
+		try {
+			stmt = conn.createStatement();
+		
+		  /** Following sql statements create an Employee table
+		   * Insert values into the table
+		   * Read all the rows and attributes from the table
+		   */
+		  String sql;
+		  
+		  sql = "Truncate table CustomerReviews;";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO CustomerReviews "
+				+ "VALUES (111, 111, 101, '01/05/2017', '0', "
+		        + "'Man this was a g8 product. I am also not a homosexual');";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO CustomerReviews "
+				+ "VALUES (112, 111, 102, '01/10/2017', '1', "
+		        + "'This was not a good product. I feel bad that I purchased this.');";
+		  stmt.executeUpdate(sql);
+		  
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void insertQuestions() {
+		
+		
+		try {
+			stmt = conn.createStatement();
+		
+		  /** Following sql statements create an Employee table
+		   * Insert values into the table
+		   * Read all the rows and attributes from the table
+		   */
+		  String sql;
+		  
+		  sql = "Truncate table ProductQA;";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO ProductQA "
+				+ "VALUES (111, 111, 101, 'Will this end by suffering?', "
+				+ "'Probs not');";
+		  stmt.executeUpdate(sql);
+		  
+		  sql = "INSERT INTO ProductQA "
+				+ "VALUES (112, 111, 102, 'Can I make drugs out of this?', "
+				+ "'');";
+		  stmt.executeUpdate(sql);
+		  
+		  } catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		
+	}
+	
+	public ArrayList<ReviewBean> DBgetReviewsbyProductId(int id){
+		
+		ArrayList<ReviewBean> dbBeanList = new ArrayList<ReviewBean>();
+		String sql = "SELECT * FROM CustomerReviews where ProductId=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				ReviewBean dbBean = new ReviewBean();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setProductId(rs.getInt("ProductId"));
+				dbBean.setCustomerId(rs.getInt("CustomerId"));
+				dbBean.setRating(rs.getByte("Rating"));
+				dbBean.setReviewDate(rs.getString("ReviewDate"));
+				dbBean.setReview(rs.getString("Review"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
+		
+	}
+	
+	public ArrayList<QuestionsBean> DBgetQuestionsbyProductId(int id){
+		
+		ArrayList<QuestionsBean> dbBeanList = new ArrayList<QuestionsBean>();
+		String sql = "SELECT * FROM ProductQA where ProductId=?";
+		try{
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				QuestionsBean dbBean = new QuestionsBean();
+				dbBean.setId(rs.getInt("Id"));
+				dbBean.setProductId(rs.getInt("ProductId"));
+				dbBean.setCustomerId(rs.getInt("CustomerId"));
+				dbBean.setQuestion(rs.getString("Question"));
+				dbBean.setAnswer(rs.getString("Answer"));
+				dbBeanList.add(dbBean);
+			}
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+		 }
+		return dbBeanList;
+		
+	}
+
+	
 	public ProductsBean DBgetProductbyId(int id){
 		
 		ProductsBean dbBean = new ProductsBean();

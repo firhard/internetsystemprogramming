@@ -104,17 +104,17 @@ Add to Cart:<input type="text" id="ProductQuantity" name="ProductQuantity"><inpu
 
 <br>
 <div>
-	<h2>Questions & Answers</h2>
-	<p><b>Q: RoboMaster09:</b> Is this a good Jacket?<p>
-	<p><b>A: Samnsang54:</b> Yes you idiot</p>
-	<p><b>Q: 50ShadesofWheels:</b> Is this better than the Nike Jacket<p>
-	<p><b>A: HotOne44:</b> No....</p>
-	<p><b>Q: MaxMaddHat:</b> How can I feed my kids</p>
-	<p>This question has not been answered yet<p>
+	<h2>Questions & Seller Answers</h2>
+	<c:forEach var="QA" items="${QuestionList}">
+		<p><b>Q: ${QA.findUserbyUserId(QA.getCustomerId()).getUserName()}:</b> ${QA.getQuestion()}<p>
+		<p><b>A: ${prodBean.findUserbySellerId(prodBean.getSellerId()).getFullName()}:</b> ${QA.getAnswer() eq '' ? "No seller response" : QA.getAnswer()}</p>
+	</c:forEach>
 </div>
 <div>
-	<h2>Customer Reviews (4.0 / 5.0 rating):</h2>
-	<p><b>&nbsp; &nbsp;4 stars &nbsp; - &nbsp; &nbsp; June 25, 2015 &nbsp; - &nbsp; &nbsp; Samnsang54:</b> This is a good jacket. I'm really happy at how smug I can be when I wear it.</p>
+	<h2>Customer Reviews:</h2>
+	<c:forEach var="Review" items="${ReviewList}">
+		<p><b>&nbsp; &nbsp;${Review.getRating() eq 0 ? "Positive Rating" : "Negative Rating"} &nbsp; - &nbsp; &nbsp; ${Review.getReviewDate()} &nbsp; - &nbsp; &nbsp; ${Review.findUserbyUserId(Review.getCustomerId()).getUserName()}:</b> ${Review.getReview()}</p>
+	</c:forEach>
 </div>
 </body>
 </html>
