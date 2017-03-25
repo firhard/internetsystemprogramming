@@ -76,4 +76,11 @@ public class ReviewBean {
 		return Users.findUserbyId(id);
     }
 	
+	public static void addReview(ReviewBean review) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	db.DBaddReview(review);
+	   	db.closeConnection();
+	}
+	
 }

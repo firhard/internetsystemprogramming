@@ -65,5 +65,12 @@ public class QuestionsBean {
 	public Users findUserbyUserId(int id) {   
 		return Users.findUserbyId(id);
     }
+	
+	public static void addQuestion(QuestionsBean question) {
+		DBAccessClass db = new DBAccessClass();
+	   	db.connectMeIn();
+	   	db.DBaddQuestion(question);
+	   	db.closeConnection();
+	}
 
 }

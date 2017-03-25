@@ -149,4 +149,24 @@
     <servlet-name>ClientAccessCount</servlet-name>
     <url-pattern>/ClientAccessCount</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QAServlet</display-name>
+    <servlet-name>QAServlet</servlet-name>
+    <servlet-class>controllers.QAServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QAServlet</servlet-name>
+    <url-pattern>/QAServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerReviewServlet</display-name>
+    <servlet-name>CustomerReviewServlet</servlet-name>
+    <servlet-class>controllers.CustomerReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerReviewServlet</servlet-name>
+    <url-pattern>/CustomerReviewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

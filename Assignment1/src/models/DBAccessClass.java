@@ -102,7 +102,7 @@ public class DBAccessClass {
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO CustomerReviews "
-				+ "VALUES (111, 111, 101, '01/05/2017', '0', "
+				+ "VALUES (111, 111, 101, '01/05/2017', '4', "
 		        + "'Man this was a g8 product. I am also not a homosexual');";
 		  stmt.executeUpdate(sql);
 		  
@@ -149,6 +149,36 @@ public class DBAccessClass {
 				e.printStackTrace();
 		}
 		
+	}
+	
+
+	public void DBaddQuestion(QuestionsBean questionBean) {
+		try{
+			stmt = conn.createStatement();
+			String sql;
+			sql = "INSERT INTO ProductQA (Id, ProductId, CustomerId, Question, Answer) VALUES (" + questionBean.getId() + ", " 
+				+ questionBean.getProductId() + ", " + questionBean.getCustomerId() + ", '" 
+				+ questionBean.getQuestion() + "', null)";
+			stmt.executeUpdate(sql);
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void DBaddReview(ReviewBean reviewBean) {
+		try{
+			stmt = conn.createStatement();
+			String sql;
+			sql = "INSERT INTO CustomerReviews (Id, ProductId, CustomerId, ReviewDate, Rating, Review) VALUES (" + reviewBean.getId() + ", " 
+				+ reviewBean.getProductId() + ", " + reviewBean.getCustomerId() + ", '" 
+				+ reviewBean.getReviewDate() + "', " + reviewBean.getRating() + ", '"
+				+ reviewBean.getReview() + "')";
+			stmt.executeUpdate(sql);
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public ArrayList<ReviewBean> DBgetReviewsbyProductId(int id){

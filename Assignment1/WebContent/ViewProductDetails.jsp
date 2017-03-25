@@ -18,7 +18,6 @@
         //var productId = productTable.getAttribute('data-ProductId');
 	   
 	       $.get("UpdateShoppingCart", {ProductQuantitySend:requestedQuantity, ProductIdSend:productId}, function(data,status) {
-
 	    		if(data == 1) {	
 			        alert("Succeeded in adding item");
 				} else if(data == -1) {	    			
@@ -26,11 +25,30 @@
 	    		}
 				else {
 					alert("Unknown error");
-				}
-	    		
-	    			
+				}		
 	  	  });
 	  }
+	
+	function addQuestion() {
+        var productId = $("table").attr("data-ProductId");
+        var question = $("#question").val();
+
+       $.get("QAServlet", {QuestionSend:question, ProductIdSend:productId}, function(data,status) {
+    		
+           window.location.reload();
+	  	  });
+	 }
+    
+	function addReview() {
+        var productId = $("table").attr("data-ProductId");
+        var freview = $("#review").val();
+        var frating = $("#rating").val();
+
+       $.get("CustomerReviewServlet", {ReviewSend:freview, RatingSend:frating, ProductIdSend:productId}, function(data,status) {
+    		
+           window.location.reload();
+	  	  });
+	 }
 </script>
 <title>View Products</title>
 </head>
@@ -107,14 +125,29 @@ Add to Cart:<input type="text" id="ProductQuantity" name="ProductQuantity"><inpu
 	<h2>Questions & Seller Answers</h2>
 	<c:forEach var="QA" items="${QuestionList}">
 		<p><b>Q: ${QA.findUserbyUserId(QA.getCustomerId()).getUserName()}:</b> ${QA.getQuestion()}<p>
-		<p><b>A: ${prodBean.findUserbySellerId(prodBean.getSellerId()).getFullName()}:</b> ${QA.getAnswer() eq '' ? "No seller response" : QA.getAnswer()}</p>
+		<p><b>A: ${prodBean.findUserbySellerId(prodBean.getSellerId()).getFullName()}:</b> ${QA.getAnswer() eq '' || QA.getAnswer() eq ' ' || QA.getAnswer() eq null ? "No seller response" : QA.getAnswer()}</p>
 	</c:forEach>
+	<br>
+	<h2>Ask a question</h2>
+	Your Question:
+	<input type=text id="question" > <br>
+	<input type=submit value=Submit onClick="addQuestion()"> <br>
+	
 </div>
 <div>
 	<h2>Customer Reviews:</h2>
 	<c:forEach var="Review" items="${ReviewList}">
-		<p><b>&nbsp; &nbsp;${Review.getRating() eq 0 ? "Positive Rating" : "Negative Rating"} &nbsp; - &nbsp; &nbsp; ${Review.getReviewDate()} &nbsp; - &nbsp; &nbsp; ${Review.findUserbyUserId(Review.getCustomerId()).getUserName()}:</b> ${Review.getReview()}</p>
+		<p><b>&nbsp; &nbsp;${Review.getRating()} &nbsp; - &nbsp; &nbsp; ${Review.getReviewDate()} &nbsp; - &nbsp; &nbsp; ${Review.findUserbyUserId(Review.getCustomerId()).getUserName()}:</b> ${Review.getReview()}</p>
 	</c:forEach>
+	<br>
+	<h2>Submit a review</h2>
+	Rating (1-5):
+	 <input type=text id="rating" > <br>
+	 <br>
+	Review:
+	<input type=text id="review" > <br>
+	<input type=submit value=Submit onClick="addReview()"> <br>
+	
 </div>
 </body>
 </html>
