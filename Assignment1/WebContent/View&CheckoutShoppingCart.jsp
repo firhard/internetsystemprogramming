@@ -113,6 +113,6 @@ div form {
 </div>
 <br>
 <h2>Total Price: $${TotalPrice}</h2>
-<input type="button" value="Checkout" name="Checkout" onclick="document.location.href='CustomerTransaction.jsp'"><br>
+<input type="button" value="Checkout" name="Checkout" onclick="document.location.href='ConfirmOrder.jsp'"><br>
 </body>
 </html>

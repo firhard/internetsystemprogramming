@@ -169,4 +169,24 @@
     <servlet-name>CustomerReviewServlet</servlet-name>
     <url-pattern>/CustomerReviewServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PlaceOrderServlet</display-name>
+    <servlet-name>PlaceOrderServlet</servlet-name>
+    <servlet-class>controllers.PlaceOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PlaceOrderServlet</servlet-name>
+    <url-pattern>/PlaceOrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BankServlet</display-name>
+    <servlet-name>BankServlet</servlet-name>
+    <servlet-class>controllers.BankServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BankServlet</servlet-name>
+    <url-pattern>/BankServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
