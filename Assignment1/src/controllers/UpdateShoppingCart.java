@@ -66,7 +66,6 @@ public class UpdateShoppingCart extends HttpServlet {
 	    int RequestedQuantity = 0;
 	    int AvailableQuantity = 0;
 	    int removeProductIndex = -1;
-    	System.out.println("what");
 
 	    boolean newBean = true;
 	    if(request.getParameter("remove") != null)
@@ -75,8 +74,7 @@ public class UpdateShoppingCart extends HttpServlet {
 	    } else {
 	    	RequestedQuantity = Integer.parseInt(request.getParameter("ProductQuantitySend"));
 		    AvailableQuantity = prodBean.getAvailableQuantity();
-	    	System.out.println(RequestedQuantity);
-	    	System.out.println("What's happening");
+	
 		    for (int i=0; i<ShoppingCart.size(); i++) {
 			    if(prodBean.getId() == ShoppingCart.get(i).getId()){
 			    	RequestedQuantity += RequestedQuantityList.get(i);

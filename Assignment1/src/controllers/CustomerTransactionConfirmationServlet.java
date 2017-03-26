@@ -1,11 +1,11 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import models.OrderItems;
 import models.OrdersBean;
 import models.ProductsBean;
-import models.TransactionsBean;
 import models.Users;
 
 /**
@@ -36,39 +35,23 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-	
-		String address = "CustomerTransactionConfirmation.jsp";
-		int Price = (Integer)session.getAttribute("TotalPrice");
-		@SuppressWarnings("unchecked")
-		ArrayList<Integer> requestedQuantity = (ArrayList<Integer>)session.getAttribute("RequestedQuantityList");
-		@SuppressWarnings("unchecked")
-		ArrayList<ProductsBean> Products = (ArrayList<ProductsBean>)session.getAttribute("ShoppingCart");
-		int color = 1;
-		String cHolderName = request.getParameter("CardHolderName");
-		String cType = request.getParameter("CardType");
-		String cNumber = request.getParameter("CardNumber");
-		String sCode = request.getParameter("SecurityCode");
-		String eDate = request.getParameter("ExpirationDate");
-		String billingAddress = request.getParameter("BillingAddress");
-		String shippingAddress = request.getParameter("ShippingAddress");
-		boolean transactionValue = TransactionsBean.verifyCreditCard(cHolderName, cType, cNumber, sCode, eDate);
-		session.setAttribute("transactionValue", transactionValue);
-		
-		double AvailableBalance = TransactionsBean.availableBalance(cHolderName);
-		if(transactionValue == false){
-			color = 0;
-		}
-		
-		if(AvailableBalance < Price && transactionValue == true){
-			color = 2;
-		}
-		
-		if(transactionValue == true && color!=2){
-			double deductCredit = TransactionsBean.deductCredit(Price, cNumber, sCode);
+
+		int color = Integer.parseInt(request.getParameter("Color").replaceAll("\\n", "").replaceAll("\\r", ""));
+				
+		if(color == 3){
+			
+			@SuppressWarnings("unchecked")
+			ArrayList<Integer> requestedQuantity = (ArrayList<Integer>)session.getAttribute("RequestedQuantityList");
+			@SuppressWarnings("unchecked")
+			ArrayList<ProductsBean> Products = (ArrayList<ProductsBean>)session.getAttribute("ShoppingCart");
+			
+			String cNumber = request.getParameter("CardNumber");
+			String billingAddress = request.getParameter("BillingAddress");
+			String shippingAddress = request.getParameter("ShippingAddress");
+			
 			for(int i = 0; i < requestedQuantity.size(); i++){
 				ProductsBean.deleteRequestedQuantity(requestedQuantity.get(i), Products.get(i).getId());
 			}
-			session.setAttribute("deductCredit", deductCredit);
 			session.setAttribute("Session", session);
 			
 			int TotalPrice = (Integer)session.getAttribute("TotalPrice");
@@ -124,18 +107,10 @@ public class CustomerTransactionConfirmationServlet extends HttpServlet {
 		    }
 		}
 			
-		
 		session.setAttribute("color", color);
-		session.setAttribute("price", Price);
-		session.setAttribute("cardHolderName", cHolderName);
-		session.setAttribute("sCode", sCode);
-		session.setAttribute("eDate", eDate);
-		session.setAttribute("cNumber", cNumber);
-		session.setAttribute("ShippingAddress", shippingAddress);
-		session.setAttribute("billingAddress", billingAddress);
-		RequestDispatcher dispatcher = 
-				request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
+	    PrintWriter out = response.getWriter(); 
+		out.println(color);
+
 	}
 	
 

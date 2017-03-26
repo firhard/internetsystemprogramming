@@ -53,30 +53,24 @@ div form {
 
 
 </style>
-<body>
-<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
-	<c:redirect url="Login.jsp">
-	</c:redirect>
-</c:if>
-<form action="LogoutServlet" method="post">
-<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<input type="button" value="Shopping Cart" class="Shopping Cart" name="Shopping Cart" onclick="document.location.href='View&CheckoutShoppingCart.jsp'">
-<input type ="Submit" name="Logout" value="Logout">
-</form>
-<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
+<body id="bankResults">
 <br>
-Your order has been    
+<br>
 <c:choose>
     <c:when test="${color eq 0}">
-    	a failure. Because the information that you insert was incorrect
+    	Your order has been a failure. Because the information that you inserted was incorrect
         <br />
     </c:when>  
     <c:when test="${color eq 2}">
-    	a failure. Because you have insufficient amount of balance
+    	Your order has been a failure. Because you have insufficient amount of balance
         <br />
-    </c:when>          
-	<c:otherwise>
-		placed! The amount that you paid was $${TotalPrice}
+    </c:when>
+    <c:when test="${color eq 3}">
+        Your order has been placed! The amount that you paid was $${TotalPrice}
+        <script>
+	        let elem = document.getElementById('buttons');
+	        elem.style.display = 'none';
+        </script>
 		<input type="submit" value="print" onClick="window.print()"/> 
 		<br>
 		<div class="Products">
@@ -107,9 +101,12 @@ Your order has been
 					</tr>
 			</table><br>
 			</c:forEach>
+			${ShoppingCart[0].invalidateShoppingCart(Session)}
 		</div>
+    </c:when>  
+	<c:otherwise>
+
 	</c:otherwise>
 </c:choose>
-${ShoppingCart[0].invalidateShoppingCart(Session)}
 </body>
 </html>

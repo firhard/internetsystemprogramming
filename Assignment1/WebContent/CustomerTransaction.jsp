@@ -53,17 +53,6 @@ div form {
 
 </style>
 <body>
-<c:if test="${isUserLoggedIn == null || isUserLoggedIn == false}">
-	<c:redirect url="Login.jsp">
-	</c:redirect>
-</c:if>
-
-<input type="button" value="Home" class="Home" name="Home" onclick="document.location.href='CustomerHomePage.jsp'">
-<form action="LogoutServlet" method="post">
-<input type ="Submit" name="Logout" value="Logout">
-</form>
-<form action=ViewOrdersServlet method="post"><input type="Submit" value="View Orders" name="View Orders"></form>
-
 <div class="Products">
 <c:forEach var="product" items="${ShoppingCart}" varStatus="status">
 	<table>
@@ -94,7 +83,6 @@ div form {
 	</c:forEach>
 </div>
 
-<form action="CustomerTransactionConfirmationServlet" method="post">
 <div class="TransactionInfo">
 	<table>
 		<tr>
@@ -104,11 +92,11 @@ div form {
 		</tr>
 		<tr>
 			<th>
-				Card Holder Name:<input type="text" class="CardHolderName" name="CardHolderName">
+				Card Holder Name:<input type="text" id="CardHolderName" name="CardHolderName">
 			</th> 
 		</tr>
 		<tr>
-			<th>Card Type<select class="CardType" name="CardType">
+			<th>Card Type<select id="CardType" name="CardType">
 				<option value="Visa">Visa</option>
 				<option value="Master Card">Master Card</option>
 				<option value="Discover">Discover</option>
@@ -118,33 +106,31 @@ div form {
 		</tr>
 		<tr>
 			<th>
-				Card Number:<input type="text" class="CardNumber" name="CardNumber">
+				Card Number:<input type="text" id="CardNumber" name="CardNumber">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Security Code:<input type="text" class="SecurityCode" name="SecurityCode" style="width: 30px">
+				Security Code:<input type="text" id="SecurityCode" name="SecurityCode" style="width: 30px">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Expiration Date (without the slash. e.g. 0717 for July 2017):<input type="text" class="ExpirationDate" name="ExpirationDate" style="width: 30px">
+				Expiration Date (without the slash. e.g. 0717 for July 2017):<input type="text" id="ExpirationDate" name="ExpirationDate" style="width: 30px">
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Billing Address:<input type="text" class="BillingAddress" name="BillingAddress"><br>
+				Billing Address:<input type="text" id="BillingAddress" name="BillingAddress"><br>
 			</th>
 		</tr>
 		<tr>
 			<th>
-				Shipping Address:<input type="text" class="ShippingAddress" name="ShippingAddress"><br>
+				Shipping Address:<input type="text" id="ShippingAddress" name="ShippingAddress"><br>
 			</th>
 		</tr>
 	</table>
 </div>
-Confirm Payment: <input type="Submit" value="Confirm Payment" class="ConfirmPayment" name="ConfirmPayment"> <br>
-Cancel Payment: <input type="button" value="Cancel Payment" class="CancelPayment" name="CancelPayment"  onclick="document.location.href='View&CheckoutShoppingCart.jsp'"> <br>
-</form>
+
 </body>
 </html>

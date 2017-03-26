@@ -36,7 +36,7 @@
        $.get("QAServlet", {QuestionSend:question, ProductIdSend:productId}, function(data,status) {
     		
            window.location.reload();
-	  	  });
+	   });
 	 }
     
 	function addReview() {
@@ -47,7 +47,7 @@
        $.get("CustomerReviewServlet", {ReviewSend:freview, RatingSend:frating, ProductIdSend:productId}, function(data,status) {
     		
            window.location.reload();
-	  	  });
+	   });
 	 }
 </script>
 <title>View Products</title>

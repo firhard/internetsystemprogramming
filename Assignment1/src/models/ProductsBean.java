@@ -149,6 +149,7 @@ public class ProductsBean {
 		session.removeAttribute("TotalsList");
 		session.removeAttribute("DateList");
 		session.removeAttribute("TotalPrice");
+		session.removeAttribute("color");
 	}
 	
 	public void addQuanity(int id, int add){

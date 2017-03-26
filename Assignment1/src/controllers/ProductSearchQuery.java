@@ -68,10 +68,13 @@ public class ProductSearchQuery extends HttpServlet {
 			
 			ArrayList<ProductsBean> prodBeanList = ProductsBean.findProductbyNameandCategory(search, category);
 			ListName.addAll(prodBeanList);
-			ReviewList.addAll(ReviewBean.findReviewsbyProductID(prodBeanList.get(0).getId()));
-			QuestionList.addAll(QuestionsBean.findQuesetionsbyProductId(prodBeanList.get(0).getId()));
-			session.setAttribute("ReviewList", ReviewList);
-			session.setAttribute("QuestionList", QuestionList);
+			if(!prodBeanList.isEmpty()){
+				ReviewList.addAll(ReviewBean.findReviewsbyProductID(prodBeanList.get(0).getId()));
+				QuestionList.addAll(QuestionsBean.findQuesetionsbyProductId(prodBeanList.get(0).getId()));
+				session.setAttribute("ReviewList", ReviewList);
+				session.setAttribute("QuestionList", QuestionList);
+			}
+
 		}
 				
 	    RequestDispatcher dispatcher =
