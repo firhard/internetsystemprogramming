@@ -536,13 +536,13 @@ public Users DBgetUserbyUserName(String username){
 		  stmt.executeUpdate(sql);
 
 		  sql = "INSERT INTO CreditCards "
-					+ "VALUES (2, 'Jon Lee', '0123456789', 20000.00, "
+					+ "VALUES (2, 'Jon Lee', '0123456789', 500.00, "
 			        + "'Master Card', 100, 352, "
 			        + "'0612');";
 		  stmt.executeUpdate(sql);
 		  
 		  sql = "INSERT INTO CreditCards "
-				+ "VALUES (1, 'Firhard Roslan', '950611146279', 10000.00, "
+				+ "VALUES (1, 'Firhard Roslan', '950611146279', 1000.00, "
 		        + "'Visa', 101, 158, "
 		        + "'0511');";
 		  stmt.executeUpdate(sql);
